@@ -1,0 +1,29 @@
+name: ZooPR
+version: '${project.version}'
+main: me.sildev.zoopr.ZooPR
+api-version: 1.19
+authors: [ siloonk ]
+description: ZooPR Core
+
+commands:
+  bal:
+    description: bal command!
+
+  pay:
+    description: pay command!
+
+  vanish:
+    description: vanish command!
+
+  ban:
+    description: ban command!
+
+  rankup:
+    aliases: [ ru ]
+    description: rankup command!
+
+  prestige:
+    description: prestige command!
+
+  gang:
+    description: gang command!

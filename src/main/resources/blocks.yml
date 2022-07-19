@@ -1,0 +1,15 @@
+#
+# Block values
+# You can add any block you want to add!
+#
+
+STONE: 10
+COBBLESTONE: 15
+COAL_ORE: 17
+IRON_ORE: 20
+GOLD_ORE: 25
+LAPIS_LAZULI_ORE: 30
+REDSTONE_ORE: 50
+EMERALD_ORE: 70
+DIAMOND_ORE: 100
+ENDSTONE: 150

@@ -1,0 +1,81 @@
+#
+# Variables:
+# %target% -> Player
+# %name% -> Name of the gang
+# %enchantment% -> Name of the enchantment
+# %remaining% -> The amount the player still needs to rankup or prestige!
+# %rank% -> rank of player (A/Z)
+#
+# You can't use these variables in all places, only use them where the default messages have them otherwise it will just show the variable without its value!
+#
+
+
+
+#
+# General messages!
+#
+onlyPlayersCanExecuteThisCommand: "Only players can execute this command!"
+playerIsNotOnline: "&dZooPR &8| &7This player is not online!"
+NotANumber: "&dZooPR &8| &7This value is not a number!"
+noPermission: "&dZooPR &8| &7You don't have the right permissions to execute this command!"
+playerDoesNotExist: "&dZooPR &8| &7This player does not exist!"
+
+
+#
+# Usages
+#
+usageCreate: "&dUsage &8| &7/gang create (name)"
+usageInvite: "&dUsage &8| &7/gang invite (player)"
+usageAccept: "&dUsage &8| &7/gang accept"
+usageLeave: "&dUsage &8| &7/gang leave"
+payUsage: "&dUsage &8| &7/pay <player> <amount>"
+banUsage: "&dUsage &8| &7/ban <player> <Time(Number)> <Day/Month/Year> [<reason>]"
+
+
+#
+# Staff command Messages
+#
+successfullyBannedPlayer: "&dZooPR &8| &7You have successfully banned &d%target%&7!"
+vanishEnabled: "&dZooPR &8| &7You are now in vanish!"
+vanishDisabled: "&dZooPR &8| &7You are no longer in vanish!"
+
+
+#
+# Gang messages!
+#
+createGang: "&dZooPR &8| &7You have succesfully created the gang &d%name%"
+needAGang: "&dZooPR &8| &7You don't own a gang!"
+notInAGang: "&dZooPR &8| &7You are not part of a gang!"
+unableToInviteSelf: "&dZooPR &8| &7You can't invite yourself!"
+notInvited: "&dZooPR &8| &7You have not received an invite from anyone!"
+alreadyInAGang: "&dZooPR &8| &7You are already in a gang!"
+cantLeaveOwnGang: "&dZooPR &8| &7You can't leave your own gang!"
+successfullyLeftGang: "&dZooPR &8| &7You have successfully left the gang!"
+successfullyInvited: "&dZooPR &8| &7You have successfully invited &d%target%&7!"
+haveBeenInvited: "&dZooPR &8| &7You have been invited by &d%name%&7!"
+failedToCreateAGang: "&dZooPR &8| &7Failed to create a gang!"
+playerJoinedGang: "&dZooPR &8| &d%target% &7Joined the gang!"
+
+
+#
+# Economy Messages
+#
+balanceSelf: "&dZooPR &8| &7You have &b$%amount%&7!"
+balanceOther: "&dZooPR &8| &d%target% &7has &b$%amount%&7!"
+insufficientFunds: "&dZooPR &8| &7You don't have sufficient funds to execute this command!"
+youPaid: "&dZooPR &8| &7You paid %target% &d%amount%&7."
+youGotPaid: "&dZooPR &8| &7You have received &d$%amount%&7 from %target%."
+notEnoughMoneyToPrestige: "&dZooPR &8| &7You don't have enough money to prestige &7(&c%remaining%&7)."
+notRankZYet: "&dZooPR &8| &7You can't prestige yet you are only rank &d%rank%/Z"
+notEnoughToRankup: "&dZooPR &8| &7You don't have enough money to rankup! (&c%remaining%&7)"
+successfullyRankedUp: "&dZooPR &8| &7You have succesfully ranked up to &d%rank%&7!"
+playerAlreadyAtZ: "&dZooPR &8| &7You will have to prestige in order to continue!"
+
+
+#
+# Enchant messages
+#
+luckyProc: "&dZooPR &8|&7 You have received &d%amount% &dTokens&7 from lucky!"
+notEnoughTokensToBuyEnchant: "&dZooPr &8| &7You don't have enough tokens to upgrade this enchantment!"
+successfullyUpgradedEnchant: "&dZooPR &8| &7You have successfully upgraded %enchantment%"
+breachMaxLevel: "&dZooPr &8| &7Failed to enchant because it would breach the max level!"
