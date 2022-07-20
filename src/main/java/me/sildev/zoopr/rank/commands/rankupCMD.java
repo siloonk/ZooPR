@@ -38,6 +38,7 @@ public class rankupCMD implements CommandExecutor {
             player.sendMessage(message);
             return true;
         }
+        EconomyManager.addMoneyToUser(player, -rankupCost);
 
         if (rank >= 25) {player.sendMessage(alreadyAtZ); return true; }
 

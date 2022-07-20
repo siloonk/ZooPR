@@ -38,7 +38,7 @@ public class prestigeCMD implements CommandExecutor {
 
         String message = notEnoughmoney.replaceAll("%remaining%", formatNumber.coolFormat(cost-balance, 0));
         if (balance < cost) {player.sendMessage(message); return true; }
-
+        EconomyManager.addMoneyToUser(player, -cost);
         container.set(rankupManager.prestigeCost, PersistentDataType.DOUBLE, cost * rankupManager.prestigeCostMultiplier);
 
         container.set(rankupManager.rankup, PersistentDataType.INTEGER, 0);

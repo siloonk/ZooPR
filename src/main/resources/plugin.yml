@@ -27,3 +27,6 @@ commands:
 
   gang:
     description: gang command!
+
+  prestigemax:
+    description: prestigemax command!

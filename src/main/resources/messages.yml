@@ -9,8 +9,6 @@
 # You can't use these variables in all places, only use them where the default messages have them otherwise it will just show the variable without its value!
 #
 
-
-
 #
 # General messages!
 #
@@ -79,3 +77,12 @@ luckyProc: "&dZooPR &8|&7 You have received &d%amount% &dTokens&7 from lucky!"
 notEnoughTokensToBuyEnchant: "&dZooPr &8| &7You don't have enough tokens to upgrade this enchantment!"
 successfullyUpgradedEnchant: "&dZooPR &8| &7You have successfully upgraded %enchantment%"
 breachMaxLevel: "&dZooPr &8| &7Failed to enchant because it would breach the max level!"
+
+#
+# Robot Messages
+#
+NotYourRobot: "&dZooPR &8| &7This is not your robot!"
+placedRobot: "&dZooPR &8| &7You have successfully placed your robot!"
+CantDamageRobot: "&dZooPR &8| &7You can't damage a robot!"
+
+robotName: "&dRobot &8| &f%owner%"

@@ -16,6 +16,7 @@ import me.sildev.zoopr.essentials.commands.vanishCMD;
 import me.sildev.zoopr.pickaxe.events.enchantMenu;
 import me.sildev.zoopr.pickaxe.givePickaxe;
 import me.sildev.zoopr.rank.commands.prestigeCMD;
+import me.sildev.zoopr.rank.commands.prestigeMax;
 import me.sildev.zoopr.rank.commands.rankupCMD;
 import me.sildev.zoopr.rank.rankupManager;
 import me.sildev.zoopr.scoreboard.scoreboardListener;
@@ -64,6 +65,7 @@ public final class ZooPR extends JavaPlugin {
         getCommand("rankup").setExecutor(new rankupCMD());
         getCommand("prestige").setExecutor(new prestigeCMD());
         getCommand("gang").setExecutor(new gangCMD());
+        getCommand("prestigemax").setExecutor(new prestigeMax());
     }
 
     void registerEvents() {
