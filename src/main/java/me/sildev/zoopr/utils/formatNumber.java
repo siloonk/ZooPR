@@ -7,6 +7,7 @@ public class formatNumber {
 
 
     public static String coolFormat(double n, int iteration) {
+        if (n < 1000) { return String.valueOf(Math.round(n)); }
         double d = ((long) n / 100) / 10.0;
         boolean isRound = (d * 10) %10 == 0;//true if the decimal part is equal to 0 (then it's trimmed anyway)
         return (d < 1000? //this determines the class, i.e. 'k', 'm' etc

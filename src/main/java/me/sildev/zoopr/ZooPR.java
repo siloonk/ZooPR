@@ -19,6 +19,7 @@ import me.sildev.zoopr.rank.commands.prestigeCMD;
 import me.sildev.zoopr.rank.commands.prestigeMax;
 import me.sildev.zoopr.rank.commands.rankupCMD;
 import me.sildev.zoopr.rank.rankupManager;
+import me.sildev.zoopr.robots.*;
 import me.sildev.zoopr.scoreboard.scoreboardListener;
 import me.sildev.zoopr.utils.Messages;
 
@@ -66,6 +67,7 @@ public final class ZooPR extends JavaPlugin {
         getCommand("prestige").setExecutor(new prestigeCMD());
         getCommand("gang").setExecutor(new gangCMD());
         getCommand("prestigemax").setExecutor(new prestigeMax());
+        getCommand("robot").setExecutor(new RobotCMD());
     }
 
     void registerEvents() {
@@ -75,6 +77,10 @@ public final class ZooPR extends JavaPlugin {
         pm.registerEvents(new enchantMenu(), this);
         pm.registerEvents(new rankupManager(), this);
         pm.registerEvents(new scoreboardListener(), this);
+        pm.registerEvents(new RobotManager(), this);
+        pm.registerEvents(new RobotDamage(), this);
+        pm.registerEvents(new openRobotMenu(), this);
+        pm.registerEvents(new RobotGUI(), this);
 
         // Enchantments
         pm.registerEvents(new ExplosiveListener(), this);

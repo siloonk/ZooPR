@@ -29,7 +29,7 @@ public class prestigeMax implements CommandExecutor {
 
     void maxPrestige(Player player) {
         int initPrestige = player.getPersistentDataContainer().get(rankupManager.prestige, PersistentDataType.INTEGER);
-        new prestigeMaxTask(player, initPrestige).runTaskTimerAsynchronously(ZooPR.getPlugin(), 0L, 0L);
+        new prestigeMaxTask(player, initPrestige).runTaskTimerAsynchronously(ZooPR.getPlugin(), 0L, 1L);
 
     }
 }

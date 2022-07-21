@@ -20,6 +20,9 @@ public class EconomyManager implements Listener {
     static FileConfiguration tokens;
     static File tokensConfigFile;
 
+    static FileConfiguration beacons;
+    static File beaconsConfigFile;
+
     static ZooPR instance;
 
     public EconomyManager(ZooPR plugin) {
@@ -28,6 +31,7 @@ public class EconomyManager implements Listener {
 
         createMoneyConfig();
         createTokenConfig();
+        createBeaconsConfig();
 
     }
 
@@ -53,6 +57,22 @@ public class EconomyManager implements Listener {
 
     }
 
+    private static void createBeaconsConfig() {
+        beaconsConfigFile = new File(instance.getDataFolder(), "beacons.yml");
+        if (!beaconsConfigFile.exists()) {
+            beaconsConfigFile.getParentFile().mkdirs();
+            instance.saveResource("beacons.yml", false);
+        }
+
+        beacons = new YamlConfiguration();
+        try {
+            beacons.load(beaconsConfigFile);
+        } catch (IOException | InvalidConfigurationException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     private static void createTokenConfig() {
         tokensConfigFile = new File(instance.getDataFolder(), "tokens.yml");
         if (!tokensConfigFile.exists()) {
@@ -69,6 +89,7 @@ public class EconomyManager implements Listener {
 
     // Adders and getters and setters for player money;
 
+
     static void addUser(Player player) {
         if (!money.contains("balance." + player.getUniqueId())) {
             money.set("balance." + player.getUniqueId(), 0);
@@ -80,10 +101,18 @@ public class EconomyManager implements Listener {
         }
 
         if (!tokens.contains("balance." + player.getUniqueId())) {
-            System.out.println(money.getDouble("balance." + player.getUniqueId()));
             tokens.set("balance." + player.getUniqueId(), 0);
             try {
                 tokens.save(tokensConfigFile);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        if (!beacons.contains("beacons." + player.getUniqueId())) {
+            beacons.set("beacons." + player.getUniqueId(), 0);
+            try {
+                beacons.save(beaconsConfigFile);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -131,6 +160,30 @@ public class EconomyManager implements Listener {
         tokens.set("balance." + player.getUniqueId(), currTokens + amount);
         try {
             tokens.save(tokensConfigFile);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static Double getBeaconsOfUser(Player player) {
+        return beacons.getDouble("balance." + player.getUniqueId());
+    }
+
+    public static void setBeaconsOfUser(Player player, Double amount) {
+        beacons.set("beacons." + player.getUniqueId(), amount);
+
+        try {
+            beacons.save(beaconsConfigFile);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void addBeaconsToUser(Player player, double amount) {
+        double currAmount = beacons.getDouble("beacons." + player.getUniqueId());
+        beacons.set("beacons." + player.getUniqueId(), currAmount + amount);
+        try {
+            beacons.save(beaconsConfigFile);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -28,6 +28,7 @@ usageAccept: "&dUsage &8| &7/gang accept"
 usageLeave: "&dUsage &8| &7/gang leave"
 payUsage: "&dUsage &8| &7/pay <player> <amount>"
 banUsage: "&dUsage &8| &7/ban <player> <Time(Number)> <Day/Month/Year> [<reason>]"
+robotUsage: "&dUsage &8| &7/robot (give) (player) (level) (amount)"
 
 
 #

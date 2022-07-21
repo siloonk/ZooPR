@@ -4,6 +4,7 @@ import me.sildev.zoopr.ZooPR;
 import me.sildev.zoopr.utils.Messages;
 import me.sildev.zoopr.utils.coloredString;
 import org.bukkit.*;
+import org.bukkit.block.Skull;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.ArmorStand;
 
@@ -15,6 +16,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
@@ -24,7 +26,7 @@ import java.util.UUID;
 public class RobotManager implements Listener {
 
     public static int maxLevel = 100;
-    public static String RobotItemName = coloredString.color("&f&ki&r&d Miner Robot &f&ki&r");
+    public static String RobotItemName = coloredString.color("&f&ki&d Miner Robot &f&ki");
     public static NamespacedKey level = new NamespacedKey(ZooPR.getPlugin(), "robot-level");
     public static  NamespacedKey owner = new NamespacedKey(ZooPR.getPlugin(), "robot-owner");
     public static NamespacedKey earnings = new NamespacedKey(ZooPR.getPlugin(), "robot-earnings");
@@ -32,8 +34,10 @@ public class RobotManager implements Listener {
     public static NamespacedKey type = new NamespacedKey(ZooPR.getPlugin(), "robot-type");
     public static NamespacedKey lastOpened = new NamespacedKey(ZooPR.getPlugin(), "robot-last-opened");
 
-    Material RobotType = Material.ZOMBIE_SPAWN_EGG;
+    public static Material RobotType = Material.ARMOR_STAND;
 
+    public static int ratePerLevel = 5;
+    public static int baseRate = 10;
 
     // Messages
     String notYourRobot = Messages.get("NotYourRobot");
@@ -53,9 +57,10 @@ public class RobotManager implements Listener {
             if (!item.getItemMeta().getDisplayName().equals(RobotItemName))
                 return;
 
-            // Item is an actual robot!
+                // Item is an actual robot!
             ItemMeta meta = item.getItemMeta();
             PersistentDataContainer container = meta.getPersistentDataContainer();
+            System.out.println(container.getKeys());
 
             if (!container.has(level, PersistentDataType.INTEGER))
                 return;
@@ -72,26 +77,44 @@ public class RobotManager implements Listener {
 
             if (!container.has(type, PersistentDataType.STRING))
                 return;
+            System.out.println("type");
 
             String Type = container.get(type, PersistentDataType.STRING);
 
             World world = player.getWorld();
 
-            ArmorStand armorStand = (ArmorStand) world.spawn(e.getClickedBlock().getLocation().add(0d, 1d,0d), ArmorStand.class);
+            Location loc = new Location(world, e.getClickedBlock().getLocation().getBlockX(), e.getClickedBlock().getLocation().getBlockY(), e.getClickedBlock().getLocation().getBlockZ()).add(0.5, 1, 0.5);
+            ArmorStand armorStand = (ArmorStand) world.spawn(loc, ArmorStand.class);
             armorStand.setGravity(false);
             armorStand.setSmall(true);
             ItemStack customItem = new ItemStack(Material.DIAMOND_PICKAXE);
             customItem.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
             armorStand.setItem(EquipmentSlot.HAND, customItem);
             armorStand.setCustomNameVisible(true);
-            armorStand.setCustomName(coloredString.color(robotNameString));
+            String name = robotNameString.replaceAll("%owner%", robotOwner.getName());
+            armorStand.setCustomName(name);
             armorStand.setBasePlate(false);
+            armorStand.setArms(true);
+            ItemStack head = new ItemStack(Material.PLAYER_HEAD);
+            SkullMeta m = (SkullMeta) head.getItemMeta();
+            m.setOwner(player.getName());
+            head.setItemMeta(m);
+            armorStand.setHelmet(head);
+            armorStand.setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE));
+            armorStand.setLeggings(new ItemStack(Material.DIAMOND_LEGGINGS));
+            armorStand.setBoots(new ItemStack(Material.DIAMOND_BOOTS));
             PersistentDataContainer asContainer = armorStand.getPersistentDataContainer();
             asContainer.set(level, PersistentDataType.INTEGER, robotLevel);
             asContainer.set(owner, PersistentDataType.STRING, robotOwner.getUniqueId().toString());
             asContainer.set(type, PersistentDataType.STRING, Type);
+            asContainer.set(earnings, PersistentDataType.DOUBLE, 0d);
+            asContainer.set(value, PersistentDataType.DOUBLE, 0d);
             Date date = new Date();
             asContainer.set(lastOpened, PersistentDataType.LONG, date.getTime());
+
+            int amount = player.getInventory().getItemInMainHand().getAmount();
+
+            player.getInventory().getItemInMainHand().setAmount(amount -1);
             player.sendMessage(placedYourRobot);
         }
     }

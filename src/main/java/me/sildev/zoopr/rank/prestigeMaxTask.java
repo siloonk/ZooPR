@@ -47,23 +47,28 @@ public class prestigeMaxTask extends BukkitRunnable {
         double cost = container.get(rankupManager.prestigeCost, PersistentDataType.DOUBLE);
         double balance = EconomyManager.getMoneyOfUser(player);
 
+        boolean hasEnough = true;
         if (balance < cost) {
             player.sendMessage(coloredString.color("&dzooPR &8| &7You have reached Prestige &d" + prestige + "&7 and rank &d" + rankupManager.ranks[rank]));
             ZooPR.getPlugin().getServer().broadcastMessage(coloredString.color("&8&m---------------------------------------------------"));
             ZooPR.getPlugin().getServer().broadcastMessage(coloredString.color(""));
-            ZooPR.getPlugin().getServer().broadcastMessage(coloredString.color("&d      " + player.getName() + "&7 Has prestiged to prestige &d" +(prestige + 1) + "&7 from prestige &d" + initPrestige));
+            ZooPR.getPlugin().getServer().broadcastMessage(coloredString.color("&d      " + player.getName() + "&7 Has prestiged to prestige &d" +(prestige) + "&7 from prestige &d" + initPrestige));
             ZooPR.getPlugin().getServer().broadcastMessage(coloredString.color(""));
             ZooPR.getPlugin().getServer().broadcastMessage(coloredString.color("&8&m---------------------------------------------------"));
+            hasEnough = false;
             cancel();
         }
-        EconomyManager.addMoneyToUser(player, -cost);
+        if (hasEnough) {
+            EconomyManager.addMoneyToUser(player, -cost);
 
-        container.set(rankupManager.prestigeCost, PersistentDataType.DOUBLE, cost * rankupManager.prestigeCostMultiplier);
+            container.set(rankupManager.prestigeCost, PersistentDataType.DOUBLE, cost * rankupManager.prestigeCostMultiplier);
 
-        container.set(rankupManager.rankup, PersistentDataType.INTEGER, 0);
-        container.set(rankupManager.prestige, PersistentDataType.INTEGER, prestige + 1);
-        double multiplier = (prestige + 1) * rankupManager.rankupCostMultiplier;
-        double rankupCost = container.get(rankupManager.rankupCost, PersistentDataType.DOUBLE);
-        container.set(rankupManager.rankupCost, PersistentDataType.DOUBLE, rankupManager.StartRankupCost * multiplier);
+            container.set(rankupManager.rankup, PersistentDataType.INTEGER, 0);
+            container.set(rankupManager.prestige, PersistentDataType.INTEGER, prestige + 1);
+            double multiplier = (prestige + 1) * rankupManager.rankupCostMultiplier;
+            double rankupCost = container.get(rankupManager.rankupCost, PersistentDataType.DOUBLE);
+            container.set(rankupManager.rankupCost, PersistentDataType.DOUBLE, rankupManager.StartRankupCost * multiplier);
+            container.set(rankupManager.rankupCost, PersistentDataType.DOUBLE, rankupManager.StartRankupCost * multiplier);
+        }
     }
 }

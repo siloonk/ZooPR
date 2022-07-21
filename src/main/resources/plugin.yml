@@ -30,3 +30,6 @@ commands:
 
   prestigemax:
     description: prestigemax command!
+
+  robot:
+    description: robot command!

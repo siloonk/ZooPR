@@ -53,10 +53,6 @@ public class givePickaxe implements Listener {
 
             // Add custom enchants to the item
             item.addUnsafeEnchantment(Enchantment.DIG_SPEED, 25);
-            for (Enchantment ce : CustomEnchants.Enchantments) {
-                item.addUnsafeEnchantment(ce, ce.getMaxLevel());
-            }
-
             // Give the item to the player
             e.getPlayer().getInventory().setItemInMainHand(item);
             addLore.addLore(item, e.getPlayer());
