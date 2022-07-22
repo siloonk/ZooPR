@@ -15,6 +15,8 @@ import me.sildev.zoopr.essentials.commands.banCMD;
 import me.sildev.zoopr.essentials.commands.vanishCMD;
 import me.sildev.zoopr.pickaxe.events.enchantMenu;
 import me.sildev.zoopr.pickaxe.givePickaxe;
+import me.sildev.zoopr.pvemobs.PveMobManager;
+import me.sildev.zoopr.pvemobs.PveSpawnerCMD;
 import me.sildev.zoopr.rank.commands.prestigeCMD;
 import me.sildev.zoopr.rank.commands.prestigeMax;
 import me.sildev.zoopr.rank.commands.rankupCMD;
@@ -55,6 +57,7 @@ public final class ZooPR extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        this.getServer().getScheduler().cancelTasks(ZooPR.getPlugin());
         this.getLogger().fine("ZooPR is Shutting Down!");
     }
 
@@ -68,6 +71,7 @@ public final class ZooPR extends JavaPlugin {
         getCommand("gang").setExecutor(new gangCMD());
         getCommand("prestigemax").setExecutor(new prestigeMax());
         getCommand("robot").setExecutor(new RobotCMD());
+        getCommand("pvespawner").setExecutor(new PveSpawnerCMD());
     }
 
     void registerEvents() {
@@ -81,6 +85,7 @@ public final class ZooPR extends JavaPlugin {
         pm.registerEvents(new RobotDamage(), this);
         pm.registerEvents(new openRobotMenu(), this);
         pm.registerEvents(new RobotGUI(), this);
+        pm.registerEvents(new PveMobManager(), this);
 
         // Enchantments
         pm.registerEvents(new ExplosiveListener(), this);

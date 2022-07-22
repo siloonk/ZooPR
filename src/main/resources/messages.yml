@@ -29,6 +29,7 @@ usageLeave: "&dUsage &8| &7/gang leave"
 payUsage: "&dUsage &8| &7/pay <player> <amount>"
 banUsage: "&dUsage &8| &7/ban <player> <Time(Number)> <Day/Month/Year> [<reason>]"
 robotUsage: "&dUsage &8| &7/robot (give) (player) (level) (amount)"
+pvespawnerUsage: "&dUsage &8| &7/pvespawner give (player) (type) (amount)"
 
 
 #
@@ -87,3 +88,10 @@ placedRobot: "&dZooPR &8| &7You have successfully placed your robot!"
 CantDamageRobot: "&dZooPR &8| &7You can't damage a robot!"
 
 robotName: "&dRobot &8| &f%owner%"
+
+
+#
+# Spawner Messages
+#
+invalidSpawner: "&dZooPR &8| &7This is not a valid spawner type!"
+receivedBeacons: "&dZooPR &8| &7You have received &d%amount% beacons&7!"

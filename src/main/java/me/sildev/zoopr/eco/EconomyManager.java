@@ -166,7 +166,7 @@ public class EconomyManager implements Listener {
     }
 
     public static Double getBeaconsOfUser(Player player) {
-        return beacons.getDouble("balance." + player.getUniqueId());
+        return beacons.getDouble("beacons." + player.getUniqueId());
     }
 
     public static void setBeaconsOfUser(Player player, Double amount) {

@@ -3,7 +3,6 @@ package me.sildev.zoopr.rank;
 import me.sildev.zoopr.ZooPR;
 import me.sildev.zoopr.eco.EconomyManager;
 import me.sildev.zoopr.utils.coloredString;
-import me.sildev.zoopr.utils.formatNumber;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
@@ -25,28 +24,36 @@ public class prestigeMaxTask extends BukkitRunnable {
     @Override
     public void run() {
         int rank = container.get(rankupManager.rankup, PersistentDataType.INTEGER);
+        PersistentDataContainer container = player.getPersistentDataContainer();
+        int prestige = container.get(rankupManager.prestige, PersistentDataType.INTEGER);
+        boolean sentMessage = false;
 
         while (rank < 25) {
             double rankupCost = container.get(rankupManager.rankupCost, PersistentDataType.DOUBLE);
             double balance = EconomyManager.getMoneyOfUser(player);
+            boolean hasEnough = true;
 
             if (!(balance >= rankupCost)) {
+                hasEnough = false;
+                if (!sentMessage)   {player.sendMessage(coloredString.color("&dzooPR &8| &7You have reached Prestige &d" + prestige + "&7 and rank &d" + rankupManager.ranks[rank])); sentMessage = true; }
                 cancel();
             }
-            EconomyManager.addMoneyToUser(player, -rankupCost);
-            container.set(rankupManager.rankup, PersistentDataType.INTEGER, rank + 1);
-            container.set(rankupManager.rankupCost, PersistentDataType.DOUBLE, rankupCost * 1.5);
-            rank = container.get(rankupManager.rankup, PersistentDataType.INTEGER);
+
+            if (hasEnough) {
+                EconomyManager.addMoneyToUser(player, -rankupCost);
+                container.set(rankupManager.rankup, PersistentDataType.INTEGER, rank + 1);
+                container.set(rankupManager.rankupCost, PersistentDataType.DOUBLE, rankupCost * 1.5);
+                rank = container.get(rankupManager.rankup, PersistentDataType.INTEGER);
+            }
         }
 
-        PersistentDataContainer container = player.getPersistentDataContainer();
-        int prestige = container.get(rankupManager.prestige, PersistentDataType.INTEGER);
         if (!(rank == 25)) {
            cancel();
         }
         double cost = container.get(rankupManager.prestigeCost, PersistentDataType.DOUBLE);
         double balance = EconomyManager.getMoneyOfUser(player);
 
+        container = player.getPersistentDataContainer();
         boolean hasEnough = true;
         if (balance < cost) {
             player.sendMessage(coloredString.color("&dzooPR &8| &7You have reached Prestige &d" + prestige + "&7 and rank &d" + rankupManager.ranks[rank]));

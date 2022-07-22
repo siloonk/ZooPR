@@ -33,3 +33,6 @@ commands:
 
   robot:
     description: robot command!
+
+  pvespawner:
+    description: pvespawner command!

@@ -47,6 +47,5 @@ public class ExplosiveListener implements Listener {
                 SellBlocks.sellBlock(block.getBlock(), player);
         }
         e.getBlock().getWorld().createExplosion(e.getBlock().getLocation(), 0);
-
     }
 }
