@@ -130,6 +130,10 @@ public class PveMobManager implements Listener {
 
     @EventHandler
     public void onMobKill(EntityDamageByEntityEvent e) {
+        Entity ent = e.getEntity();
+        if (!(ent.getType() == EntityType.SKELETON || ent.getType() == EntityType.SPIDER || ent.getType() == EntityType.WITHER_SKELETON || ent.getType() == EntityType.ZOMBIE))
+            return;
+
         LivingEntity entity = (LivingEntity) e.getEntity();
         Entity attacker = e.getDamager();
 
@@ -148,7 +152,8 @@ public class PveMobManager implements Listener {
                 return;
             }
         }
-        entity.setCustomName(coloredString.color("&d" + entity.getType().toString().toLowerCase() + " &c❤ &7" + Math.round(entity.getHealth() - e.getDamage())));
+        if (entity.getType() == EntityType.SKELETON || entity.getType() == EntityType.SPIDER || entity.getType() == EntityType.WITHER_SKELETON || entity.getType() == EntityType.ZOMBIE)
+            entity.setCustomName(coloredString.color("&d" + entity.getType().toString().toLowerCase() + " &c❤ &7" + Math.round(entity.getHealth() - e.getDamage())));
     }
 
     @EventHandler

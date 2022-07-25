@@ -26,7 +26,7 @@ public class bombManager {
         container.set(type, PersistentDataType.STRING, Type.toUpperCase());
         container.set(tier, PersistentDataType.INTEGER, bombTier);
 
-        meta.setDisplayName(coloredString.color("&d" + type + "&d Bomb &8(&7" + tier + "&8)"));
+        meta.setDisplayName(coloredString.color("&d" + Type.toUpperCase() + "&d Bomb &8(&7" + bombTier + "&8)"));
 
         List<String> lore = new ArrayList<String>() {{
             add(coloredString.color("&7Right click to throw!"));

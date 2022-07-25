@@ -30,6 +30,7 @@ payUsage: "&dUsage &8| &7/pay <player> <amount>"
 banUsage: "&dUsage &8| &7/ban <player> <Time(Number)> <Day/Month/Year> [<reason>]"
 robotUsage: "&dUsage &8| &7/robot (give) (player) (level) (amount)"
 pvespawnerUsage: "&dUsage &8| &7/pvespawner give (player) (type) (amount)"
+bombUsage: "&dUsage &8| &7/bomb give (player) (type) (amount)"
 
 
 #
@@ -62,7 +63,7 @@ playerJoinedGang: "&dZooPR &8| &d%target% &7Joined the gang!"
 #
 balanceSelf: "&dZooPR &8| &7You have &b$%amount%&7!"
 balanceOther: "&dZooPR &8| &d%target% &7has &b$%amount%&7!"
-insufficientFunds: "&dZooPR &8| &7You don't have sufficient funds to execute this command!"
+insufficientFunds: "&dZooPR &8| &7You don't have sufficient funds to do this!"
 youPaid: "&dZooPR &8| &7You paid %target% &d%amount%&7."
 youGotPaid: "&dZooPR &8| &7You have received &d$%amount%&7 from %target%."
 notEnoughMoneyToPrestige: "&dZooPR &8| &7You don't have enough money to prestige &7(&c%remaining%&7)."
@@ -76,9 +77,10 @@ playerAlreadyAtZ: "&dZooPR &8| &7You will have to prestige in order to continue!
 # Enchant messages
 #
 luckyProc: "&dZooPR &8|&7 You have received &d%amount% &dTokens&7 from lucky!"
-notEnoughTokensToBuyEnchant: "&dZooPr &8| &7You don't have enough tokens to upgrade this enchantment!"
+notEnoughTokensToBuyEnchant: "&dZooPR &8| &7You don't have enough tokens to upgrade this enchantment!"
 successfullyUpgradedEnchant: "&dZooPR &8| &7You have successfully upgraded %enchantment%"
-breachMaxLevel: "&dZooPr &8| &7Failed to enchant because it would breach the max level!"
+breachMaxLevel: "&dZooPR &8| &7Failed to enchant because it would breach the max level!"
+dontMeetPickaxeLevelRequirement: "&dZooPR &8| &7your pickaxe is not a high enough level!"
 
 #
 # Robot Messages
@@ -95,3 +97,8 @@ robotName: "&dRobot &8| &f%owner%"
 #
 invalidSpawner: "&dZooPR &8| &7This is not a valid spawner type!"
 receivedBeacons: "&dZooPR &8| &7You have received &d%amount% beacons&7!"
+
+#
+# Bomb Messages
+#
+invalidBombType: "&dZooPR &8| &7This is an invalid bomb type!"

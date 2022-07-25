@@ -33,11 +33,15 @@ public class RobotManager implements Listener {
     public static NamespacedKey value = new NamespacedKey(ZooPR.getPlugin(), "robot-value");
     public static NamespacedKey type = new NamespacedKey(ZooPR.getPlugin(), "robot-type");
     public static NamespacedKey lastOpened = new NamespacedKey(ZooPR.getPlugin(), "robot-last-opened");
+    public static NamespacedKey upgradeCost = new NamespacedKey(ZooPR.getPlugin(), "robot-upgrade-cost");
 
     public static Material RobotType = Material.ARMOR_STAND;
 
     public static int ratePerLevel = 5;
     public static int baseRate = 10;
+    public static double costMultiplier = 1.5;
+
+    double upgradeCostStart = 50;
 
     // Messages
     String notYourRobot = Messages.get("NotYourRobot");
@@ -77,7 +81,6 @@ public class RobotManager implements Listener {
 
             if (!container.has(type, PersistentDataType.STRING))
                 return;
-            System.out.println("type");
 
             String Type = container.get(type, PersistentDataType.STRING);
 
@@ -109,6 +112,10 @@ public class RobotManager implements Listener {
             asContainer.set(type, PersistentDataType.STRING, Type);
             asContainer.set(earnings, PersistentDataType.DOUBLE, 0d);
             asContainer.set(value, PersistentDataType.DOUBLE, 0d);
+            if (!container.has(upgradeCost, PersistentDataType.DOUBLE))
+                asContainer.set(upgradeCost, PersistentDataType.DOUBLE, upgradeCostStart);
+            else asContainer.set(upgradeCost, PersistentDataType.DOUBLE, container.get(upgradeCost, PersistentDataType.DOUBLE));
+
             Date date = new Date();
             asContainer.set(lastOpened, PersistentDataType.LONG, date.getTime());
 

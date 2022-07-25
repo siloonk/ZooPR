@@ -7,6 +7,12 @@ import me.sildev.zoopr.Enchants.events.*;
 import me.sildev.zoopr.Gang.Gang;
 import me.sildev.zoopr.Gang.GangManager;
 import me.sildev.zoopr.Gang.commands.gangCMD;
+import me.sildev.zoopr.Leaderboard.LeaderboardManager;
+import me.sildev.zoopr.Leaderboard.baltopCMD;
+import me.sildev.zoopr.Leaderboard.beacontopCMD;
+import me.sildev.zoopr.Leaderboard.tokentopCMD;
+import me.sildev.zoopr.bombs.bombCMD;
+import me.sildev.zoopr.bombs.bombInteractListener;
 import me.sildev.zoopr.eco.EconomyManager;
 import me.sildev.zoopr.eco.SellBlocks;
 import me.sildev.zoopr.eco.cmds.balCMD;
@@ -33,11 +39,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class ZooPR extends JavaPlugin {
 
     private static ZooPR plugin;
+    private static LeaderboardManager leaderboard;
 
     @Override
     public void onEnable() {
         ConfigurationSerialization.registerClass(Gang.class);
         plugin = this;
+        leaderboard = new LeaderboardManager();
 
         // Create instance of CustomEnchantConfigFiles, so it creates the config file!
         new CustomEnchantConfigFiles(this);
@@ -72,6 +80,10 @@ public final class ZooPR extends JavaPlugin {
         getCommand("prestigemax").setExecutor(new prestigeMax());
         getCommand("robot").setExecutor(new RobotCMD());
         getCommand("pvespawner").setExecutor(new PveSpawnerCMD());
+        getCommand("bomb").setExecutor(new bombCMD());
+        getCommand("baltop").setExecutor(new baltopCMD());
+        getCommand("beacontop").setExecutor(new beacontopCMD());
+        getCommand("tokentop").setExecutor(new tokentopCMD());
     }
 
     void registerEvents() {
@@ -86,6 +98,7 @@ public final class ZooPR extends JavaPlugin {
         pm.registerEvents(new openRobotMenu(), this);
         pm.registerEvents(new RobotGUI(), this);
         pm.registerEvents(new PveMobManager(), this);
+        pm.registerEvents(new bombInteractListener(), this);
 
         // Enchantments
         pm.registerEvents(new ExplosiveListener(), this);
@@ -100,4 +113,5 @@ public final class ZooPR extends JavaPlugin {
     public static ZooPR getPlugin() {
         return plugin;
     }
+    public static LeaderboardManager getLeaderboard() {return leaderboard; }
 }

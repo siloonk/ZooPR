@@ -23,7 +23,7 @@ import java.io.IOException;
 
 public class SellBlocks {
 
-    static FileConfiguration blockValueConfig;
+    public static FileConfiguration blockValueConfig;
     static File blockValueFile;
 
     static ZooPR instance;
@@ -64,7 +64,7 @@ public class SellBlocks {
             return;
         }
         addExpToPickaxe.addEXPToPickaxe(player);
-        if (player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS) > 0) {
+        if (player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.FORTUNE) > 0) {
             value = value * ((player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.FORTUNE) * CustomEnchantConfigFiles.getEnchantmentAmount("FORTUNE_MULTIPLIER")) + 1);
         }
         EconomyManager.addMoneyToUser(player, value);
@@ -81,6 +81,18 @@ public class SellBlocks {
             }
             item.setItemMeta(meta);
         }
+    }
+
+    public static void sellBlocknoPickaxe(Block block, Player player) {
+        Material blockType = block.getType();
+        double value = getValue(blockType.name());
+        if (value == -1) {
+            return;
+        }
+        addExpToPickaxe.addEXPToPickaxe(player);
+        EconomyManager.addMoneyToUser(player, value);
+        EconomyManager.addTokensToUser(player, 1d);
+        player.getWorld().getBlockAt(block.getLocation()).setType(Material.AIR);
     }
 
 

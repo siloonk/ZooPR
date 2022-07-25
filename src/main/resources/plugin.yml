@@ -36,3 +36,15 @@ commands:
 
   pvespawner:
     description: pvespawner command!
+
+  bomb:
+    description: bomb command!
+
+  baltop:
+    description: baltop command!
+
+  beacontop:
+    description: beacontop command!
+
+  tokentop:
+    description: tokentop command!

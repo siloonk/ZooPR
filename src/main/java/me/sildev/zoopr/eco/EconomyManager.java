@@ -11,6 +11,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.UUID;
 
 public class EconomyManager implements Listener {
 
@@ -122,6 +123,9 @@ public class EconomyManager implements Listener {
     public static Double getMoneyOfUser(Player player) {
         return money.getDouble("balance." + player.getUniqueId());
     }
+    public static Double getMoneyOfUser(UUID player) {
+        return money.getDouble("balance." + player);
+    }
 
     public static void setMoneyOfUser(Player player, Double amount) {
         money.set("balance." + player.getUniqueId(), amount);
@@ -145,6 +149,9 @@ public class EconomyManager implements Listener {
     public static Double getTokensOfUser(Player player) {
         return tokens.getDouble("balance." + player.getUniqueId());
     }
+    public static Double getTokensOfUser(UUID player) {
+        return tokens.getDouble("balance." + player);
+    }
 
     public static void setTokensOfUser(Player player, Double amount) {
         tokens.set("balance." + player.getUniqueId(), amount);
@@ -167,6 +174,10 @@ public class EconomyManager implements Listener {
 
     public static Double getBeaconsOfUser(Player player) {
         return beacons.getDouble("beacons." + player.getUniqueId());
+    }
+
+    public static Double getBeaconsOfUser(UUID player) {
+        return beacons.getDouble("beacons." + player);
     }
 
     public static void setBeaconsOfUser(Player player, Double amount) {
