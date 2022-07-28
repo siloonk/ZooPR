@@ -1,6 +1,5 @@
 package me.sildev.zoopr.pickaxe;
 
-import me.sildev.zoopr.Enchants.CustomEnchants;
 import me.sildev.zoopr.ZooPR;
 import me.sildev.zoopr.utils.addLore;
 import me.sildev.zoopr.utils.coloredString;
@@ -43,6 +42,10 @@ public class givePickaxe implements Listener {
 
             if (!data.has(new NamespacedKey(ZooPR.getPlugin(), "blocks-broken"), PersistentDataType.DOUBLE)) {
                 data.set(new NamespacedKey(ZooPR.getPlugin(), "blocks-broken"), PersistentDataType.DOUBLE, 0d);
+            }
+
+            if (!data.has(new NamespacedKey(ZooPR.getPlugin(), "owner"), PersistentDataType.STRING)) {
+                data.set(new NamespacedKey(ZooPR.getPlugin(), "owner"), PersistentDataType.STRING, e.getPlayer().getUniqueId().toString());
             }
 
             // Add display name and set some attributes

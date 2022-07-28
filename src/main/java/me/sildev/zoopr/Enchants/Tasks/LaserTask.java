@@ -4,6 +4,7 @@ import me.sildev.zoopr.eco.SellBlocks;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
@@ -16,11 +17,15 @@ public class LaserTask extends BukkitRunnable {
     Location loc;
     int currHeight;
 
+    ItemStack pickaxe;
+
     public LaserTask(Player player, int SIZE, Location loc) {
         this.SIZE = SIZE;
         this.player = player;
         this.loc = loc;
         currHeight = loc.getBlockY();
+
+        this.pickaxe = player.getInventory().getItemInMainHand();
     }
 
     @Override
@@ -35,7 +40,7 @@ public class LaserTask extends BukkitRunnable {
         for (int x = bx; x < loc.getBlockX() + SIZE; x++) {
             Location l = new Location(loc.getWorld(), x, currHeight, loc.getBlockZ());
             if (l.getBlock().getType() != Material.AIR)
-                SellBlocks.sellBlock(l.getBlock(), player);
+                SellBlocks.sellBlock(l.getBlock(), this.pickaxe);
             /*for (int y = by; y < loc.getBlockY() + SIZE; y++) {
                 Location l = new Location(loc.getWorld(), x, y, loc.getBlockZ());
                 if (l.getBlock().getType() != Material.AIR)
@@ -46,7 +51,7 @@ public class LaserTask extends BukkitRunnable {
         for (int z = bz; z < loc.getBlockZ() + SIZE; z++) {
             Location l = new Location(loc.getWorld(), loc.getBlockX(), currHeight, z);
             if (l.getBlock().getType() != Material.AIR)
-                SellBlocks.sellBlock(l.getBlock(), player);
+                SellBlocks.sellBlock(l.getBlock(), this.pickaxe);
 
             /*for (int y = by; y < loc.getBlockY() + SIZE; y++) {
                 Location l = new Location(loc.getWorld(), loc.getBlockX(), y, z);

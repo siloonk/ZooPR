@@ -32,7 +32,7 @@ public class PickaxeMainMenu {
                         "",
                         "&7Required pickaxe level " + Math.round(CustomEnchantConfigFiles.getEnchantmentLevelRequired("EXPLOSIVE_REQUIRED")),
                         "",
-                        "&7Cost: " + EnchantPrices.getPrice(CustomEnchants.EXPLOSIVE) + " Tokens",
+                        "&7Cost: " + formatNumber.coolFormat(EnchantPrices.getEnchantPrice(CustomEnchants.EXPLOSIVE, player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.EXPLOSIVE)), 0) + " Tokens",
                         "&7Level " + player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.EXPLOSIVE)
 
                 });
@@ -44,7 +44,7 @@ public class PickaxeMainMenu {
                         "",
                         "&7Required pickaxe level " + Math.round(CustomEnchantConfigFiles.getEnchantmentLevelRequired("JACKHAMMER_REQUIRED")),
                         "",
-                        "&7Cost: " + EnchantPrices.getPrice(CustomEnchants.JACKHAMMER) + " Tokens",
+                        "&7Cost: " + formatNumber.coolFormat(EnchantPrices.getEnchantPrice(CustomEnchants.JACKHAMMER, player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.JACKHAMMER)), 0) + " Tokens",
                         "&7Level " + player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.JACKHAMMER)
                 });
 
@@ -54,8 +54,8 @@ public class PickaxeMainMenu {
                         "",
                         "&7Required pickaxe level " + Math.round(CustomEnchantConfigFiles.getEnchantmentLevelRequired("FORTUNE_REQUIRED")),
                         "",
-                        "&7Cost: " + EnchantPrices.getPrice(Enchantment.LOOT_BONUS_BLOCKS) + " Tokens",
-                        "&7Level " + player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS)
+                        "&7Cost: " + formatNumber.coolFormat(EnchantPrices.getEnchantPrice(CustomEnchants.FORTUNE, player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.FORTUNE)), 0) + " Tokens",
+                        "&7Level " + player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.FORTUNE)
                 });
 
         guiExtension.addRenamedItemWithLore(gui, 24, Material.BOOK, "&7Lucky",
@@ -65,7 +65,7 @@ public class PickaxeMainMenu {
                         "",
                         "&7Required pickaxe level " + Math.round(CustomEnchantConfigFiles.getEnchantmentLevelRequired("LUCKY_REQUIRED")),
                         "",
-                        "&7Cost: " + EnchantPrices.getPrice(CustomEnchants.LUCKY) + " Tokens",
+                        "&7Cost: " + formatNumber.coolFormat(EnchantPrices.getEnchantPrice(CustomEnchants.LUCKY, player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.LUCKY)), 0) + " Tokens",
                         "&7Level " + player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.LUCKY)
                 });
 
@@ -76,7 +76,7 @@ public class PickaxeMainMenu {
                         "",
                         "&7Required pickaxe level " + Math.round(CustomEnchantConfigFiles.getEnchantmentLevelRequired("CRATE_FINDER_REQUIRED")),
                         "",
-                        "&7Cost: " + EnchantPrices.getPrice(CustomEnchants.CRATE_FINDER) + " Tokens",
+                        "&7Cost: " + formatNumber.coolFormat(EnchantPrices.getEnchantPrice(CustomEnchants.CRATE_FINDER, player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.CRATE_FINDER)), 0) + " Tokens",
                         "&7Level " + player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.CRATE_FINDER)
                 });
 
@@ -87,7 +87,7 @@ public class PickaxeMainMenu {
                         "",
                         "&7Required pickaxe level " + Math.round(CustomEnchantConfigFiles.getEnchantmentLevelRequired("DRILL_REQUIRED")),
                         "",
-                        "&7Cost: " + EnchantPrices.getPrice(CustomEnchants.DRILL) + " Tokens",
+                        "&7Cost: " + formatNumber.coolFormat(EnchantPrices.getEnchantPrice(CustomEnchants.DRILL, player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.DRILL)), 0) + " Tokens",
                         "&7Level " + player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.DRILL)
                 });
 
@@ -98,7 +98,7 @@ public class PickaxeMainMenu {
                         "",
                         "&7Required pickaxe level " + Math.round(CustomEnchantConfigFiles.getEnchantmentLevelRequired("LIGHTNING_REQUIRED")),
                         "",
-                        "&7Cost: " + EnchantPrices.getPrice(CustomEnchants.LIGHTNING) + " Tokens",
+                        "&7Cost: " + formatNumber.coolFormat(EnchantPrices.getEnchantPrice(CustomEnchants.LIGHTNING, player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.LIGHTNING)), 0) + " Tokens",
                         "&7Level " + player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.LIGHTNING)
                 });
 
@@ -109,7 +109,7 @@ public class PickaxeMainMenu {
                         "",
                         "&7Required pickaxe level " + Math.round(CustomEnchantConfigFiles.getEnchantmentLevelRequired("LASER_REQUIRED")),
                         "",
-                        "&7Cost: " + EnchantPrices.getPrice(CustomEnchants.LASER) + " Tokens",
+                        "&7Cost: " + formatNumber.coolFormat(EnchantPrices.getEnchantPrice(CustomEnchants.LASER, player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.LASER)), 0) + " Tokens",
                         "&7Level " + player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.LASER)
                 });
 
@@ -132,7 +132,7 @@ public class PickaxeMainMenu {
                         "",
                         "&7Required pickaxe level " + Math.round(CustomEnchantConfigFiles.getEnchantmentLevelRequired("EXPLOSIVE_REQUIRED")),
                         "",
-                        "&7Cost: " + EnchantPrices.getPrice(CustomEnchants.EXPLOSIVE) + " Tokens",
+                        "&7Cost: " + formatNumber.coolFormat(EnchantPrices.getEnchantPrice(CustomEnchants.EXPLOSIVE, player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.EXPLOSIVE)), 0) + " Tokens",
                         "&7Level " + player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.EXPLOSIVE)
 
                 });
@@ -144,7 +144,7 @@ public class PickaxeMainMenu {
                         "",
                         "&7Required pickaxe level " + Math.round(CustomEnchantConfigFiles.getEnchantmentLevelRequired("JACKHAMMER_REQUIRED")),
                         "",
-                        "&7Cost: " + EnchantPrices.getPrice(CustomEnchants.JACKHAMMER) + " Tokens",
+                        "&7Cost: " + formatNumber.coolFormat(EnchantPrices.getEnchantPrice(CustomEnchants.JACKHAMMER, player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.JACKHAMMER)), 0) + " Tokens",
                         "&7Level " + player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.JACKHAMMER)
                 });
 
@@ -154,8 +154,8 @@ public class PickaxeMainMenu {
                         "",
                         "&7Required pickaxe level " + Math.round(CustomEnchantConfigFiles.getEnchantmentLevelRequired("FORTUNE_REQUIRED")),
                         "",
-                        "&7Cost: " + EnchantPrices.getPrice(Enchantment.LOOT_BONUS_BLOCKS) + " Tokens",
-                        "&7Level " + player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS)
+                        "&7Cost: " + formatNumber.coolFormat(EnchantPrices.getEnchantPrice(CustomEnchants.FORTUNE, player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.FORTUNE)), 0) + " Tokens",
+                        "&7Level " + player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.FORTUNE)
                 });
 
         guiExtension.addRenamedItemWithLore(gui, 24, Material.BOOK, "&7Lucky",
@@ -165,7 +165,7 @@ public class PickaxeMainMenu {
                         "",
                         "&7Required pickaxe level " + Math.round(CustomEnchantConfigFiles.getEnchantmentLevelRequired("LUCKY_REQUIRED")),
                         "",
-                        "&7Cost: " + EnchantPrices.getPrice(CustomEnchants.LUCKY) + " Tokens",
+                        "&7Cost: " + formatNumber.coolFormat(EnchantPrices.getEnchantPrice(CustomEnchants.LUCKY, player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.LUCKY)), 0) + " Tokens",
                         "&7Level " + player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.LUCKY)
                 });
 
@@ -176,7 +176,7 @@ public class PickaxeMainMenu {
                         "",
                         "&7Required pickaxe level " + Math.round(CustomEnchantConfigFiles.getEnchantmentLevelRequired("CRATE_FINDER_REQUIRED")),
                         "",
-                        "&7Cost: " + EnchantPrices.getPrice(CustomEnchants.CRATE_FINDER) + " Tokens",
+                        "&7Cost: " + formatNumber.coolFormat(EnchantPrices.getEnchantPrice(CustomEnchants.CRATE_FINDER, player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.CRATE_FINDER)), 0) + " Tokens",
                         "&7Level " + player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.CRATE_FINDER)
                 });
 
@@ -187,7 +187,7 @@ public class PickaxeMainMenu {
                         "",
                         "&7Required pickaxe level " + Math.round(CustomEnchantConfigFiles.getEnchantmentLevelRequired("DRILL_REQUIRED")),
                         "",
-                        "&7Cost: " + EnchantPrices.getPrice(CustomEnchants.DRILL) + " Tokens",
+                        "&7Cost: " + formatNumber.coolFormat(EnchantPrices.getEnchantPrice(CustomEnchants.DRILL, player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.DRILL)), 0) + " Tokens",
                         "&7Level " + player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.DRILL)
                 });
 
@@ -198,7 +198,7 @@ public class PickaxeMainMenu {
                         "",
                         "&7Required pickaxe level " + Math.round(CustomEnchantConfigFiles.getEnchantmentLevelRequired("LIGHTNING_REQUIRED")),
                         "",
-                        "&7Cost: " + EnchantPrices.getPrice(CustomEnchants.LIGHTNING) + " Tokens",
+                        "&7Cost: " + formatNumber.coolFormat(EnchantPrices.getEnchantPrice(CustomEnchants.LIGHTNING, player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.LIGHTNING)), 0) + " Tokens",
                         "&7Level " + player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.LIGHTNING)
                 });
 
@@ -209,7 +209,7 @@ public class PickaxeMainMenu {
                         "",
                         "&7Required pickaxe level " + Math.round(CustomEnchantConfigFiles.getEnchantmentLevelRequired("LASER_REQUIRED")),
                         "",
-                        "&7Cost: " + EnchantPrices.getPrice(CustomEnchants.LASER) + " Tokens",
+                        "&7Cost: " + formatNumber.coolFormat(EnchantPrices.getEnchantPrice(CustomEnchants.LASER, player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.LASER)), 0) + " Tokens",
                         "&7Level " + player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.LASER)
                 });
     }

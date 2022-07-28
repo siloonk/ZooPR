@@ -21,8 +21,6 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
 public class enchantMenu implements Listener {
@@ -43,24 +41,46 @@ public class enchantMenu implements Listener {
     }
 
     void upgradeEnchantment(Enchantment ce, Player player, int levels) {
+        int currentLevel = player.getInventory().getItemInMainHand().getEnchantmentLevel(ce);
+        if (!(player.getInventory().getItemInMainHand().getEnchantmentLevel(ce) + levels < ce.getMaxLevel() + 1)) { player.sendMessage(breachMaxLevel); return; }
+
+        double tokens = EconomyManager.getTokensOfUser(player);
+        double price = EnchantPrices.getEnchantPrice(ce, currentLevel + levels);
+
+        if (tokens < price) { player.sendMessage(notEnoughTokensToBuyEnchant); return; }
+
+        ItemStack item = player.getInventory().getItemInMainHand();
+        double pickaxeLevel = item.getItemMeta().getPersistentDataContainer().get(levelkey, PersistentDataType.DOUBLE);
+        double requiredPickaxeLevel = CustomEnchantConfigFiles.getEnchantmentLevelRequired(ce.getKey().toString().toUpperCase().replaceAll("MINECRAFT:", "") + "_REQUIRED");
+        if (!(pickaxeLevel >= requiredPickaxeLevel)) { player.sendMessage(dontMeetRequirement); return; }
+
+        EconomyManager.addTokensToUser(player, -price);
+        item.removeEnchantment(ce);
+        item.addUnsafeEnchantment(ce, currentLevel + levels);
+        String message = successfullyUpgradedEnchant.replaceAll("%enchantment%", ce.getName());
+        player.sendMessage(message);
+        PickaxeMainMenu.resetItems(player.getOpenInventory().getTopInventory(), player);
+
+
+        /*
         for (int i = 0; i < levels; i++) {
             double tokens = EconomyManager.getTokensOfUser(player);
             if (!(player.getInventory().getItemInMainHand().getEnchantmentLevel(ce) < ce.getMaxLevel())) { player.sendMessage(breachMaxLevel); return; }
             if (tokens < EnchantPrices.getPrice(ce)) { player.sendMessage(notEnoughTokensToBuyEnchant); return; }
-            EconomyManager.addTokensToUser(player, -(double) EnchantPrices.getPrice(ce));
             ItemStack item = player.getInventory().getItemInMainHand();
             double pickaxeLevel = item.getItemMeta().getPersistentDataContainer().get(levelkey, PersistentDataType.DOUBLE);
-            double requiredPickaxeLevel = CustomEnchantConfigFiles.getEnchantmentLevelRequired(ce.getKey().toString().toUpperCase() + "_LEVEL_REQUIRED");
-
+            String ceName = ce.getKey().toString().toUpperCase();
+            double requiredPickaxeLevel = CustomEnchantConfigFiles.getEnchantmentLevelRequired(ceName.replaceAll("MINECRAFT:", "") + "_REQUIRED");
             if (!(pickaxeLevel >= requiredPickaxeLevel)) { player.sendMessage(dontMeetRequirement); return; }
 
+            EconomyManager.addTokensToUser(player, -(double) EnchantPrices.getPrice(ce));
             int level = item.getEnchantmentLevel(ce);
             item.removeEnchantment(ce);
             item.addUnsafeEnchantment(ce, level + 1);
             String message = successfullyUpgradedEnchant.replaceAll("%enchantment%", ce.getName());
             player.sendMessage(message);
             PickaxeMainMenu.resetItems(player.getOpenInventory().getTopInventory(), player);
-        }
+        }*/
     }
 
     @EventHandler

@@ -6,3 +6,15 @@ Fortune: 1000
 Drill: 10000
 Laser: 15000
 Lightning: 5000
+
+increment_type: 1 # 1 is % and 0 is a constant value
+
+
+Explosive_increase: 1
+Jackhammer_increase: 1
+Lucky_increase: 1
+Crate Finder_increase: 1
+Fortune_increase: 1
+Drill_increase: 1
+Laser_increase: 1
+Lightning_increase: 1

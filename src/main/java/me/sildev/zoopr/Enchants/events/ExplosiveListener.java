@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 import java.util.Random;
@@ -40,11 +41,12 @@ public class ExplosiveListener implements Listener {
         }
         // Create explosion;
         List<Location> blocks = loops.generateCube(e.getBlock().getLocation(), 2, 2, false);
+        ItemStack pickaxe = player.getInventory().getItemInMainHand();
 
         for (Location block : blocks) {
             int intNum = rd.nextInt(100);
             if (intNum < 75)
-                SellBlocks.sellBlock(block.getBlock(), player);
+                SellBlocks.sellBlock(block.getBlock(), pickaxe);
         }
         e.getBlock().getWorld().createExplosion(e.getBlock().getLocation(), 0);
     }

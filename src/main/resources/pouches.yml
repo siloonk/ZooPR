@@ -1,0 +1,20 @@
+#
+# Pouches.yml
+# You can change the min and max values of the pouches for each tier!
+# Make sure to not use decimal numbers!
+#
+
+POUCH_ITEM: ENDER_CHEST
+POUCH_NAME: "&f&ki&d %type% pouch &8(&7%tier%&8)"
+
+# Example as to how to use this!
+# /pouches reload to reload the config file!
+Pouches:
+  TIER1:
+    MONEY:
+      MIN: 1000
+      MAX: 10000
+
+    TOKENS:
+      MIN: 10000
+      MAX: 1000000

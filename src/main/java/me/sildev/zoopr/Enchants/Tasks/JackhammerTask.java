@@ -4,6 +4,7 @@ import me.sildev.zoopr.eco.SellBlocks;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class JackhammerTask extends BukkitRunnable {
@@ -16,6 +17,8 @@ public class JackhammerTask extends BukkitRunnable {
 
     int currRow;
 
+    ItemStack pickaxe;
+
     public JackhammerTask(Player player, Location center, int SIZE, int HEIGHT) {
         this.size = SIZE;
         this.height= HEIGHT;
@@ -23,6 +26,8 @@ public class JackhammerTask extends BukkitRunnable {
         this.player = player;
 
         currRow = center.getBlockX() - SIZE;
+
+        this.pickaxe = player.getInventory().getItemInMainHand();
     }
 
     @Override
@@ -35,7 +40,7 @@ public class JackhammerTask extends BukkitRunnable {
             for (int z = bz; z < center.getBlockZ() + size; z++) {
                 Location l = new Location(center.getWorld(), currRow, y, z);
                 if (l.getBlock().getType() != Material.AIR)
-                    SellBlocks.sellBlock(l.getBlock(), player);
+                    SellBlocks.sellBlock(l.getBlock(), this.pickaxe);
             }
         }
 
@@ -44,7 +49,7 @@ public class JackhammerTask extends BukkitRunnable {
             for (int z = bz; z > center.getBlockZ() - size; z--) {
                 Location l = new Location(center.getWorld(), currRow, y, z);
                 if (l.getBlock().getType() != Material.AIR)
-                    SellBlocks.sellBlock(l.getBlock(), player);
+                    SellBlocks.sellBlock(l.getBlock(), this.pickaxe);
             }
         }
 

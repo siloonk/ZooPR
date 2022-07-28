@@ -1,17 +1,21 @@
 package me.sildev.zoopr.eco;
 
+import me.sildev.zoopr.Boosters.boosterManager;
 import me.sildev.zoopr.Enchants.CustomEnchantConfigFiles;
 import me.sildev.zoopr.Enchants.CustomEnchants;
 import me.sildev.zoopr.ZooPR;
+import me.sildev.zoopr.playtime.playtimeManager;
 import me.sildev.zoopr.pickaxe.events.addExpToPickaxe;
+import me.sildev.zoopr.utils.Messages;
+import me.sildev.zoopr.utils.MillisecondsToTime;
 import me.sildev.zoopr.utils.addLore;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -20,8 +24,14 @@ import org.bukkit.persistence.PersistentDataType;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
+import java.util.UUID;
 
 public class SellBlocks {
+
+    static String boosterEndedMessage = Messages.get("boosterEnded");
+
+    static String receivedBeacons = Messages.get("receivedBeacons");
 
     public static FileConfiguration blockValueConfig;
     static File blockValueFile;
@@ -57,41 +67,147 @@ public class SellBlocks {
 
     }
 
-    public static void sellBlock(Block block, Player player) {
+//    public static void sellBlock(Block block, Player player) {
+//        Material blockType = block.getType();
+//        double value = getValue(blockType.name());
+//        if (value == -1) {
+//            return;
+//        }
+//        addExpToPickaxe.addEXPToPickaxe(player);
+//        if (player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.FORTUNE) > 0) {
+//            value = value * ((player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.FORTUNE) * CustomEnchantConfigFiles.getEnchantmentAmount("FORTUNE_MULTIPLIER")) + 1);
+//        }
+//        EconomyManager.addMoneyToUser(player, value);
+//        EconomyManager.addTokensToUser(player, 1d);
+//        player.getWorld().getBlockAt(block.getLocation()).setType(Material.AIR);
+//        ItemStack item = player.getInventory().getItemInMainHand();
+//        ItemMeta meta = item.getItemMeta();
+//        PersistentDataContainer container = meta.getPersistentDataContainer();
+//        if (container.has(new NamespacedKey(ZooPR.getPlugin(), "blocks-broken"), PersistentDataType.DOUBLE)) {
+//            double blocksBroken = container.get(new NamespacedKey(ZooPR.getPlugin(), "blocks-broken"), PersistentDataType.DOUBLE);
+//            container.set(new NamespacedKey(ZooPR.getPlugin(), "blocks-broken"), PersistentDataType.DOUBLE, blocksBroken + 1);
+//            if ((blocksBroken + 1) % 100 == 0) {
+//                addLore.addLore(item, player);
+//            }
+//            item.setItemMeta(meta);
+//        }
+//    }
+
+
+    public static void sellBlock(Block block, ItemStack pickaxe) {
+        Player player = Bukkit.getPlayer(UUID.fromString(pickaxe.getItemMeta().getPersistentDataContainer().get(new NamespacedKey(ZooPR.getPlugin(), "owner"), PersistentDataType.STRING)));
         Material blockType = block.getType();
+        if (blockType == Material.BEACON) {
+            Random rd = new Random();
+            int amount = rd.nextInt(4) + 1;
+            EconomyManager.addBeaconsToUser(player,amount);
+            player.sendMessage(receivedBeacons.replaceAll("%amount%", String.valueOf(amount)));
+        }
         double value = getValue(blockType.name());
         if (value == -1) {
             return;
         }
+
         addExpToPickaxe.addEXPToPickaxe(player);
+        player.getWorld().getBlockAt(block.getLocation()).setType(Material.AIR);
+
+        // Token booster
+        if (player.getPersistentDataContainer().has(boosterManager.tokenMultiplier)) {
+            long timeLeft = player.getPersistentDataContainer().get(boosterManager.tokenMultiplierLength, PersistentDataType.LONG) - playtimeManager.getPlaytime(player);
+            System.out.println(MillisecondsToTime.getTime(playtimeManager.getPlaytime(player)));
+            System.out.println(timeLeft + " Tokens");
+
+            if (timeLeft <= 0) {
+                player.getPersistentDataContainer().remove(boosterManager.tokenMultiplier);
+                player.getPersistentDataContainer().remove(boosterManager.tokenMultiplierLength);
+                player.sendMessage(boosterEndedMessage.replaceAll("%boostertype%", "Token"));
+            }
+        }
+
+        // Money booster
+        if (player.getPersistentDataContainer().has(boosterManager.moneyMultiplier)) {
+            long timeLeft = player.getPersistentDataContainer().get(boosterManager.moneyMultiplierLength, PersistentDataType.LONG) - playtimeManager.getPlaytime(player);
+            System.out.println(timeLeft + " Money");
+            if (timeLeft <= 0) {
+                player.getPersistentDataContainer().remove(boosterManager.moneyMultiplier);
+                player.getPersistentDataContainer().remove(boosterManager.moneyMultiplierLength);
+                player.sendMessage(boosterEndedMessage.replaceAll("%boostertype%", "Money"));
+            }
+        }
+        double tokenMultiplier = 1;
+        if (player.getPersistentDataContainer().has(boosterManager.tokenMultiplier)) {
+            tokenMultiplier += player.getPersistentDataContainer().get(boosterManager.tokenMultiplier, PersistentDataType.DOUBLE);
+        }
+
+        EconomyManager.addTokensToUser(player, 1 * tokenMultiplier);
+        double multiplier = ((player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.FORTUNE) * CustomEnchantConfigFiles.getEnchantmentAmount("FORTUNE_MULTIPLIER")) + 1);
+        if (player.getPersistentDataContainer().has(boosterManager.moneyMultiplier))
+            multiplier += player.getPersistentDataContainer().get(boosterManager.moneyMultiplier, PersistentDataType.DOUBLE);
+
         if (player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.FORTUNE) > 0) {
-            value = value * ((player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.FORTUNE) * CustomEnchantConfigFiles.getEnchantmentAmount("FORTUNE_MULTIPLIER")) + 1);
+            value = value * multiplier;
         }
         EconomyManager.addMoneyToUser(player, value);
-        EconomyManager.addTokensToUser(player, 1d);
-        player.getWorld().getBlockAt(block.getLocation()).setType(Material.AIR);
-        ItemStack item = player.getInventory().getItemInMainHand();
-        ItemMeta meta = item.getItemMeta();
+        ItemMeta meta = pickaxe.getItemMeta();
         PersistentDataContainer container = meta.getPersistentDataContainer();
         if (container.has(new NamespacedKey(ZooPR.getPlugin(), "blocks-broken"), PersistentDataType.DOUBLE)) {
             double blocksBroken = container.get(new NamespacedKey(ZooPR.getPlugin(), "blocks-broken"), PersistentDataType.DOUBLE);
             container.set(new NamespacedKey(ZooPR.getPlugin(), "blocks-broken"), PersistentDataType.DOUBLE, blocksBroken + 1);
             if ((blocksBroken + 1) % 100 == 0) {
-                addLore.addLore(item, player);
+                addLore.addLore(pickaxe, player);
             }
-            item.setItemMeta(meta);
+            pickaxe.setItemMeta(meta);
         }
     }
 
     public static void sellBlocknoPickaxe(Block block, Player player) {
         Material blockType = block.getType();
+        if (blockType == Material.BEACON) {
+            Random rd = new Random();
+            int amount = rd.nextInt(4) + 1;
+            EconomyManager.addBeaconsToUser(player,amount);
+            player.sendMessage(receivedBeacons.replaceAll("%amount%", String.valueOf(amount)));
+        }
         double value = getValue(blockType.name());
         if (value == -1) {
             return;
         }
         addExpToPickaxe.addEXPToPickaxe(player);
+        // Token booster
+        if (player.getPersistentDataContainer().has(boosterManager.tokenMultiplier)) {
+            long timeLeft = player.getPersistentDataContainer().get(boosterManager.tokenMultiplierLength, PersistentDataType.LONG) - playtimeManager.getPlaytime(player);
+
+            if (timeLeft <= 0) {
+                player.getPersistentDataContainer().remove(boosterManager.tokenMultiplier);
+                player.getPersistentDataContainer().remove(boosterManager.tokenMultiplierLength);
+                player.sendMessage(boosterEndedMessage.replaceAll("%boostertype%", "Token"));
+            }
+        }
+
+        // Money booster
+        if (player.getPersistentDataContainer().has(boosterManager.moneyMultiplier)) {
+            long timeLeft = player.getPersistentDataContainer().get(boosterManager.moneyMultiplierLength, PersistentDataType.LONG) - playtimeManager.getPlaytime(player);
+            if (timeLeft <= 0) {
+                player.getPersistentDataContainer().remove(boosterManager.moneyMultiplier);
+                player.getPersistentDataContainer().remove(boosterManager.moneyMultiplierLength);
+                player.sendMessage(boosterEndedMessage.replaceAll("%boostertype%", "Money"));
+            }
+        }
+
+        double tokenMultiplier = 1;
+        if (player.getPersistentDataContainer().has(boosterManager.tokenMultiplier))
+            tokenMultiplier += player.getPersistentDataContainer().get(boosterManager.tokenMultiplier, PersistentDataType.DOUBLE);
+
+        EconomyManager.addTokensToUser(player, 1 * tokenMultiplier);
+        double multiplier = ((player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.FORTUNE) * CustomEnchantConfigFiles.getEnchantmentAmount("FORTUNE_MULTIPLIER")) + 1);
+        if (player.getPersistentDataContainer().has(boosterManager.moneyMultiplier))
+            multiplier += player.getPersistentDataContainer().get(boosterManager.moneyMultiplier, PersistentDataType.DOUBLE);
+
+        if (player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.FORTUNE) > 0) {
+            value = value * multiplier;
+        }
         EconomyManager.addMoneyToUser(player, value);
-        EconomyManager.addTokensToUser(player, 1d);
+
         player.getWorld().getBlockAt(block.getLocation()).setType(Material.AIR);
     }
 

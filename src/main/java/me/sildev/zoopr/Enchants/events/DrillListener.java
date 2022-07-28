@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
@@ -36,7 +37,7 @@ public class DrillListener implements Listener {
 
         List<Location> blocks = loops.generateSphere(e.getBlock().getLocation(), 5, false);
         for (Location block : blocks) {
-            SellBlocks.sellBlock(block.getBlock(), player);
+            SellBlocks.sellBlock(block.getBlock(), item);
         }
     }
 }

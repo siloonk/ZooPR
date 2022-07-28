@@ -48,3 +48,9 @@ commands:
 
   tokentop:
     description: tokentop command!
+
+  pouch:
+    description: pouch command!
+
+  booster:
+    description: booster command!

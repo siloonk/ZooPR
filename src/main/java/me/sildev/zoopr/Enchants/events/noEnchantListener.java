@@ -11,6 +11,6 @@ public class noEnchantListener implements Listener {
     @EventHandler
     public void onBreak(BlockBreakEvent e) {
         if (e.getPlayer().getInventory().getItemInMainHand().getType() == Material.DIAMOND_PICKAXE)
-            SellBlocks.sellBlock(e.getBlock(), e.getPlayer());
+            SellBlocks.sellBlock(e.getBlock(), e.getPlayer().getInventory().getItemInMainHand());
     }
 }

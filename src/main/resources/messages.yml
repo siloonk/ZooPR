@@ -30,7 +30,9 @@ payUsage: "&dUsage &8| &7/pay <player> <amount>"
 banUsage: "&dUsage &8| &7/ban <player> <Time(Number)> <Day/Month/Year> [<reason>]"
 robotUsage: "&dUsage &8| &7/robot (give) (player) (level) (amount)"
 pvespawnerUsage: "&dUsage &8| &7/pvespawner give (player) (type) (amount)"
-bombUsage: "&dUsage &8| &7/bomb give (player) (type) (amount)"
+bombUsage: "&dUsage &8| &7/bomb give (player) (type) (tier)"
+pouchUsage: "&dUsage &8| &7/pouch give/reload [(player) (type) (tier)]"
+boosterUsage: "&dUsage &8| &7/booster give (player) (multiplier) (lengthNumber) (Minutes/Hours) (Type)"
 
 
 #
@@ -102,3 +104,18 @@ receivedBeacons: "&dZooPR &8| &7You have received &d%amount% beacons&7!"
 # Bomb Messages
 #
 invalidBombType: "&dZooPR &8| &7This is an invalid bomb type!"
+
+#
+# Pouch messages
+#
+pouchesReloaded: "&dZooPR &8| &7The pouches config has been reloaded!"
+somethingWentWrongWhileGivingPouch: "&dZooPR &8| &7Something went wrong while generating the pouch! If this was supposed to work tell horo or sil!"
+receivedPouchValue: "&dZooPR &8| &7You have received %amount% from %pouch%"
+
+#
+# booster messages
+#
+alreadyABoosterActive: "&dZooPR &8| &7You can't do this, You already have a booster currently active!"
+activatedBooster: "&dZooPR &8| &7You have successfully activated your booster!"
+receivedBooster: "&dZooPR &8| &7You have been given a %boostertype% booster!"
+boosterEnded: "&dZooPR &8| &7Your %boostertype% booster has ended!"

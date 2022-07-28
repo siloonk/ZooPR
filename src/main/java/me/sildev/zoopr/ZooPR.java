@@ -1,5 +1,7 @@
 package me.sildev.zoopr;
 
+import me.sildev.zoopr.Boosters.BoosterInteractEvent;
+import me.sildev.zoopr.Boosters.boosterCommand;
 import me.sildev.zoopr.Enchants.CustomEnchantConfigFiles;
 import me.sildev.zoopr.Enchants.CustomEnchants;
 import me.sildev.zoopr.Enchants.EnchantPrices;
@@ -19,8 +21,12 @@ import me.sildev.zoopr.eco.cmds.balCMD;
 import me.sildev.zoopr.eco.cmds.payCMD;
 import me.sildev.zoopr.essentials.commands.banCMD;
 import me.sildev.zoopr.essentials.commands.vanishCMD;
+import me.sildev.zoopr.playtime.playtimeManager;
 import me.sildev.zoopr.pickaxe.events.enchantMenu;
 import me.sildev.zoopr.pickaxe.givePickaxe;
+import me.sildev.zoopr.pouches.openPouchListener;
+import me.sildev.zoopr.pouches.pouchCMD;
+import me.sildev.zoopr.pouches.pouchManager;
 import me.sildev.zoopr.pvemobs.PveMobManager;
 import me.sildev.zoopr.pvemobs.PveSpawnerCMD;
 import me.sildev.zoopr.rank.commands.prestigeCMD;
@@ -35,6 +41,7 @@ import me.sildev.zoopr.utils.Messages;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitTask;
 
 public final class ZooPR extends JavaPlugin {
 
@@ -48,11 +55,12 @@ public final class ZooPR extends JavaPlugin {
         leaderboard = new LeaderboardManager();
 
         // Create instance of CustomEnchantConfigFiles, so it creates the config file!
+        new Messages();
         new CustomEnchantConfigFiles(this);
         new SellBlocks(this);
         new GangManager();
-        new Messages();
         new EnchantPrices();
+        new pouchManager();
 
         registerCommands();
         registerEvents();
@@ -65,7 +73,10 @@ public final class ZooPR extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        this.getServer().getScheduler().cancelTasks(ZooPR.getPlugin());
+        for (BukkitTask task : prestigeMax.tasks) {
+            task.cancel();
+            System.out.println("Canceled Task: #" + task.getTaskId());
+        }
         this.getLogger().fine("ZooPR is Shutting Down!");
     }
 
@@ -84,6 +95,8 @@ public final class ZooPR extends JavaPlugin {
         getCommand("baltop").setExecutor(new baltopCMD());
         getCommand("beacontop").setExecutor(new beacontopCMD());
         getCommand("tokentop").setExecutor(new tokentopCMD());
+        getCommand("pouch").setExecutor(new pouchCMD());
+        getCommand("booster").setExecutor(new boosterCommand());
     }
 
     void registerEvents() {
@@ -99,6 +112,11 @@ public final class ZooPR extends JavaPlugin {
         pm.registerEvents(new RobotGUI(), this);
         pm.registerEvents(new PveMobManager(), this);
         pm.registerEvents(new bombInteractListener(), this);
+        pm.registerEvents(new openPouchListener(), this);
+        pm.registerEvents(new playtimeManager(), this);
+        pm.registerEvents(new BoosterInteractEvent(), this);
+
+
 
         // Enchantments
         pm.registerEvents(new ExplosiveListener(), this);

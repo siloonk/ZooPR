@@ -14,7 +14,7 @@ public class Messages {
     static File messagesFile;
 
     public Messages() {
-        createEnchantsConfig();
+        createMessagesConfig();
     }
 
     public static String get(String messagePath) {
@@ -22,7 +22,7 @@ public class Messages {
     }
 
 
-    private static void createEnchantsConfig() {
+    private static void createMessagesConfig() {
         messagesFile = new File(ZooPR.getPlugin().getDataFolder(), "messages.yml");
         if (!messagesFile.exists()) {
             messagesFile.getParentFile().mkdirs();

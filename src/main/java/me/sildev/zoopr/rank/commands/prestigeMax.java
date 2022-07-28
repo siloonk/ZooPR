@@ -10,11 +10,19 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scheduler.BukkitTask;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class prestigeMax implements CommandExecutor {
 
     String mustBeAPlayer = Messages.get("onlyPlayersCanExecuteThisCommand");
+
+    public static List<BukkitTask> tasks = new ArrayList<>();
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
@@ -29,7 +37,6 @@ public class prestigeMax implements CommandExecutor {
 
     void maxPrestige(Player player) {
         int initPrestige = player.getPersistentDataContainer().get(rankupManager.prestige, PersistentDataType.INTEGER);
-        new prestigeMaxTask(player, initPrestige).runTaskTimerAsynchronously(ZooPR.getPlugin(), 0L, 1L);
-
+        tasks.add(new prestigeMaxTask(player, initPrestige).runTaskTimerAsynchronously(ZooPR.getPlugin(), 0L, 1L));
     }
 }

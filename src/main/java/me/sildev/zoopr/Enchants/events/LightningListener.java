@@ -9,6 +9,7 @@ import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 import java.util.Random;
@@ -30,13 +31,13 @@ public class LightningListener implements Listener {
         double chance = CustomEnchantConfigFiles.getEnchantmentChance("LIGHTNING_CHANCE") / CustomEnchants.LIGHTNING.getMaxLevel() * level;
 
         if (!(num < chance)) return;
-
+        ItemStack pickaxe = e.getPlayer().getInventory().getItemInMainHand();
         e.getBlock().getWorld().strikeLightningEffect(e.getBlock().getLocation());
         List<Location> blocks = loops.generateSphere(e.getBlock().getLocation(), 9, false);
         for (Location block : blocks) {
             int intNum = rd.nextInt(100);
             if (intNum < 75)
-                SellBlocks.sellBlock(block.getBlock(), e.getPlayer());
+                SellBlocks.sellBlock(block.getBlock(), pickaxe);
             else
                 e.getBlock().getWorld().createExplosion(block, 0);
         }

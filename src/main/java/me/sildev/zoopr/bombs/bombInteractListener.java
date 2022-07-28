@@ -7,6 +7,7 @@ import me.sildev.zoopr.eco.SellBlocks;
 import me.sildev.zoopr.utils.loops;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -32,6 +33,9 @@ public class bombInteractListener implements Listener {
     @EventHandler
     public void onInteract(PlayerInteractEvent e) {
         if (e.getAction() == Action.RIGHT_CLICK_BLOCK || e.getAction() == Action.RIGHT_CLICK_AIR) {
+            if (e.getPlayer().getInventory().getItemInMainHand().getType() != Material.TNT)
+                return;
+
             ItemStack item = e.getPlayer().getInventory().getItemInMainHand();
             ItemMeta meta = item.getItemMeta();
             PersistentDataContainer container = meta.getPersistentDataContainer();
@@ -52,6 +56,7 @@ public class bombInteractListener implements Listener {
             Vector vector = new Vector(loc.getDirection().getX(), loc.getDirection().getY(), loc.getDirection().getZ());
             vector.normalize();
             tnt.setVelocity(vector);
+            e.getPlayer().getInventory().getItemInMainHand().setAmount(e.getPlayer().getInventory().getItemInMainHand().getAmount() - 1);
         }
     }
 
