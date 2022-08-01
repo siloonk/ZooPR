@@ -1,9 +1,12 @@
 package me.sildev.zoopr.pvemobs;
 
+import me.sildev.zoopr.Enchants.CustomEnchantConfigFiles;
+import me.sildev.zoopr.Enchants.CustomEnchants;
 import me.sildev.zoopr.ZooPR;
 import me.sildev.zoopr.eco.EconomyManager;
 import me.sildev.zoopr.utils.Messages;
 import me.sildev.zoopr.utils.coloredString;
+import me.sildev.zoopr.utils.isArmor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -143,11 +146,17 @@ public class PveMobManager implements Listener {
 
             Player player = (Player) attacker;
             if (e.getEntityType() == EntityType.ZOMBIE || e.getEntityType() == EntityType.SKELETON || e.getEntityType() == EntityType.WITHER_SKELETON || e.getEntityType() == EntityType.SPIDER) {
+                double beaconMultiplier = 1;
+                if (isArmor.isSword(player.getInventory().getItemInMainHand().getType()) || isArmor.isAxe(player.getInventory().getItemInMainHand().getType()))
+                    if (player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.BEACONMASTER) > 0) {
+                        beaconMultiplier = 1 + (CustomEnchantConfigFiles.getEnchantmentAmount("BEACONMASTER_MULTIPLIER")) * player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.BEACONMASTER);
+                    }
+
                 Random rd = new Random();
                 int amountOfBeacons = rd.nextInt(10);
                 if (amountOfBeacons == 0) return;
-                EconomyManager.addBeaconsToUser(player, amountOfBeacons);
-                String message = receivedBeacons.replaceAll("%amount%", String.valueOf(amountOfBeacons));
+                EconomyManager.addBeaconsToUser(player, Math.round(amountOfBeacons * beaconMultiplier));
+                String message = receivedBeacons.replaceAll("%amount%", String.valueOf(amountOfBeacons * Math.round(beaconMultiplier)));
                 player.sendMessage(message);
                 return;
             }

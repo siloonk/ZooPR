@@ -1,3 +1,4 @@
+# Pickaxe
 Explosive: 5000
 Jackhammer: 10000
 Lucky: 2500
@@ -7,9 +8,21 @@ Drill: 10000
 Laser: 15000
 Lightning: 5000
 
+# Armor
+PROTECTION_ENVIRONMENTAL: 100 # Protection
+THORNS: 100
+DURABILITY: 100 # Unbreaking
+
+# Weapons
+DAMAGE_ALL: 100 #Sharpness
+BeaconMaster: 100
+
+
+
+
 increment_type: 1 # 1 is % and 0 is a constant value
 
-
+# Pickaxe
 Explosive_increase: 1
 Jackhammer_increase: 1
 Lucky_increase: 1
@@ -18,3 +31,12 @@ Fortune_increase: 1
 Drill_increase: 1
 Laser_increase: 1
 Lightning_increase: 1
+
+# Armor
+PROTECTION_ENVIRONMENTAL_increase: 1
+THORNS_increase: 1
+DURABILITY_increase: 1
+
+#Weapons
+DAMAGE_ALL_increase: 1
+BeaconMaster_increase: 1

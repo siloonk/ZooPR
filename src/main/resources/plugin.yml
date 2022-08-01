@@ -54,3 +54,6 @@ commands:
 
   booster:
     description: booster command!
+
+  ce:
+    description: ce command!

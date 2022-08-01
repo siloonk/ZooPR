@@ -18,6 +18,7 @@ public class CustomEnchants {
     public static final Enchantment DRILL = new EnchantmentWrapper("drill", "Drill", 1000);
     public static final Enchantment LASER = new EnchantmentWrapper("laser", "Laser", 5000);
     public static final Enchantment LIGHTNING = new EnchantmentWrapper("lightning", "Lightning", 2500);
+    public static final Enchantment BEACONMASTER = new EnchantmentWrapper("beaconmaster", "BeaconMaster", 10);
 
 
     public static List<Enchantment> Enchantments = new ArrayList<Enchantment>() {{
@@ -29,6 +30,7 @@ public class CustomEnchants {
         add(DRILL);
         add(LASER);
         add(LIGHTNING);
+        add(BEACONMASTER);
     }};
 
     public static void register() {

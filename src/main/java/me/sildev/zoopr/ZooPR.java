@@ -4,8 +4,8 @@ import me.sildev.zoopr.Boosters.BoosterInteractEvent;
 import me.sildev.zoopr.Boosters.boosterCommand;
 import me.sildev.zoopr.Enchants.CustomEnchantConfigFiles;
 import me.sildev.zoopr.Enchants.CustomEnchants;
-import me.sildev.zoopr.Enchants.EnchantPrices;
-import me.sildev.zoopr.Enchants.events.*;
+import me.sildev.zoopr.Enchants.pickaxeEnchants.EnchantPrices;
+import me.sildev.zoopr.Enchants.pickaxeEnchants.events.*;
 import me.sildev.zoopr.Gang.Gang;
 import me.sildev.zoopr.Gang.GangManager;
 import me.sildev.zoopr.Gang.commands.gangCMD;
@@ -13,6 +13,9 @@ import me.sildev.zoopr.Leaderboard.LeaderboardManager;
 import me.sildev.zoopr.Leaderboard.baltopCMD;
 import me.sildev.zoopr.Leaderboard.beacontopCMD;
 import me.sildev.zoopr.Leaderboard.tokentopCMD;
+import me.sildev.zoopr.armor.armorCeGuiClickEvent;
+import me.sildev.zoopr.armor.ceCommand;
+import me.sildev.zoopr.armor.swordCeGuiClickEvent;
 import me.sildev.zoopr.bombs.bombCMD;
 import me.sildev.zoopr.bombs.bombInteractListener;
 import me.sildev.zoopr.eco.EconomyManager;
@@ -39,6 +42,7 @@ import me.sildev.zoopr.utils.Messages;
 
 
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
@@ -97,6 +101,7 @@ public final class ZooPR extends JavaPlugin {
         getCommand("tokentop").setExecutor(new tokentopCMD());
         getCommand("pouch").setExecutor(new pouchCMD());
         getCommand("booster").setExecutor(new boosterCommand());
+        getCommand("ce").setExecutor(new ceCommand());
     }
 
     void registerEvents() {
@@ -115,6 +120,8 @@ public final class ZooPR extends JavaPlugin {
         pm.registerEvents(new openPouchListener(), this);
         pm.registerEvents(new playtimeManager(), this);
         pm.registerEvents(new BoosterInteractEvent(), this);
+        pm.registerEvents(new armorCeGuiClickEvent(), this);
+        pm.registerEvents(new swordCeGuiClickEvent(), this);
 
 
 

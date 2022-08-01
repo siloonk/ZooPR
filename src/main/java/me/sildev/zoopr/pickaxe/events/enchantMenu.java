@@ -5,7 +5,7 @@ import me.sildev.zoopr.Enchants.CustomEnchantConfigFiles;
 import me.sildev.zoopr.ZooPR;
 import me.sildev.zoopr.utils.Messages;
 import me.sildev.zoopr.Enchants.CustomEnchants;
-import me.sildev.zoopr.Enchants.EnchantPrices;
+import me.sildev.zoopr.Enchants.pickaxeEnchants.EnchantPrices;
 import me.sildev.zoopr.eco.EconomyManager;
 import me.sildev.zoopr.pickaxe.UI.PickaxeMainMenu;
 import me.sildev.zoopr.utils.addLore;

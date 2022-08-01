@@ -12,6 +12,7 @@ public class openRobotMenu implements Listener {
 
     @EventHandler
     public void onRightClick(PlayerInteractAtEntityEvent e) {
+        e.setCancelled(true);
         Player player = e.getPlayer();
         Entity entity = e.getRightClicked();
         PersistentDataContainer container = entity.getPersistentDataContainer();
@@ -22,7 +23,5 @@ public class openRobotMenu implements Listener {
             return;
 
         RobotGUI.open(entity, player);
-
-        e.setCancelled(true);
     }
 }

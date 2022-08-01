@@ -80,9 +80,11 @@ playerAlreadyAtZ: "&dZooPR &8| &7You will have to prestige in order to continue!
 #
 luckyProc: "&dZooPR &8|&7 You have received &d%amount% &dTokens&7 from lucky!"
 notEnoughTokensToBuyEnchant: "&dZooPR &8| &7You don't have enough tokens to upgrade this enchantment!"
+notEnoughBeaconsToBuyEnchant: "&dZooPR &8| &7You don't have enough beacons to upgrade this enchantment!"
 successfullyUpgradedEnchant: "&dZooPR &8| &7You have successfully upgraded %enchantment%"
 breachMaxLevel: "&dZooPR &8| &7Failed to enchant because it would breach the max level!"
 dontMeetPickaxeLevelRequirement: "&dZooPR &8| &7your pickaxe is not a high enough level!"
+
 
 #
 # Robot Messages
@@ -119,3 +121,8 @@ alreadyABoosterActive: "&dZooPR &8| &7You can't do this, You already have a boos
 activatedBooster: "&dZooPR &8| &7You have successfully activated your booster!"
 receivedBooster: "&dZooPR &8| &7You have been given a %boostertype% booster!"
 boosterEnded: "&dZooPR &8| &7Your %boostertype% booster has ended!"
+
+#
+# Armor messages
+#
+notAnArmorPiece: "&dZooPR &8| &7This item can not be enchanted through /ce!"

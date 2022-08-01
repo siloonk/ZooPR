@@ -1,4 +1,4 @@
-package me.sildev.zoopr.Enchants.Tasks;
+package me.sildev.zoopr.Enchants.pickaxeEnchants.Tasks;
 
 import me.sildev.zoopr.eco.SellBlocks;
 import org.bukkit.Location;

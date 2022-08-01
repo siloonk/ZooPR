@@ -1,14 +1,9 @@
-package me.sildev.zoopr.Enchants.events;
+package me.sildev.zoopr.Enchants.pickaxeEnchants.events;
 
 import me.sildev.zoopr.Enchants.CustomEnchantConfigFiles;
 import me.sildev.zoopr.Enchants.CustomEnchants;
-import me.sildev.zoopr.Enchants.Tasks.LaserTask;
+import me.sildev.zoopr.Enchants.pickaxeEnchants.Tasks.LaserTask;
 import me.sildev.zoopr.ZooPR;
-import me.sildev.zoopr.eco.SellBlocks;
-import me.sildev.zoopr.utils.loops;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

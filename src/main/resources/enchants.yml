@@ -17,6 +17,9 @@ LUCKY_AMOUNT_MAX: 50000
 # Fortune multiplier
 FORTUNE_MULTIPLIER: 1 # Multiplier per level
 
+#Beaconmaster Multiplier
+BEACONMASTER_MULTIPLIER: 0.2 # multiplier per level (This would add 20%)
+
 #Required Pickaxe levels
 EXPLOSIVE_REQUIRED: 1
 JACKHAMMER_REQUIRED: 1

@@ -7,7 +7,9 @@ import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
@@ -41,6 +43,17 @@ public class addLore {
 
         lore.add(" ");
         lore.add(ChatColor.GRAY + "Level " + Math.round(meta.getPersistentDataContainer().get(new NamespacedKey(ZooPR.getPlugin(), "level"), PersistentDataType.DOUBLE)));
+        meta.setLore(lore);
+        player.getInventory().getItemInMainHand().setItemMeta(meta);
+    }
+
+    public static void addWeaponLore(ItemStack weapon, Player player) {
+        ItemMeta meta = weapon.getItemMeta();
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        List<String> lore = new ArrayList<>();
+        for (Enchantment ce : weapon.getEnchantments().keySet()) {
+            lore.add(ChatColor.GRAY + getEnchantmentName.getEnchantmentName(ce) + " " + weapon.getEnchantmentLevel(ce));
+        }
         meta.setLore(lore);
         player.getInventory().getItemInMainHand().setItemMeta(meta);
     }

@@ -1,4 +1,4 @@
-package me.sildev.zoopr.Enchants.events;
+package me.sildev.zoopr.Enchants.pickaxeEnchants.events;
 
 import me.sildev.zoopr.eco.SellBlocks;
 import org.bukkit.Material;

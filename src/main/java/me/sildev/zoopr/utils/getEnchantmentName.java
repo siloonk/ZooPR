@@ -11,6 +11,10 @@ public class getEnchantmentName {
         }
         else if (ce.equals(Enchantment.LOOT_BONUS_BLOCKS)) {
             return "Fortune";
+        } else if (ce.equals(Enchantment.DAMAGE_ALL)) {
+            return "Sharpness";
+        } else if (ce.equals(Enchantment.DURABILITY)) {
+            return "Unbreaking";
         } else {
             return ce.getName();
         }

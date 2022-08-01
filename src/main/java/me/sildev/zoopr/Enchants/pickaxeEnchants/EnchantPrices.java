@@ -1,5 +1,6 @@
-package me.sildev.zoopr.Enchants;
+package me.sildev.zoopr.Enchants.pickaxeEnchants;
 
+import me.sildev.zoopr.Enchants.CustomEnchants;
 import me.sildev.zoopr.ZooPR;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -38,6 +39,12 @@ public class EnchantPrices {
     static void loadValues() {
         for (Enchantment ce : CustomEnchants.Enchantments) {
             prices.put(ce, pricesConfig.getInt(ce.getName()));
+        }
+
+        for (Enchantment ce : Enchantment.values()) {
+            if (pricesConfig.contains(ce.getName())) {
+                prices.put(ce, pricesConfig.getInt(ce.getName()));
+            }
         }
     }
 
