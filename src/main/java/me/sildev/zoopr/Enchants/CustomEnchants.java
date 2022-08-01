@@ -19,6 +19,10 @@ public class CustomEnchants {
     public static final Enchantment LASER = new EnchantmentWrapper("laser", "Laser", 5000);
     public static final Enchantment LIGHTNING = new EnchantmentWrapper("lightning", "Lightning", 2500);
     public static final Enchantment BEACONMASTER = new EnchantmentWrapper("beaconmaster", "BeaconMaster", 10);
+    public static final Enchantment MERCHANT = new EnchantmentWrapper("merchant", "Merchant", 10000);
+    public static final Enchantment TOKEN_MULTI = new EnchantmentWrapper("token_multi", "Token Multi", 10000);
+    public static final Enchantment POUCH_FINDER = new EnchantmentWrapper("pouch_finder", "Pouch Finder", 10000);
+    public static final Enchantment CUBED = new EnchantmentWrapper("cubed", "Cubed", 10000);
 
 
     public static List<Enchantment> Enchantments = new ArrayList<Enchantment>() {{
@@ -31,6 +35,11 @@ public class CustomEnchants {
         add(LASER);
         add(LIGHTNING);
         add(BEACONMASTER);
+        add(MERCHANT);
+        add(MERCHANT);
+        add(TOKEN_MULTI);
+        add(POUCH_FINDER);
+        add(CUBED);
     }};
 
     public static void register() {

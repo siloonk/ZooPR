@@ -37,7 +37,7 @@ public class LuckyListener implements Listener {
         double amountMax = CustomEnchantConfigFiles.getEnchantmentAmount("LUCKY_AMOUNT_MAX");
 
         double amount = rd.nextFloat() * (amountMax - amountMin);
-
+        amount *= (e.getPlayer().getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.TOKEN_MULTI) * CustomEnchantConfigFiles.getEnchantmentAmount("TOKEN_MULTI_MULTIPLIER"));
         EconomyManager.addTokensToUser(e.getPlayer(), amount);
         String message = luckyProc.replaceAll("%amount%", formatNumber.coolFormat(amount, 0));
         e.getPlayer().sendMessage(message);

@@ -29,12 +29,14 @@ public class pouchManager {
     static File pouchesConfigFile;
 
     public static Material pouchItemType;
+    public static int maxPouchLevel;
     static String pouchName;
 
     public pouchManager() {
         createPouchesConfig();
         pouchItemType = Material.matchMaterial(pouchesConfig.getString("POUCH_ITEM"));
         pouchName = coloredString.color(pouchesConfig.getString("POUCH_NAME"));
+        maxPouchLevel = pouchesConfig.getInt("HIGHEST_TIER");
     }
 
 

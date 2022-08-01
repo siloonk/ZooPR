@@ -135,18 +135,18 @@ public class SellBlocks {
             }
         }
         double tokenMultiplier = 1;
+        tokenMultiplier += (player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.TOKEN_MULTI) * CustomEnchantConfigFiles.getEnchantmentAmount("TOKEN_MULTI_MULTIPLIER"));
         if (player.getPersistentDataContainer().has(boosterManager.tokenMultiplier)) {
             tokenMultiplier += player.getPersistentDataContainer().get(boosterManager.tokenMultiplier, PersistentDataType.DOUBLE);
         }
 
         EconomyManager.addTokensToUser(player, 1 * tokenMultiplier);
         double multiplier = ((player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.FORTUNE) * CustomEnchantConfigFiles.getEnchantmentAmount("FORTUNE_MULTIPLIER")) + 1);
+        multiplier += ((player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.MERCHANT) * CustomEnchantConfigFiles.getEnchantmentAmount("MERCHANT_MULTIPLIER")));
         if (player.getPersistentDataContainer().has(boosterManager.moneyMultiplier))
             multiplier += player.getPersistentDataContainer().get(boosterManager.moneyMultiplier, PersistentDataType.DOUBLE);
 
-        if (player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.FORTUNE) > 0) {
-            value = value * multiplier;
-        }
+        value *= multiplier;
         EconomyManager.addMoneyToUser(player, value);
         ItemMeta meta = pickaxe.getItemMeta();
         PersistentDataContainer container = meta.getPersistentDataContainer();

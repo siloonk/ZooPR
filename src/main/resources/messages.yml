@@ -73,12 +73,14 @@ notRankZYet: "&dZooPR &8| &7You can't prestige yet you are only rank &d%rank%/Z"
 notEnoughToRankup: "&dZooPR &8| &7You don't have enough money to rankup! (&c%remaining%&7)"
 successfullyRankedUp: "&dZooPR &8| &7You have succesfully ranked up to &d%rank%&7!"
 playerAlreadyAtZ: "&dZooPR &8| &7You will have to prestige in order to continue!"
+notPres1000Yet: "&dZooPR &8| &7You are not prestige 1000 yet!"
 
 
 #
 # Enchant messages
 #
 luckyProc: "&dZooPR &8|&7 You have received &d%amount% &dTokens&7 from lucky!"
+pouchProc: "&dZooPR &8| &7You have received a &d%pouch% pouch &7(&dTier %tier%&7) from pouch finder!"
 notEnoughTokensToBuyEnchant: "&dZooPR &8| &7You don't have enough tokens to upgrade this enchantment!"
 notEnoughBeaconsToBuyEnchant: "&dZooPR &8| &7You don't have enough beacons to upgrade this enchantment!"
 successfullyUpgradedEnchant: "&dZooPR &8| &7You have successfully upgraded %enchantment%"

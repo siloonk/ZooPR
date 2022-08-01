@@ -57,3 +57,6 @@ commands:
 
   ce:
     description: ce command!
+
+  rebirth:
+    description: rebirth command!

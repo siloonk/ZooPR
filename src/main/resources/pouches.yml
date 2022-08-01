@@ -5,12 +5,41 @@
 #
 
 POUCH_ITEM: ENDER_CHEST
-POUCH_NAME: "&f&ki&d %type% pouch &8(&7%tier%&8)"
+POUCH_NAME: "&f&ki&d %type% pouch &8(&7%tier%&8) &f&ki"
+
+HIGHEST_TIER: 4
 
 # Example as to how to use this!
 # /pouches reload to reload the config file!
 Pouches:
   TIER1:
+    MONEY:
+      MIN: 1000
+      MAX: 10000
+
+    TOKENS:
+      MIN: 10000
+      MAX: 1000000
+
+  TIER2:
+    MONEY:
+      MIN: 1000
+      MAX: 10000
+
+    TOKENS:
+      MIN: 10000
+      MAX: 1000000
+
+  TIER3:
+    MONEY:
+      MIN: 1000
+      MAX: 10000
+
+    TOKENS:
+      MIN: 10000
+      MAX: 1000000
+
+  TIER4:
     MONEY:
       MIN: 1000
       MAX: 10000

@@ -1,5 +1,6 @@
 package me.sildev.zoopr.pickaxe;
 
+import me.sildev.zoopr.Enchants.CustomEnchants;
 import me.sildev.zoopr.ZooPR;
 import me.sildev.zoopr.utils.addLore;
 import me.sildev.zoopr.utils.coloredString;

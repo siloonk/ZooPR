@@ -6,8 +6,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.scheduler.BukkitRunnable;
-
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -23,7 +21,9 @@ public class scoreboardListener implements Listener {
 
     @EventHandler
     public void onLeave(PlayerQuitEvent e) {
-        int taskID = ids.get(e.getPlayer().getUniqueId());
-        Bukkit.getScheduler().cancelTask(taskID);
+        if (ids.containsKey(e.getPlayer().getUniqueId())) {
+            int taskID = ids.get(e.getPlayer().getUniqueId());
+            Bukkit.getScheduler().cancelTask(taskID);
+        }
     }
 }

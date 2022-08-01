@@ -35,6 +35,7 @@ import me.sildev.zoopr.pvemobs.PveSpawnerCMD;
 import me.sildev.zoopr.rank.commands.prestigeCMD;
 import me.sildev.zoopr.rank.commands.prestigeMax;
 import me.sildev.zoopr.rank.commands.rankupCMD;
+import me.sildev.zoopr.rank.commands.rebirthCMD;
 import me.sildev.zoopr.rank.rankupManager;
 import me.sildev.zoopr.robots.*;
 import me.sildev.zoopr.scoreboard.scoreboardListener;
@@ -42,7 +43,6 @@ import me.sildev.zoopr.utils.Messages;
 
 
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
@@ -102,6 +102,7 @@ public final class ZooPR extends JavaPlugin {
         getCommand("pouch").setExecutor(new pouchCMD());
         getCommand("booster").setExecutor(new boosterCommand());
         getCommand("ce").setExecutor(new ceCommand());
+        getCommand("rebirth").setExecutor(new rebirthCMD());
     }
 
     void registerEvents() {
@@ -133,6 +134,8 @@ public final class ZooPR extends JavaPlugin {
         pm.registerEvents(new LaserListener(), this);
         pm.registerEvents(new DrillListener(), this);
         pm.registerEvents(new LightningListener(), this);
+        pm.registerEvents(new PouchFinderListener(), this);
+        pm.registerEvents(new CubedListener(), this);
     }
 
     public static ZooPR getPlugin() {

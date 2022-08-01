@@ -19,6 +19,9 @@ public class rankupManager implements Listener {
 
     public static NamespacedKey prestige = new NamespacedKey(ZooPR.getPlugin(), "prestige");
     public static NamespacedKey prestigeCost = new NamespacedKey(ZooPR.getPlugin(), "prestige-cost");
+    public static NamespacedKey rebirth = new NamespacedKey(ZooPR.getPlugin(), "rebirth");
+    public static NamespacedKey rebirthPoints = new NamespacedKey(ZooPR.getPlugin(), "rebirht-points");
+
 
     public static final double StartRankupCost = 5000;
     public static final double rankupCostMultiplier = 1.5;
@@ -35,7 +38,9 @@ public class rankupManager implements Listener {
 
         data.set(rankup, PersistentDataType.INTEGER, 0);
         data.set(rankupCost, PersistentDataType.DOUBLE, StartRankupCost);
-        data.set(prestige, PersistentDataType.INTEGER, 0);
+        data.set(prestige, PersistentDataType.INTEGER, 1000);
         data.set(prestigeCost, PersistentDataType.DOUBLE, StartPrestigeCost);
+        data.set(rebirth, PersistentDataType.INTEGER, 0);
+        data.set(rebirthPoints, PersistentDataType.DOUBLE, 0d);
     }
 }
