@@ -1,9 +1,9 @@
 # ZooPR
 
- -- Features comming
+* Features comming
    * 
  
- -- Features in the plugin already
+* Features in the plugin already
   * Pickaxe enchantments
   * Token/Money pouches
   * Scoreboard
