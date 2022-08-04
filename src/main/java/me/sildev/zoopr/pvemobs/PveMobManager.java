@@ -2,6 +2,8 @@ package me.sildev.zoopr.pvemobs;
 
 import me.sildev.zoopr.Enchants.CustomEnchantConfigFiles;
 import me.sildev.zoopr.Enchants.CustomEnchants;
+import me.sildev.zoopr.Pets.PetType;
+import me.sildev.zoopr.Pets.petManager;
 import me.sildev.zoopr.ZooPR;
 import me.sildev.zoopr.eco.EconomyManager;
 import me.sildev.zoopr.utils.Messages;
@@ -152,6 +154,10 @@ public class PveMobManager implements Listener {
                         beaconMultiplier = 1 + (CustomEnchantConfigFiles.getEnchantmentAmount("BEACONMASTER_MULTIPLIER")) * player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.BEACONMASTER);
                     }
 
+                if (petManager.getActivePet(player) != null && petManager.getActivePet(player).getType().equals(PetType.BEACON)) {
+                    beaconMultiplier += petManager.getActivePet(player).getPetMultiplier();
+                    petManager.getActivePet(player).usePet();
+                }
                 Random rd = new Random();
                 int amountOfBeacons = rd.nextInt(10);
                 if (amountOfBeacons == 0) return;

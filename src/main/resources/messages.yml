@@ -33,6 +33,8 @@ pvespawnerUsage: "&dUsage &8| &7/pvespawner give (player) (type) (amount)"
 bombUsage: "&dUsage &8| &7/bomb give (player) (type) (tier)"
 pouchUsage: "&dUsage &8| &7/pouch give/reload [(player) (type) (tier)]"
 boosterUsage: "&dUsage &8| &7/booster give (player) (multiplier) (lengthNumber) (Minutes/Hours) (Type)"
+petUsage: "&dUsage &8| &7/pet give (player) (type) (tier)"
+questUsage: "&dUsage &8| &7/quest give (player) (tier)"
 
 
 #
@@ -128,3 +130,16 @@ boosterEnded: "&dZooPR &8| &7Your %boostertype% booster has ended!"
 # Armor messages
 #
 notAnArmorPiece: "&dZooPR &8| &7This item can not be enchanted through /ce!"
+
+
+#
+# Pet messages
+#
+NotAValidType: "&dZooPR &8| &7This is not a valid pet type!"
+NotAValidTier: "&dZooPR &8| &7This is not a valid pet tier!"
+
+#
+# Quest Messages
+#
+activatedQuest: "&dZooPR &8| &7You have successfully activated this quest!"
+alreadyActiveQuest: "&dZooPR &8| &7You already have an active quest!"

@@ -60,3 +60,9 @@ commands:
 
   rebirth:
     description: rebirth command!
+
+  pet:
+    description: pet command!
+
+  quest:
+    description: quest command!

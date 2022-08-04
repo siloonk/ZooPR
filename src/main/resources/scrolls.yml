@@ -1,0 +1,10 @@
+scroll1:
+  - 'broadcast test'
+  - 'broadcast othertest'
+
+scroll2:
+  - 'broadcast %player%'
+  - 'broadcast nothing to see here!'
+
+scroll3:
+  - 'broadcast I dont like this at all :)'

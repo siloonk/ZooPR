@@ -13,6 +13,10 @@ import me.sildev.zoopr.Leaderboard.LeaderboardManager;
 import me.sildev.zoopr.Leaderboard.baltopCMD;
 import me.sildev.zoopr.Leaderboard.beacontopCMD;
 import me.sildev.zoopr.Leaderboard.tokentopCMD;
+import me.sildev.zoopr.Pets.Pet;
+import me.sildev.zoopr.Pets.petCMD;
+import me.sildev.zoopr.Pets.petManager;
+import me.sildev.zoopr.Pets.petMenu;
 import me.sildev.zoopr.armor.armorCeGuiClickEvent;
 import me.sildev.zoopr.armor.ceCommand;
 import me.sildev.zoopr.armor.swordCeGuiClickEvent;
@@ -32,6 +36,10 @@ import me.sildev.zoopr.pouches.pouchCMD;
 import me.sildev.zoopr.pouches.pouchManager;
 import me.sildev.zoopr.pvemobs.PveMobManager;
 import me.sildev.zoopr.pvemobs.PveSpawnerCMD;
+import me.sildev.zoopr.questScrolls.QuestScrollManager;
+import me.sildev.zoopr.questScrolls.questCMD;
+import me.sildev.zoopr.questScrolls.scrollActivateEvent;
+import me.sildev.zoopr.questScrolls.scrollProgressEvent;
 import me.sildev.zoopr.rank.commands.prestigeCMD;
 import me.sildev.zoopr.rank.commands.prestigeMax;
 import me.sildev.zoopr.rank.commands.rankupCMD;
@@ -42,20 +50,27 @@ import me.sildev.zoopr.scoreboard.scoreboardListener;
 import me.sildev.zoopr.utils.Messages;
 
 
+import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
+import java.io.IOException;
+
 public final class ZooPR extends JavaPlugin {
 
     private static ZooPR plugin;
+    private static petManager petmanager;
     private static LeaderboardManager leaderboard;
 
     @Override
     public void onEnable() {
         ConfigurationSerialization.registerClass(Gang.class);
+        ConfigurationSerialization.registerClass(Pet.class);
         plugin = this;
+        petmanager = new petManager();
         leaderboard = new LeaderboardManager();
 
         // Create instance of CustomEnchantConfigFiles, so it creates the config file!
@@ -65,12 +80,11 @@ public final class ZooPR extends JavaPlugin {
         new GangManager();
         new EnchantPrices();
         new pouchManager();
+        new QuestScrollManager();
 
         registerCommands();
         registerEvents();
         CustomEnchants.register();
-
-
 
         this.getLogger().fine("ZooPR is Starting!");
     }
@@ -81,6 +95,15 @@ public final class ZooPR extends JavaPlugin {
             task.cancel();
             System.out.println("Canceled Task: #" + task.getTaskId());
         }
+
+        for (OfflinePlayer player : Bukkit.getOfflinePlayers()) {
+            try {
+                petManager.savePets(player);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
         this.getLogger().fine("ZooPR is Shutting Down!");
     }
 
@@ -103,6 +126,8 @@ public final class ZooPR extends JavaPlugin {
         getCommand("booster").setExecutor(new boosterCommand());
         getCommand("ce").setExecutor(new ceCommand());
         getCommand("rebirth").setExecutor(new rebirthCMD());
+        getCommand("pet").setExecutor(new petCMD());
+        getCommand("quest").setExecutor(new questCMD());
     }
 
     void registerEvents() {
@@ -123,6 +148,10 @@ public final class ZooPR extends JavaPlugin {
         pm.registerEvents(new BoosterInteractEvent(), this);
         pm.registerEvents(new armorCeGuiClickEvent(), this);
         pm.registerEvents(new swordCeGuiClickEvent(), this);
+        pm.registerEvents(new petMenu(), this);
+        pm.registerEvents(new petManager(), this);
+        pm.registerEvents(new scrollActivateEvent(), this);
+        pm.registerEvents(new scrollProgressEvent(), this);
 
 
 
@@ -142,4 +171,7 @@ public final class ZooPR extends JavaPlugin {
         return plugin;
     }
     public static LeaderboardManager getLeaderboard() {return leaderboard; }
+    public static petManager getPetManager() {
+        return petmanager;
+    }
 }
