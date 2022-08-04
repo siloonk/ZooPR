@@ -1,7 +1,12 @@
 # ZooPR
 
-* Features comming
-   * 
+* Features coming
+  * Shop
+  * Prestige Shop
+  * Rebirth Shop
+  * Lucky Blocks
+  * Pvp
+  * Envoy 
  
 * Features in the plugin already
   * Pickaxe enchantments
@@ -13,4 +18,10 @@
   * baltop tokentop beacontop
   * pvemobs for beacons
   * Money Tokens beacons currency
-  
+  * Pets
+  * Quest Scrolls
+  * armor enchantments
+  * Weapon enchantments
+
+
+I have written this entire plugin all by myself!
