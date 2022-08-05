@@ -1,5 +1,11 @@
 package me.sildev.zoopr.eco;
 
+import com.sk89q.worldedit.world.World;
+import com.sk89q.worldguard.WorldGuard;
+import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
+import com.sk89q.worldguard.protection.managers.RegionManager;
+import com.sk89q.worldguard.protection.regions.ProtectedRegion;
+import com.sk89q.worldguard.protection.regions.RegionContainer;
 import me.sildev.zoopr.Boosters.boosterManager;
 import me.sildev.zoopr.Enchants.CustomEnchantConfigFiles;
 import me.sildev.zoopr.Enchants.CustomEnchants;
@@ -12,6 +18,7 @@ import me.sildev.zoopr.utils.Messages;
 import me.sildev.zoopr.utils.MillisecondsToTime;
 import me.sildev.zoopr.utils.addLore;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
@@ -26,6 +33,8 @@ import org.bukkit.persistence.PersistentDataType;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
@@ -37,6 +46,7 @@ public class SellBlocks {
 
     public static FileConfiguration blockValueConfig;
     static File blockValueFile;
+
 
     static ZooPR instance;
 
@@ -69,35 +79,35 @@ public class SellBlocks {
 
     }
 
-//    public static void sellBlock(Block block, Player player) {
-//        Material blockType = block.getType();
-//        double value = getValue(blockType.name());
-//        if (value == -1) {
-//            return;
-//        }
-//        addExpToPickaxe.addEXPToPickaxe(player);
-//        if (player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.FORTUNE) > 0) {
-//            value = value * ((player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.FORTUNE) * CustomEnchantConfigFiles.getEnchantmentAmount("FORTUNE_MULTIPLIER")) + 1);
-//        }
-//        EconomyManager.addMoneyToUser(player, value);
-//        EconomyManager.addTokensToUser(player, 1d);
-//        player.getWorld().getBlockAt(block.getLocation()).setType(Material.AIR);
-//        ItemStack item = player.getInventory().getItemInMainHand();
-//        ItemMeta meta = item.getItemMeta();
-//        PersistentDataContainer container = meta.getPersistentDataContainer();
-//        if (container.has(new NamespacedKey(ZooPR.getPlugin(), "blocks-broken"), PersistentDataType.DOUBLE)) {
-//            double blocksBroken = container.get(new NamespacedKey(ZooPR.getPlugin(), "blocks-broken"), PersistentDataType.DOUBLE);
-//            container.set(new NamespacedKey(ZooPR.getPlugin(), "blocks-broken"), PersistentDataType.DOUBLE, blocksBroken + 1);
-//            if ((blocksBroken + 1) % 100 == 0) {
-//                addLore.addLore(item, player);
-//            }
-//            item.setItemMeta(meta);
-//        }
-//    }
+    static List<String> getRegionsToStopMining() {
+        return (List<String>) blockValueConfig.getList("mine-regions");
+    }
 
+
+    private static Map<String, ProtectedRegion> getRegionAtPlayer(Location loc) {
+        WorldGuardPlugin wg = WorldGuardPlugin.inst();
+        RegionContainer container = WorldGuard.getInstance().getPlatform().getRegionContainer();
+        RegionManager regions = container.get((World) loc.getWorld());
+        regions.getRegions();
+        return regions.getRegions();
+    }
+
+    private static boolean isInRegionWhereCanMine(Location loc) {
+        Map<String, ProtectedRegion> regions = getRegionAtPlayer(loc);
+        for (String r : getRegionsToStopMining()) {
+            if (regions.containsKey(r)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public static void sellBlock(Block block, ItemStack pickaxe) {
         Player player = Bukkit.getPlayer(UUID.fromString(pickaxe.getItemMeta().getPersistentDataContainer().get(new NamespacedKey(ZooPR.getPlugin(), "owner"), PersistentDataType.STRING)));
+
+        if (!isInRegionWhereCanMine(block.getLocation())) {
+            return;
+        }
         Material blockType = block.getType();
         if (blockType == Material.BEACON) {
             Random rd = new Random();
@@ -170,6 +180,9 @@ public class SellBlocks {
     }
 
     public static void sellBlocknoPickaxe(Block block, Player player) {
+        if (!isInRegionWhereCanMine(block.getLocation())) {
+            return;
+        }
         Material blockType = block.getType();
         if (blockType == Material.BEACON) {
             Random rd = new Random();

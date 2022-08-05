@@ -22,6 +22,3 @@
   * Quest Scrolls
   * armor enchantments
   * Weapon enchantments
-
-
-I have written this entire plugin all by myself!

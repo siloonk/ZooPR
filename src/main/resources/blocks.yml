@@ -13,3 +13,10 @@ REDSTONE_ORE: 50
 EMERALD_ORE: 70
 DIAMOND_ORE: 100
 ENDSTONE: 150
+
+
+
+
+mine-regions:
+  - 'a-mine'
+  - 'b-mine'

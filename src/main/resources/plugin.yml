@@ -4,6 +4,7 @@ main: me.sildev.zoopr.ZooPR
 api-version: 1.19
 authors: [ siloonk ]
 description: ZooPR Core
+depend: [WorldGuard]
 
 commands:
   bal:
