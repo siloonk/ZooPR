@@ -7,7 +7,7 @@
   * Lucky Blocks (Working on it)
   * Pvp
   * Envoy
-&
+&NewLine;
 * Features in the plugin already
   * Pickaxe enchantments
   * Token/Money pouches
