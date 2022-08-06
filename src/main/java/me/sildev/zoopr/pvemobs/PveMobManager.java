@@ -1,11 +1,13 @@
 package me.sildev.zoopr.pvemobs;
 
+import me.sildev.zoopr.Boosters.boosterManager;
 import me.sildev.zoopr.Enchants.CustomEnchantConfigFiles;
 import me.sildev.zoopr.Enchants.CustomEnchants;
 import me.sildev.zoopr.Pets.PetType;
 import me.sildev.zoopr.Pets.petManager;
 import me.sildev.zoopr.ZooPR;
 import me.sildev.zoopr.eco.EconomyManager;
+import me.sildev.zoopr.questScrolls.QuestScrollManager;
 import me.sildev.zoopr.utils.Messages;
 import me.sildev.zoopr.utils.coloredString;
 import me.sildev.zoopr.utils.isArmor;
@@ -164,11 +166,34 @@ public class PveMobManager implements Listener {
                 EconomyManager.addBeaconsToUser(player, Math.round(amountOfBeacons * beaconMultiplier));
                 String message = receivedBeacons.replaceAll("%amount%", String.valueOf(amountOfBeacons * Math.round(beaconMultiplier)));
                 player.sendMessage(message);
+
+                int chance = rd.nextInt(100);
+                if (chance <= 2) {
+                    dropPveLoot(e.getEntity().getLocation());
+                }
                 return;
             }
         }
         if (entity.getType() == EntityType.SKELETON || entity.getType() == EntityType.SPIDER || entity.getType() == EntityType.WITHER_SKELETON || entity.getType() == EntityType.ZOMBIE)
             entity.setCustomName(coloredString.color("&d" + entity.getType().toString().toLowerCase() + " &c❤ &7" + Math.round(entity.getHealth() - e.getDamage())));
+    }
+
+    public void dropPveLoot(Location loc) {
+        Random rd = new Random();
+
+        int chance = rd.nextInt(2);
+        if (chance == 1) {
+            int tier = rd.nextInt(2) + 1;
+            ItemStack scroll = QuestScrollManager.generateQuestScroll(tier);
+            loc.getWorld().dropItem(loc, scroll);
+        } else {
+            int multiplier = rd.nextInt(1) + 2;
+            String[] types = new String[] {"TOKENS", "MONEY"};
+
+            int index = rd.nextInt(types.length);
+            ItemStack booster = boosterManager.generateBooster(multiplier, 600000l, types[index]);
+            loc.getWorld().dropItem(loc, booster);
+        }
     }
 
     @EventHandler

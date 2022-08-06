@@ -1,11 +1,10 @@
 package me.sildev.zoopr.eco;
 
-import com.sk89q.worldedit.world.World;
+import com.sk89q.worldedit.bukkit.BukkitWorld;
+import com.sk89q.worldedit.math.BlockVector3;
 import com.sk89q.worldguard.WorldGuard;
-import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
-import com.sk89q.worldguard.protection.managers.RegionManager;
+import com.sk89q.worldguard.protection.ApplicableRegionSet;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
-import com.sk89q.worldguard.protection.regions.RegionContainer;
 import me.sildev.zoopr.Boosters.boosterManager;
 import me.sildev.zoopr.Enchants.CustomEnchantConfigFiles;
 import me.sildev.zoopr.Enchants.CustomEnchants;
@@ -15,7 +14,6 @@ import me.sildev.zoopr.ZooPR;
 import me.sildev.zoopr.playtime.playtimeManager;
 import me.sildev.zoopr.pickaxe.events.addExpToPickaxe;
 import me.sildev.zoopr.utils.Messages;
-import me.sildev.zoopr.utils.MillisecondsToTime;
 import me.sildev.zoopr.utils.addLore;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -33,10 +31,7 @@ import org.bukkit.persistence.PersistentDataType;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 public class SellBlocks {
 
@@ -84,18 +79,22 @@ public class SellBlocks {
     }
 
 
-    private static Map<String, ProtectedRegion> getRegionAtPlayer(Location loc) {
-        WorldGuardPlugin wg = WorldGuardPlugin.inst();
-        RegionContainer container = WorldGuard.getInstance().getPlatform().getRegionContainer();
-        RegionManager regions = container.get((World) loc.getWorld());
-        regions.getRegions();
-        return regions.getRegions();
+    private static Set<ProtectedRegion> getRegionAtPlayer(Location loc) {
+//        RegionContainer container = WorldGuard.getInstance().getPlatform().getRegionContainer();
+//        RegionManager regions = container.get(BukkitAdapter.adapt(loc.getWorld()));
+//        regions.getRegions();
+        ApplicableRegionSet set = WorldGuard.getInstance().getPlatform().getRegionContainer().get(new BukkitWorld(loc.getWorld())).getApplicableRegions(BlockVector3.at(loc.getX(),loc.getY(),loc.getZ()));
+        return set.getRegions();
     }
 
     private static boolean isInRegionWhereCanMine(Location loc) {
-        Map<String, ProtectedRegion> regions = getRegionAtPlayer(loc);
+        Set<ProtectedRegion> regions = getRegionAtPlayer(loc);
+        List<String> regionNames = new ArrayList<>();
+        for (ProtectedRegion region : regions) {
+            regionNames.add(region.getId());
+        }
         for (String r : getRegionsToStopMining()) {
-            if (regions.containsKey(r)) {
+            if (regionNames.contains(r)) {
                 return true;
             }
         }
@@ -104,6 +103,7 @@ public class SellBlocks {
 
     public static void sellBlock(Block block, ItemStack pickaxe) {
         Player player = Bukkit.getPlayer(UUID.fromString(pickaxe.getItemMeta().getPersistentDataContainer().get(new NamespacedKey(ZooPR.getPlugin(), "owner"), PersistentDataType.STRING)));
+        assert player != null;
 
         if (!isInRegionWhereCanMine(block.getLocation())) {
             return;
@@ -112,7 +112,7 @@ public class SellBlocks {
         if (blockType == Material.BEACON) {
             Random rd = new Random();
             int amount = rd.nextInt(4) + 1;
-            EconomyManager.addBeaconsToUser(player,amount);
+            EconomyManager.addBeaconsToUser(player, amount);
             player.sendMessage(receivedBeacons.replaceAll("%amount%", String.valueOf(amount)));
         }
         double value = getValue(blockType.name());
@@ -126,8 +126,6 @@ public class SellBlocks {
         // Token booster
         if (player.getPersistentDataContainer().has(boosterManager.tokenMultiplier)) {
             long timeLeft = player.getPersistentDataContainer().get(boosterManager.tokenMultiplierLength, PersistentDataType.LONG) - playtimeManager.getPlaytime(player);
-            System.out.println(MillisecondsToTime.getTime(playtimeManager.getPlaytime(player)));
-            System.out.println(timeLeft + " Tokens");
 
             if (timeLeft <= 0) {
                 player.getPersistentDataContainer().remove(boosterManager.tokenMultiplier);
@@ -139,7 +137,6 @@ public class SellBlocks {
         // Money booster
         if (player.getPersistentDataContainer().has(boosterManager.moneyMultiplier)) {
             long timeLeft = player.getPersistentDataContainer().get(boosterManager.moneyMultiplierLength, PersistentDataType.LONG) - playtimeManager.getPlaytime(player);
-            System.out.println(timeLeft + " Money");
             if (timeLeft <= 0) {
                 player.getPersistentDataContainer().remove(boosterManager.moneyMultiplier);
                 player.getPersistentDataContainer().remove(boosterManager.moneyMultiplierLength);

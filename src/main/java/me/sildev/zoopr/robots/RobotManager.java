@@ -61,7 +61,7 @@ public class RobotManager implements Listener {
             if (!item.getItemMeta().getDisplayName().equals(RobotItemName))
                 return;
 
-                // Item is an actual robot!
+            // Item is an actual robot!
             ItemMeta meta = item.getItemMeta();
             PersistentDataContainer container = meta.getPersistentDataContainer();
             System.out.println(container.getKeys());

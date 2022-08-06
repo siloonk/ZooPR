@@ -38,7 +38,7 @@ public class rankupManager implements Listener {
 
         data.set(rankup, PersistentDataType.INTEGER, 0);
         data.set(rankupCost, PersistentDataType.DOUBLE, StartRankupCost);
-        data.set(prestige, PersistentDataType.INTEGER, 1000);
+        data.set(prestige, PersistentDataType.INTEGER, 0);
         data.set(prestigeCost, PersistentDataType.DOUBLE, StartPrestigeCost);
         data.set(rebirth, PersistentDataType.INTEGER, 0);
         data.set(rebirthPoints, PersistentDataType.DOUBLE, 0d);

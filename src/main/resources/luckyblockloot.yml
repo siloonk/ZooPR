@@ -1,0 +1,13 @@
+# Common Loot: it has a 97% chance to pick a random item from this list!
+# These are the commands that will be executed at random!
+common:
+  - ''
+
+
+
+
+
+# Rare loot: It has a 3% chance to pick a random item from this list!
+# These are the commands that will be executed at random!
+rare:
+  - ''

@@ -5,6 +5,7 @@ import me.sildev.zoopr.ZooPR;
 import me.sildev.zoopr.eco.EconomyManager;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
 
@@ -17,7 +18,7 @@ public class LeaderboardManager {
     public HashMap<UUID, Double> beaconsToSort = new HashMap<>();
 
     public LeaderboardManager() {
-        new getAllPlayersTask(this).runTaskAsynchronously(ZooPR.getPlugin());
+        new getAllPlayersTask(this).runTaskTimerAsynchronously(ZooPR.getPlugin(), 0L, 12000L /* 10 minutes */);
     }
 
 
