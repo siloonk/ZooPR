@@ -4,7 +4,7 @@
   * Shop
   * Prestige Shop
   * Rebirth Shop
-  * Lucky Blocks
+  * Lucky Blocks (Working on it)
   * Pvp
   * Envoy 
  
