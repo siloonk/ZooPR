@@ -4,7 +4,6 @@
   * Shop
   * Prestige Shop
   * Rebirth Shop
-  * Lucky Blocks (Working on it)
   * Pvp
   * Envoy
 &NewLine;
@@ -22,6 +21,7 @@
   * Quest Scrolls
   * armor enchantments
   * Weapon enchantments
+  * Lucky blocks
 
 
 
