@@ -1,7 +1,7 @@
 package me.sildev.zoopr.rank.commands;
 
 import me.sildev.zoopr.ZooPR;
-import me.sildev.zoopr.eco.EconomyManager;
+import me.sildev.zoopr.Leaderboard.eco.EconomyManager;
 import me.sildev.zoopr.rank.rankupManager;
 import me.sildev.zoopr.utils.Messages;
 import me.sildev.zoopr.utils.coloredString;

@@ -1,8 +1,7 @@
-package me.sildev.zoopr.eco.cmds;
+package me.sildev.zoopr.Leaderboard.eco.cmds;
 
-import me.sildev.zoopr.eco.EconomyManager;
+import me.sildev.zoopr.Leaderboard.eco.EconomyManager;
 import me.sildev.zoopr.utils.Messages;
-import me.sildev.zoopr.utils.coloredString;
 import me.sildev.zoopr.utils.formatNumber;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;

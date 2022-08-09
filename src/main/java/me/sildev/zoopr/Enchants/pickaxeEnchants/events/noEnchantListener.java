@@ -2,8 +2,7 @@ package me.sildev.zoopr.Enchants.pickaxeEnchants.events;
 
 import me.sildev.zoopr.Pets.PetType;
 import me.sildev.zoopr.Pets.petManager;
-import me.sildev.zoopr.eco.EconomyManager;
-import me.sildev.zoopr.eco.SellBlocks;
+import me.sildev.zoopr.Leaderboard.eco.SellBlocks;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

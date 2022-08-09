@@ -11,3 +11,16 @@ common:
 # These are the commands that will be executed at random!
 rare:
   - ''
+
+
+lore:
+  - ''
+  - '&dCommon Items'
+  - ' whatever'
+  - ' whatever'
+  - ''
+  - '&dRare Items'
+  - ' whatever'
+  - ' whatever'
+  - ' '
+  - '&7Right click to receive one of these rewards!'

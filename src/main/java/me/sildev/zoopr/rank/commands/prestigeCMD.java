@@ -1,7 +1,7 @@
 package me.sildev.zoopr.rank.commands;
 
 import me.sildev.zoopr.ZooPR;
-import me.sildev.zoopr.eco.EconomyManager;
+import me.sildev.zoopr.Leaderboard.eco.EconomyManager;
 import me.sildev.zoopr.rank.rankupManager;
 import me.sildev.zoopr.utils.Messages;
 import me.sildev.zoopr.utils.coloredString;
@@ -46,7 +46,8 @@ public class prestigeCMD implements CommandExecutor {
         double multiplier = (prestige + 1) * rankupManager.rankupCostMultiplier;
         double rankupCost = container.get(rankupManager.rankupCost, PersistentDataType.DOUBLE);
         container.set(rankupManager.rankupCost, PersistentDataType.DOUBLE, rankupManager.StartRankupCost * multiplier);
-
+        double prestigePoints = container.get(rankupManager.prestigePoints, PersistentDataType.DOUBLE);
+        container.set(rankupManager.prestigePoints, PersistentDataType.DOUBLE, prestigePoints + 1);
 
         // Sending the message
         ZooPR.getPlugin().getServer().broadcastMessage(coloredString.color("&8&m---------------------------------------------------"));

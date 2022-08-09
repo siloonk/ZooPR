@@ -6,7 +6,7 @@ import me.sildev.zoopr.ZooPR;
 import me.sildev.zoopr.utils.Messages;
 import me.sildev.zoopr.Enchants.CustomEnchants;
 import me.sildev.zoopr.Enchants.pickaxeEnchants.EnchantPrices;
-import me.sildev.zoopr.eco.EconomyManager;
+import me.sildev.zoopr.Leaderboard.eco.EconomyManager;
 import me.sildev.zoopr.pickaxe.UI.PickaxeMainMenu;
 import me.sildev.zoopr.utils.addLore;
 import org.bukkit.Material;
@@ -16,7 +16,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
@@ -165,6 +164,42 @@ public class enchantMenu implements Listener {
                     upgradeEnchantment(CustomEnchants.LASER, player, 10);
                 } else if (e.getAction() == InventoryAction.DROP_ONE_SLOT) {
                     upgradeEnchantment(CustomEnchants.LASER, player, 100);
+                }
+            } else if (e.getSlot() == 33) {
+                // Pouch finder Shit
+                if (e.getAction() == InventoryAction.PICKUP_ALL) {
+                    upgradeEnchantment(CustomEnchants.POUCH_FINDER, player, 1);
+                } else if (e.getAction() == InventoryAction.PICKUP_HALF) {
+                    upgradeEnchantment(CustomEnchants.POUCH_FINDER, player, 10);
+                } else if (e.getAction() == InventoryAction.DROP_ONE_SLOT) {
+                    upgradeEnchantment(CustomEnchants.POUCH_FINDER, player, 100);
+                }
+            } else if (e.getSlot() == 34) {
+                // Cubed Shit
+                if (e.getAction() == InventoryAction.PICKUP_ALL) {
+                    upgradeEnchantment(CustomEnchants.CUBED, player, 1);
+                } else if (e.getAction() == InventoryAction.PICKUP_HALF) {
+                    upgradeEnchantment(CustomEnchants.CUBED, player, 10);
+                } else if (e.getAction() == InventoryAction.DROP_ONE_SLOT) {
+                    upgradeEnchantment(CustomEnchants.CUBED, player, 100);
+                }
+            } else if (e.getSlot() == 39) {
+                // Token multi Shit
+                if (e.getAction() == InventoryAction.PICKUP_ALL) {
+                    upgradeEnchantment(CustomEnchants.TOKEN_MULTI, player, 1);
+                } else if (e.getAction() == InventoryAction.PICKUP_HALF) {
+                    upgradeEnchantment(CustomEnchants.TOKEN_MULTI, player, 10);
+                } else if (e.getAction() == InventoryAction.DROP_ONE_SLOT) {
+                    upgradeEnchantment(CustomEnchants.TOKEN_MULTI, player, 100);
+                }
+            } else if (e.getSlot() == 40) {
+                // Laser Shit
+                if (e.getAction() == InventoryAction.PICKUP_ALL) {
+                    upgradeEnchantment(CustomEnchants.MERCHANT, player, 1);
+                } else if (e.getAction() == InventoryAction.PICKUP_HALF) {
+                    upgradeEnchantment(CustomEnchants.MERCHANT, player, 10);
+                } else if (e.getAction() == InventoryAction.DROP_ONE_SLOT) {
+                    upgradeEnchantment(CustomEnchants.MERCHANT, player, 100);
                 }
             }
         }

@@ -1,7 +1,7 @@
 package me.sildev.zoopr.rank;
 
 import me.sildev.zoopr.ZooPR;
-import me.sildev.zoopr.eco.EconomyManager;
+import me.sildev.zoopr.Leaderboard.eco.EconomyManager;
 import me.sildev.zoopr.utils.coloredString;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -76,6 +76,8 @@ public class prestigeMaxTask extends BukkitRunnable {
             double rankupCost = container.get(rankupManager.rankupCost, PersistentDataType.DOUBLE);
             container.set(rankupManager.rankupCost, PersistentDataType.DOUBLE, rankupManager.StartRankupCost * multiplier);
             container.set(rankupManager.rankupCost, PersistentDataType.DOUBLE, rankupManager.StartRankupCost * multiplier);
+            double prestigePoints = container.get(rankupManager.prestigePoints, PersistentDataType.DOUBLE);
+            container.set(rankupManager.prestigePoints, PersistentDataType.DOUBLE, prestigePoints + 1);
         }
     }
 }

@@ -6,8 +6,7 @@
   * Rebirth Shop
   * Lucky Blocks (Working on it)
   * Pvp
-  * Envoy 
- 
+  * Envoy
 * Features in the plugin already
   * Pickaxe enchantments
   * Token/Money pouches

@@ -114,7 +114,6 @@ public class petManager implements Listener {
         pets.forEach((p, pet) -> {
             if (p.equals(player)) {
                 playerPets.addAll(pets.get(p));
-                System.out.println(pet);
             }
         });
         return playerPets;

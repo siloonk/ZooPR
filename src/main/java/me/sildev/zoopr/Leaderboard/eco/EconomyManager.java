@@ -1,4 +1,4 @@
-package me.sildev.zoopr.eco;
+package me.sildev.zoopr.Leaderboard.eco;
 
 import me.sildev.zoopr.ZooPR;
 import org.bukkit.configuration.InvalidConfigurationException;

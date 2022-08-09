@@ -1,13 +1,10 @@
 package me.sildev.zoopr.bombs.tasks;
 
-import me.sildev.zoopr.eco.SellBlocks;
+import me.sildev.zoopr.Leaderboard.eco.SellBlocks;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class NukeTask extends BukkitRunnable {
 

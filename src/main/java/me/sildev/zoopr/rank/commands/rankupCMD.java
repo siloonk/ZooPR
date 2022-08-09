@@ -1,9 +1,8 @@
 package me.sildev.zoopr.rank.commands;
 
-import me.sildev.zoopr.eco.EconomyManager;
+import me.sildev.zoopr.Leaderboard.eco.EconomyManager;
 import me.sildev.zoopr.rank.rankupManager;
 import me.sildev.zoopr.utils.Messages;
-import me.sildev.zoopr.utils.coloredString;
 import me.sildev.zoopr.utils.formatNumber;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

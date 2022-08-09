@@ -2,7 +2,7 @@ package me.sildev.zoopr.Enchants.pickaxeEnchants.events;
 
 import me.sildev.zoopr.Enchants.CustomEnchantConfigFiles;
 import me.sildev.zoopr.Enchants.CustomEnchants;
-import me.sildev.zoopr.eco.SellBlocks;
+import me.sildev.zoopr.Leaderboard.eco.SellBlocks;
 import me.sildev.zoopr.utils.loops;
 import org.bukkit.Location;
 import org.bukkit.Material;

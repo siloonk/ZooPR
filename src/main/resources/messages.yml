@@ -143,3 +143,8 @@ NotAValidTier: "&dZooPR &8| &7This is not a valid pet tier!"
 #
 activatedQuest: "&dZooPR &8| &7You have successfully activated this quest!"
 alreadyActiveQuest: "&dZooPR &8| &7You already have an active quest!"
+
+#
+# Shop Messages
+#
+notEnoughMoneyToBuyThisItem: "&dZooPR &8| &7You don't have enough %currency% to buy this item!"

@@ -141,6 +141,8 @@ public class petMenu implements Listener {
     @EventHandler
     public void onInventoryClickEvent(InventoryClickEvent e) {
         if (!e.getView().getTitle().equalsIgnoreCase("Pets")) return;
+        e.setCancelled(true);
+        if (e.getInventory().getItem(e.getSlot()) == null) return;
         if (e.getClickedInventory().getItem(e.getSlot()).getType() != Material.BLACK_STAINED_GLASS_PANE || e.getClickedInventory().getItem(e.getSlot()).getType() != Material.BARRIER) {
             PersistentDataContainer container = e.getClickedInventory().getItem(e.getSlot()).getItemMeta().getPersistentDataContainer();
             if (!container.has(new NamespacedKey(ZooPR.getPlugin(), "listIndex"), PersistentDataType.INTEGER)) return;
@@ -151,6 +153,5 @@ public class petMenu implements Listener {
             petManager.setActivePet((Player) e.getWhoClicked(), pet);
             open((Player) e.getWhoClicked());
         }
-        e.setCancelled(true);
     }
 }

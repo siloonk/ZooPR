@@ -1,4 +1,4 @@
-package me.sildev.zoopr.eco;
+package me.sildev.zoopr.Leaderboard.eco;
 
 import com.sk89q.worldedit.bukkit.BukkitWorld;
 import com.sk89q.worldedit.math.BlockVector3;
@@ -79,7 +79,7 @@ public class SellBlocks {
     }
 
 
-    private static Set<ProtectedRegion> getRegionAtPlayer(Location loc) {
+    public static Set<ProtectedRegion> getRegionAtPlayer(Location loc) {
 //        RegionContainer container = WorldGuard.getInstance().getPlatform().getRegionContainer();
 //        RegionManager regions = container.get(BukkitAdapter.adapt(loc.getWorld()));
 //        regions.getRegions();
@@ -87,7 +87,7 @@ public class SellBlocks {
         return set.getRegions();
     }
 
-    private static boolean isInRegionWhereCanMine(Location loc) {
+    public static boolean isInRegionWhereCanMine(Location loc) {
         Set<ProtectedRegion> regions = getRegionAtPlayer(loc);
         List<String> regionNames = new ArrayList<>();
         for (ProtectedRegion region : regions) {

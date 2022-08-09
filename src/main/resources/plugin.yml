@@ -67,3 +67,6 @@ commands:
 
   quest:
     description: quest command!
+
+  shop:
+    description: shop command!

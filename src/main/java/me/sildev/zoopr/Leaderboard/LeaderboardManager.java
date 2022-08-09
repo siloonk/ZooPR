@@ -2,10 +2,6 @@ package me.sildev.zoopr.Leaderboard;
 
 import me.sildev.zoopr.Leaderboard.tasks.getAllPlayersTask;
 import me.sildev.zoopr.ZooPR;
-import me.sildev.zoopr.eco.EconomyManager;
-import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
 

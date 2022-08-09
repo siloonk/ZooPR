@@ -1,6 +1,6 @@
 package me.sildev.zoopr.Enchants.pickaxeEnchants.Tasks;
 
-import me.sildev.zoopr.eco.SellBlocks;
+import me.sildev.zoopr.Leaderboard.eco.SellBlocks;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

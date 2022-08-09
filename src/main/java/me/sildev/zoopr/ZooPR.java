@@ -13,6 +13,9 @@ import me.sildev.zoopr.Leaderboard.LeaderboardManager;
 import me.sildev.zoopr.Leaderboard.baltopCMD;
 import me.sildev.zoopr.Leaderboard.beacontopCMD;
 import me.sildev.zoopr.Leaderboard.tokentopCMD;
+import me.sildev.zoopr.Luckyblock.LuckyBlockManager;
+import me.sildev.zoopr.Luckyblock.giveLuckyblockEvent;
+import me.sildev.zoopr.Luckyblock.luckyBlockInteractEvent;
 import me.sildev.zoopr.Pets.Pet;
 import me.sildev.zoopr.Pets.petCMD;
 import me.sildev.zoopr.Pets.petManager;
@@ -22,10 +25,10 @@ import me.sildev.zoopr.armor.ceCommand;
 import me.sildev.zoopr.armor.swordCeGuiClickEvent;
 import me.sildev.zoopr.bombs.bombCMD;
 import me.sildev.zoopr.bombs.bombInteractListener;
-import me.sildev.zoopr.eco.EconomyManager;
-import me.sildev.zoopr.eco.SellBlocks;
-import me.sildev.zoopr.eco.cmds.balCMD;
-import me.sildev.zoopr.eco.cmds.payCMD;
+import me.sildev.zoopr.Leaderboard.eco.EconomyManager;
+import me.sildev.zoopr.Leaderboard.eco.SellBlocks;
+import me.sildev.zoopr.Leaderboard.eco.cmds.balCMD;
+import me.sildev.zoopr.Leaderboard.eco.cmds.payCMD;
 import me.sildev.zoopr.essentials.commands.banCMD;
 import me.sildev.zoopr.essentials.commands.vanishCMD;
 import me.sildev.zoopr.playtime.playtimeManager;
@@ -47,6 +50,9 @@ import me.sildev.zoopr.rank.commands.rebirthCMD;
 import me.sildev.zoopr.rank.rankupManager;
 import me.sildev.zoopr.robots.*;
 import me.sildev.zoopr.scoreboard.scoreboardListener;
+import me.sildev.zoopr.shops.ShopManager;
+import me.sildev.zoopr.shops.customShopGuiClickEvent;
+import me.sildev.zoopr.shops.shopCMD;
 import me.sildev.zoopr.utils.Messages;
 
 
@@ -62,6 +68,7 @@ import java.io.IOException;
 public final class ZooPR extends JavaPlugin {
 
     private static ZooPR plugin;
+    private static ShopManager shopManager;
     private static petManager petmanager;
     private static LeaderboardManager leaderboard;
 
@@ -72,6 +79,7 @@ public final class ZooPR extends JavaPlugin {
         plugin = this;
         petmanager = new petManager();
         leaderboard = new LeaderboardManager();
+        shopManager = new ShopManager();
 
         // Create instance of CustomEnchantConfigFiles, so it creates the config file!
         new Messages();
@@ -81,6 +89,7 @@ public final class ZooPR extends JavaPlugin {
         new EnchantPrices();
         new pouchManager();
         new QuestScrollManager();
+        new LuckyBlockManager();
 
         registerCommands();
         registerEvents();
@@ -128,6 +137,7 @@ public final class ZooPR extends JavaPlugin {
         getCommand("rebirth").setExecutor(new rebirthCMD());
         getCommand("pet").setExecutor(new petCMD());
         getCommand("quest").setExecutor(new questCMD());
+        getCommand("shop").setExecutor(new shopCMD());
     }
 
     void registerEvents() {
@@ -152,6 +162,9 @@ public final class ZooPR extends JavaPlugin {
         pm.registerEvents(new petManager(), this);
         pm.registerEvents(new scrollActivateEvent(), this);
         pm.registerEvents(new scrollProgressEvent(), this);
+        pm.registerEvents(new giveLuckyblockEvent(), this);
+        pm.registerEvents(new luckyBlockInteractEvent(), this);
+        pm.registerEvents(new customShopGuiClickEvent(), this);
 
 
 
@@ -174,4 +187,5 @@ public final class ZooPR extends JavaPlugin {
     public static petManager getPetManager() {
         return petmanager;
     }
+    public static ShopManager getShopManager() {return shopManager;}
 }

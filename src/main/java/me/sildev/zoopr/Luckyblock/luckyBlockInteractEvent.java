@@ -29,9 +29,9 @@ public class luckyBlockInteractEvent implements Listener {
 
         HashMap<String, List<String>> loot = LuckyBlockManager.getLoot();
         Random rd = new Random();
-        int chance = rd.nextInt(100);
+        int chance = rd.nextInt(1000);
         List<String> chosenLoot;
-        if (chance < 2) {
+        if (chance < 20) { // 0.9% chance to give rare loot
             chosenLoot = loot.get("rare");
         } else {
             chosenLoot = loot.get("common");
@@ -39,5 +39,9 @@ public class luckyBlockInteractEvent implements Listener {
 
         int index = rd.nextInt(chosenLoot.size());
         ZooPR.getPlugin().getServer().dispatchCommand(ZooPR.getPlugin().getServer().getConsoleSender(), chosenLoot.get(index));
+
+
+        player.getInventory().getItemInMainHand().setAmount(item.getAmount() - 1);
+        e.setCancelled(true);
     }
 }

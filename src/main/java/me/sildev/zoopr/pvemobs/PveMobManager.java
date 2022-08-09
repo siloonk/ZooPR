@@ -6,7 +6,7 @@ import me.sildev.zoopr.Enchants.CustomEnchants;
 import me.sildev.zoopr.Pets.PetType;
 import me.sildev.zoopr.Pets.petManager;
 import me.sildev.zoopr.ZooPR;
-import me.sildev.zoopr.eco.EconomyManager;
+import me.sildev.zoopr.Leaderboard.eco.EconomyManager;
 import me.sildev.zoopr.questScrolls.QuestScrollManager;
 import me.sildev.zoopr.utils.Messages;
 import me.sildev.zoopr.utils.coloredString;

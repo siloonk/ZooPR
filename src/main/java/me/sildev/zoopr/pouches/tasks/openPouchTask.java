@@ -1,9 +1,8 @@
 package me.sildev.zoopr.pouches.tasks;
 
-import me.sildev.zoopr.eco.EconomyManager;
+import me.sildev.zoopr.Leaderboard.eco.EconomyManager;
 import me.sildev.zoopr.utils.Messages;
 import me.sildev.zoopr.utils.coloredString;
-import me.sildev.zoopr.utils.formatNumber;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 

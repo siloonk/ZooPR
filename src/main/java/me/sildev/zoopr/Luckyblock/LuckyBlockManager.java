@@ -23,9 +23,7 @@ public class LuckyBlockManager {
 
     public static Material luckyBlockitemType = Material.SPONGE;
     public static String luckyBlockItemName = coloredString.color("&f&ki&d Luckyblock &7(Right click) &f&ki");
-    public static List<String> luckyBlockLore = new ArrayList<String>() {{
-        add(coloredString.color("&7Right click to get a reward!"));
-    }};
+    public static List<String> luckyBlockLore = new ArrayList<>();
     public static NamespacedKey luckyblockItemConfirmation = new NamespacedKey(ZooPR.getPlugin(), "luckyblock-confirm");
 
     private static File luckyblockLootFile;
@@ -33,14 +31,18 @@ public class LuckyBlockManager {
 
 
     public LuckyBlockManager() {
+
         createLuckyBlockLootConfig();
+        for (String s : (List<String>)luckyblockLoot.getList("lore")) {
+            luckyBlockLore.add(coloredString.color(s));
+        }
     }
 
     public void createLuckyBlockLootConfig() {
-        luckyblockLootFile = new File(ZooPR.getPlugin().getDataFolder(), "luckyblockloot.yml");
+        luckyblockLootFile = new File(ZooPR.getPlugin().getDataFolder(), "luckyblock.yml");
         if (!luckyblockLootFile.exists()) {
             luckyblockLootFile.getParentFile().mkdirs();
-            ZooPR.getPlugin().saveResource("luckyblockloot.yml", false);
+            ZooPR.getPlugin().saveResource("luckyblock.yml", false);
         }
 
         luckyblockLoot = new YamlConfiguration();

@@ -1,0 +1,29 @@
+#
+# List of currencies
+#
+# MONEY, TOKENS, BEACONS, PRESTIGE-POINTS, REBIRTH-POINTS
+#
+
+#
+# Variables for in the lore:
+# %cost% -> cost of item
+# %itemtype% -> type of item
+#
+
+regular:
+  rows: 6
+  background: BLACK_STAINED_GLASS_PANE
+  currency: MONEY
+  sellables:
+    - STONE
+
+  names:
+    STONE: "&dStone"
+
+  lores:
+    - '%itemtype%'
+    - 'sdfkj'
+    - 'COST: %cost%'
+
+  values:
+    STONE: 10

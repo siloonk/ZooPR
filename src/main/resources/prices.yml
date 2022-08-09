@@ -7,6 +7,10 @@ Fortune: 1000
 Drill: 10000
 Laser: 15000
 Lightning: 5000
+Pouch Finder: 20000
+Cubed: 10000
+Token Multi: 10000
+Merchant: 10000
 
 # Armor
 PROTECTION_ENVIRONMENTAL: 100 # Protection
@@ -31,6 +35,10 @@ Fortune_increase: 1
 Drill_increase: 1
 Laser_increase: 1
 Lightning_increase: 1
+Pouch Finder_increase: 1
+Cubed_increase: 1
+Token Multi_increase: 1
+Merchant_increase: 1
 
 # Armor
 PROTECTION_ENVIRONMENTAL_increase: 1

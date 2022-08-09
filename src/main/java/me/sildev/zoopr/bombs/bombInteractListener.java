@@ -3,7 +3,7 @@ package me.sildev.zoopr.bombs;
 import me.sildev.zoopr.ZooPR;
 import me.sildev.zoopr.bombs.tasks.NukeTask;
 import me.sildev.zoopr.bombs.tasks.blackHoleTask;
-import me.sildev.zoopr.eco.SellBlocks;
+import me.sildev.zoopr.Leaderboard.eco.SellBlocks;
 import me.sildev.zoopr.utils.loops;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
