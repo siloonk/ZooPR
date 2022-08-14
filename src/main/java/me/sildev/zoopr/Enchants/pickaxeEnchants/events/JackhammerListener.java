@@ -4,6 +4,7 @@ import me.sildev.zoopr.Enchants.CustomEnchantConfigFiles;
 import me.sildev.zoopr.Enchants.CustomEnchants;
 import me.sildev.zoopr.Enchants.pickaxeEnchants.Tasks.JackhammerTask;
 import me.sildev.zoopr.ZooPR;
+import me.sildev.zoopr.eco.SellBlocks;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -36,6 +37,10 @@ public class JackhammerListener implements Listener {
         Random rd = new Random();
         float num = rd.nextFloat() * 100;
         if (!(num < chance)) {
+            return;
+        }
+        if (!SellBlocks.isInRegionWhereCanMine(e.getBlock().getLocation())) {
+            e.setCancelled(true);
             return;
         }
 

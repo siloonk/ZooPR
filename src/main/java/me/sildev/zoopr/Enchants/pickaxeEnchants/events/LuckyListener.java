@@ -5,7 +5,8 @@ import me.sildev.zoopr.Enchants.CustomEnchantConfigFiles;
 import me.sildev.zoopr.Enchants.CustomEnchants;
 import me.sildev.zoopr.Pets.PetType;
 import me.sildev.zoopr.Pets.petManager;
-import me.sildev.zoopr.Leaderboard.eco.EconomyManager;
+import me.sildev.zoopr.eco.EconomyManager;
+import me.sildev.zoopr.eco.SellBlocks;
 import me.sildev.zoopr.utils.Messages;
 import me.sildev.zoopr.utils.formatNumber;
 import org.bukkit.Material;
@@ -36,6 +37,10 @@ public class LuckyListener implements Listener {
 
         if (!(num < chance)) return;
 
+        if (!SellBlocks.isInRegionWhereCanMine(e.getBlock().getLocation())) {
+            e.setCancelled(true);
+            return;
+        }
         double amountMin = CustomEnchantConfigFiles.getEnchantmentAmount("LUCKY_AMOUNT_MIN");
         double amountMax = CustomEnchantConfigFiles.getEnchantmentAmount("LUCKY_AMOUNT_MAX");
 

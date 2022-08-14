@@ -25,12 +25,21 @@ import me.sildev.zoopr.armor.ceCommand;
 import me.sildev.zoopr.armor.swordCeGuiClickEvent;
 import me.sildev.zoopr.bombs.bombCMD;
 import me.sildev.zoopr.bombs.bombInteractListener;
-import me.sildev.zoopr.Leaderboard.eco.EconomyManager;
-import me.sildev.zoopr.Leaderboard.eco.SellBlocks;
-import me.sildev.zoopr.Leaderboard.eco.cmds.balCMD;
-import me.sildev.zoopr.Leaderboard.eco.cmds.payCMD;
+import me.sildev.zoopr.eco.EconomyManager;
+import me.sildev.zoopr.eco.SellBlocks;
+import me.sildev.zoopr.eco.cmds.balCMD;
+import me.sildev.zoopr.eco.cmds.ecoCMD;
+import me.sildev.zoopr.eco.cmds.payCMD;
+import me.sildev.zoopr.essentials.MineLocationManager;
 import me.sildev.zoopr.essentials.commands.banCMD;
+import me.sildev.zoopr.mines.commands.mineCMD;
+import me.sildev.zoopr.essentials.commands.setMineLocation;
 import me.sildev.zoopr.essentials.commands.vanishCMD;
+import me.sildev.zoopr.essentials.ui.mainMineMenu;
+import me.sildev.zoopr.essentials.ui.subMineMenu;
+import me.sildev.zoopr.mines.Mine;
+import me.sildev.zoopr.mines.MineManager;
+import me.sildev.zoopr.mines.commands.resetMine;
 import me.sildev.zoopr.playtime.playtimeManager;
 import me.sildev.zoopr.pickaxe.events.enchantMenu;
 import me.sildev.zoopr.pickaxe.givePickaxe;
@@ -71,15 +80,20 @@ public final class ZooPR extends JavaPlugin {
     private static ShopManager shopManager;
     private static petManager petmanager;
     private static LeaderboardManager leaderboard;
+    private static MineManager mineManager;
 
     @Override
     public void onEnable() {
         ConfigurationSerialization.registerClass(Gang.class);
         ConfigurationSerialization.registerClass(Pet.class);
+        ConfigurationSerialization.registerClass(Mine.class);
         plugin = this;
         petmanager = new petManager();
         leaderboard = new LeaderboardManager();
         shopManager = new ShopManager();
+        mineManager = new MineManager();
+        mineManager.loadMines();
+
 
         // Create instance of CustomEnchantConfigFiles, so it creates the config file!
         new Messages();
@@ -90,6 +104,7 @@ public final class ZooPR extends JavaPlugin {
         new pouchManager();
         new QuestScrollManager();
         new LuckyBlockManager();
+        new MineLocationManager();
 
         registerCommands();
         registerEvents();
@@ -104,6 +119,7 @@ public final class ZooPR extends JavaPlugin {
             task.cancel();
             System.out.println("Canceled Task: #" + task.getTaskId());
         }
+        mineManager.saveMines();
 
         for (OfflinePlayer player : Bukkit.getOfflinePlayers()) {
             try {
@@ -138,6 +154,10 @@ public final class ZooPR extends JavaPlugin {
         getCommand("pet").setExecutor(new petCMD());
         getCommand("quest").setExecutor(new questCMD());
         getCommand("shop").setExecutor(new shopCMD());
+        getCommand("eco").setExecutor(new ecoCMD());
+        getCommand("mine").setExecutor(new mineCMD());
+        getCommand("setminelocation").setExecutor(new setMineLocation());
+        getCommand("resetmine").setExecutor(new resetMine());
     }
 
     void registerEvents() {
@@ -165,6 +185,8 @@ public final class ZooPR extends JavaPlugin {
         pm.registerEvents(new giveLuckyblockEvent(), this);
         pm.registerEvents(new luckyBlockInteractEvent(), this);
         pm.registerEvents(new customShopGuiClickEvent(), this);
+        pm.registerEvents(new mainMineMenu(), this);
+        pm.registerEvents(new subMineMenu(), this);
 
 
 
@@ -188,4 +210,5 @@ public final class ZooPR extends JavaPlugin {
         return petmanager;
     }
     public static ShopManager getShopManager() {return shopManager;}
+    public static MineManager getMineManager() {return mineManager;}
 }

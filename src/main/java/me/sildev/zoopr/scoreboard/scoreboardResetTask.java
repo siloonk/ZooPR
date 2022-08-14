@@ -1,6 +1,6 @@
 package me.sildev.zoopr.scoreboard;
 
-import me.sildev.zoopr.Leaderboard.eco.EconomyManager;
+import me.sildev.zoopr.eco.EconomyManager;
 import me.sildev.zoopr.rank.rankupManager;
 import me.sildev.zoopr.utils.coloredString;
 import me.sildev.zoopr.utils.formatNumber;

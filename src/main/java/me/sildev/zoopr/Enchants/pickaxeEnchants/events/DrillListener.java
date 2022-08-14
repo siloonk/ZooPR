@@ -2,7 +2,7 @@ package me.sildev.zoopr.Enchants.pickaxeEnchants.events;
 
 import me.sildev.zoopr.Enchants.CustomEnchantConfigFiles;
 import me.sildev.zoopr.Enchants.CustomEnchants;
-import me.sildev.zoopr.Leaderboard.eco.SellBlocks;
+import me.sildev.zoopr.eco.SellBlocks;
 import me.sildev.zoopr.utils.loops;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -22,6 +22,10 @@ public class DrillListener implements Listener {
         ItemStack item = player.getInventory().getItemInMainHand();
         int level = item.getEnchantmentLevel(CustomEnchants.DRILL);
 
+        if (!SellBlocks.isInRegionWhereCanMine(e.getBlock().getLocation())) {
+            e.setCancelled(true);
+            return;
+        }
         if (!(level > 0))
             return;
 
@@ -33,9 +37,14 @@ public class DrillListener implements Listener {
         if (!(num < chance))
             return;
 
+        if (!SellBlocks.isInRegionWhereCanMine(e.getBlock().getLocation())) {
+            e.setCancelled(true);
+            return;
+        }
+
         List<Location> blocks = loops.generateSphere(e.getBlock().getLocation(), 5, false);
         for (Location block : blocks) {
-            SellBlocks.sellBlock(block.getBlock(), item);
+            SellBlocks.sellBlock(block.getBlock(), item, player);
         }
     }
 }

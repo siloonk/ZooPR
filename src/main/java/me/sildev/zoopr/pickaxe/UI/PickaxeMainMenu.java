@@ -3,7 +3,7 @@ package me.sildev.zoopr.pickaxe.UI;
 import me.sildev.zoopr.Enchants.CustomEnchantConfigFiles;
 import me.sildev.zoopr.Enchants.CustomEnchants;
 import me.sildev.zoopr.Enchants.pickaxeEnchants.EnchantPrices;
-import me.sildev.zoopr.Leaderboard.eco.EconomyManager;
+import me.sildev.zoopr.eco.EconomyManager;
 import me.sildev.zoopr.utils.formatNumber;
 import me.sildev.zoopr.utils.guiExtension;
 import org.bukkit.Bukkit;

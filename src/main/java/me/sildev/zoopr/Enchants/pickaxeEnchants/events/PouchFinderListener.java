@@ -2,6 +2,7 @@ package me.sildev.zoopr.Enchants.pickaxeEnchants.events;
 
 import me.sildev.zoopr.Enchants.CustomEnchantConfigFiles;
 import me.sildev.zoopr.Enchants.CustomEnchants;
+import me.sildev.zoopr.eco.SellBlocks;
 import me.sildev.zoopr.pouches.pouchManager;
 import me.sildev.zoopr.utils.Messages;
 import org.bukkit.Material;
@@ -25,9 +26,16 @@ public class PouchFinderListener implements Listener {
 
         double chance = CustomEnchantConfigFiles.getEnchantmentChance("POUCH_FINDER_CHANCE") / CustomEnchants.POUCH_FINDER.getMaxLevel() * level;
 
+
+
         Random rd = new Random();
         float num = rd.nextFloat() * 100;
         if (!(num < chance)) {
+            return;
+        }
+
+        if (!SellBlocks.isInRegionWhereCanMine(e.getBlock().getLocation())) {
+            e.setCancelled(true);
             return;
         }
 

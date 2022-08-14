@@ -4,6 +4,7 @@ import me.sildev.zoopr.Enchants.CustomEnchantConfigFiles;
 import me.sildev.zoopr.Enchants.CustomEnchants;
 import me.sildev.zoopr.Enchants.pickaxeEnchants.Tasks.LaserTask;
 import me.sildev.zoopr.ZooPR;
+import me.sildev.zoopr.eco.SellBlocks;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -32,6 +33,11 @@ public class LaserListener implements Listener {
         float num = rd.nextFloat() * 100;
         if (!(num < chance))
             return;
+
+        if (!SellBlocks.isInRegionWhereCanMine(e.getBlock().getLocation())) {
+            e.setCancelled(true);
+            return;
+        }
 
         /*List<Location> blocks = loops.getMultipleDirection(e.getBlock().getLocation(), SIZE, SIZE);
         for (Location block : blocks) {

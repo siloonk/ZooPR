@@ -1,5 +1,6 @@
 package me.sildev.zoopr.questScrolls;
 
+import me.sildev.zoopr.eco.SellBlocks;
 import me.sildev.zoopr.utils.coloredString;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -14,6 +15,11 @@ public class scrollProgressEvent implements Listener {
     public void onScrollProgressEvent(BlockBreakEvent e) {
         Player player = e.getPlayer();
         PersistentDataContainer playerContainer = player.getPersistentDataContainer();
+
+        if (!SellBlocks.isInRegionWhereCanMine(e.getBlock().getLocation())) {
+            e.setCancelled(true);
+            return;
+        }
 
         if (!playerContainer.has(QuestScrollManager.activeQuestTier, PersistentDataType.INTEGER)) return;
 

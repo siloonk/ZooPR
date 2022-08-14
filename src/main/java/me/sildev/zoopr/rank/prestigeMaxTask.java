@@ -1,7 +1,7 @@
 package me.sildev.zoopr.rank;
 
 import me.sildev.zoopr.ZooPR;
-import me.sildev.zoopr.Leaderboard.eco.EconomyManager;
+import me.sildev.zoopr.eco.EconomyManager;
 import me.sildev.zoopr.utils.coloredString;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataContainer;

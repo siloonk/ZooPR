@@ -2,7 +2,7 @@ package me.sildev.zoopr.armor;
 
 import me.sildev.zoopr.Enchants.CustomEnchants;
 import me.sildev.zoopr.Enchants.pickaxeEnchants.EnchantPrices;
-import me.sildev.zoopr.Leaderboard.eco.EconomyManager;
+import me.sildev.zoopr.eco.EconomyManager;
 import me.sildev.zoopr.utils.Messages;
 import me.sildev.zoopr.utils.addLore;
 import me.sildev.zoopr.utils.isArmor;

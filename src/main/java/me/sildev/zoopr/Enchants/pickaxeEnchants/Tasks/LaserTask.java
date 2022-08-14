@@ -1,6 +1,6 @@
 package me.sildev.zoopr.Enchants.pickaxeEnchants.Tasks;
 
-import me.sildev.zoopr.Leaderboard.eco.SellBlocks;
+import me.sildev.zoopr.eco.SellBlocks;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -40,7 +40,7 @@ public class LaserTask extends BukkitRunnable {
         for (int x = bx; x < loc.getBlockX() + SIZE; x++) {
             Location l = new Location(loc.getWorld(), x, currHeight, loc.getBlockZ());
             if (l.getBlock().getType() != Material.AIR)
-                SellBlocks.sellBlock(l.getBlock(), this.pickaxe);
+                SellBlocks.sellBlock(l.getBlock(), this.pickaxe, player);
             /*for (int y = by; y < loc.getBlockY() + SIZE; y++) {
                 Location l = new Location(loc.getWorld(), x, y, loc.getBlockZ());
                 if (l.getBlock().getType() != Material.AIR)
@@ -51,7 +51,7 @@ public class LaserTask extends BukkitRunnable {
         for (int z = bz; z < loc.getBlockZ() + SIZE; z++) {
             Location l = new Location(loc.getWorld(), loc.getBlockX(), currHeight, z);
             if (l.getBlock().getType() != Material.AIR)
-                SellBlocks.sellBlock(l.getBlock(), this.pickaxe);
+                SellBlocks.sellBlock(l.getBlock(), this.pickaxe, player);
 
             /*for (int y = by; y < loc.getBlockY() + SIZE; y++) {
                 Location l = new Location(loc.getWorld(), loc.getBlockX(), y, z);

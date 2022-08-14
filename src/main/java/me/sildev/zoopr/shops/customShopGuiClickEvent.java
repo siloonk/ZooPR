@@ -1,7 +1,7 @@
 package me.sildev.zoopr.shops;
 
 import me.sildev.zoopr.ZooPR;
-import me.sildev.zoopr.Leaderboard.eco.EconomyManager;
+import me.sildev.zoopr.eco.EconomyManager;
 import me.sildev.zoopr.rank.rankupManager;
 import me.sildev.zoopr.utils.Messages;
 import org.bukkit.entity.Player;

@@ -50,7 +50,7 @@ public class givePickaxe implements Listener {
             }
 
             // Add display name and set some attributes
-            meta.setDisplayName(coloredString.color("&dZoo Keeper"));
+            meta.setDisplayName(coloredString.color("&0&l[ &d&ki &5&lZoo Keeper &d&ki &0&l]"));
             meta.setUnbreakable(true);
             meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
             item.setItemMeta(meta);

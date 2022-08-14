@@ -1,6 +1,6 @@
 package me.sildev.zoopr.bombs.tasks;
 
-import me.sildev.zoopr.Leaderboard.eco.SellBlocks;
+import me.sildev.zoopr.eco.SellBlocks;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;

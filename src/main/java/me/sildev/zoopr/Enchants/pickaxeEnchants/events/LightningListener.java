@@ -2,7 +2,7 @@ package me.sildev.zoopr.Enchants.pickaxeEnchants.events;
 
 import me.sildev.zoopr.Enchants.CustomEnchantConfigFiles;
 import me.sildev.zoopr.Enchants.CustomEnchants;
-import me.sildev.zoopr.Leaderboard.eco.SellBlocks;
+import me.sildev.zoopr.eco.SellBlocks;
 import me.sildev.zoopr.utils.loops;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -31,13 +31,18 @@ public class LightningListener implements Listener {
         double chance = CustomEnchantConfigFiles.getEnchantmentChance("LIGHTNING_CHANCE") / CustomEnchants.LIGHTNING.getMaxLevel() * level;
 
         if (!(num < chance)) return;
+
+        if (!SellBlocks.isInRegionWhereCanMine(e.getBlock().getLocation())) {
+            e.setCancelled(true);
+            return;
+        }
         ItemStack pickaxe = e.getPlayer().getInventory().getItemInMainHand();
         e.getBlock().getWorld().strikeLightningEffect(e.getBlock().getLocation());
         List<Location> blocks = loops.generateSphere(e.getBlock().getLocation(), 9, false);
         for (Location block : blocks) {
             int intNum = rd.nextInt(100);
             if (intNum < 75)
-                SellBlocks.sellBlock(block.getBlock(), pickaxe);
+                SellBlocks.sellBlock(block.getBlock(), pickaxe, e.getPlayer());
             else
                 e.getBlock().getWorld().createExplosion(block, 0);
         }

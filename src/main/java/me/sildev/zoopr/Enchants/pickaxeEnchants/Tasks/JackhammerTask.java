@@ -1,6 +1,6 @@
 package me.sildev.zoopr.Enchants.pickaxeEnchants.Tasks;
 
-import me.sildev.zoopr.Leaderboard.eco.SellBlocks;
+import me.sildev.zoopr.eco.SellBlocks;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -40,7 +40,7 @@ public class JackhammerTask extends BukkitRunnable {
             for (int z = bz; z < center.getBlockZ() + size; z++) {
                 Location l = new Location(center.getWorld(), currRow, y, z);
                 if (l.getBlock().getType() != Material.AIR)
-                    SellBlocks.sellBlock(l.getBlock(), this.pickaxe);
+                    SellBlocks.sellBlock(l.getBlock(), this.pickaxe, player);
             }
         }
 
@@ -49,7 +49,7 @@ public class JackhammerTask extends BukkitRunnable {
             for (int z = bz; z > center.getBlockZ() - size; z--) {
                 Location l = new Location(center.getWorld(), currRow, y, z);
                 if (l.getBlock().getType() != Material.AIR)
-                    SellBlocks.sellBlock(l.getBlock(), this.pickaxe);
+                    SellBlocks.sellBlock(l.getBlock(), this.pickaxe, player);
             }
         }
 

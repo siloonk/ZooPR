@@ -2,7 +2,7 @@ package me.sildev.zoopr.Enchants.pickaxeEnchants.events;
 
 import me.sildev.zoopr.Enchants.CustomEnchantConfigFiles;
 import me.sildev.zoopr.Enchants.CustomEnchants;
-import me.sildev.zoopr.Leaderboard.eco.SellBlocks;
+import me.sildev.zoopr.eco.SellBlocks;
 import me.sildev.zoopr.utils.loops;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -39,6 +39,11 @@ public class ExplosiveListener implements Listener {
         if (!(num < chance)) {
             return;
         }
+
+        if (!SellBlocks.isInRegionWhereCanMine(e.getBlock().getLocation())) {
+            e.setCancelled(true);
+            return;
+        }
         // Create explosion;
         List<Location> blocks = loops.generateCube(e.getBlock().getLocation(), 2, 2, false);
         ItemStack pickaxe = player.getInventory().getItemInMainHand();
@@ -46,7 +51,7 @@ public class ExplosiveListener implements Listener {
         for (Location block : blocks) {
             int intNum = rd.nextInt(100);
             if (intNum < 75)
-                SellBlocks.sellBlock(block.getBlock(), pickaxe);
+                SellBlocks.sellBlock(block.getBlock(), pickaxe, player);
         }
         e.getBlock().getWorld().createExplosion(e.getBlock().getLocation(), 0);
     }

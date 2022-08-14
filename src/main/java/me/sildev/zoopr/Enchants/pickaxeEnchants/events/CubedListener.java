@@ -2,7 +2,7 @@ package me.sildev.zoopr.Enchants.pickaxeEnchants.events;
 
 import me.sildev.zoopr.Enchants.CustomEnchantConfigFiles;
 import me.sildev.zoopr.Enchants.CustomEnchants;
-import me.sildev.zoopr.Leaderboard.eco.SellBlocks;
+import me.sildev.zoopr.eco.SellBlocks;
 import me.sildev.zoopr.utils.loops;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -30,6 +30,7 @@ public class CubedListener implements Listener {
             return;
         }
 
+
         int level = e.getPlayer().getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.CUBED);
 
         double chance = CustomEnchantConfigFiles.getEnchantmentChance("CUBED_CHANCE") / CustomEnchants.CUBED.getMaxLevel() * level;
@@ -40,11 +41,15 @@ public class CubedListener implements Listener {
         if (!(num < chance)) {
             return;
         }
+        if (!SellBlocks.isInRegionWhereCanMine(e.getBlock().getLocation())) {
+            e.setCancelled(true);
+            return;
+        }
 
         List<Location> blocks = loops.generateCube(e.getBlock().getLocation(), SIZE, SIZE, false);
         for (Location block : blocks) {
             if (block.getBlock().getType() != Material.AIR)
-                SellBlocks.sellBlock(block.getBlock(), player.getInventory().getItemInMainHand());
+                SellBlocks.sellBlock(block.getBlock(), player.getInventory().getItemInMainHand(), player);
         }
     }
 }

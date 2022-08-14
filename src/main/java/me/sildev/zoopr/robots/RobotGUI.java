@@ -1,6 +1,6 @@
 package me.sildev.zoopr.robots;
 
-import me.sildev.zoopr.Leaderboard.eco.EconomyManager;
+import me.sildev.zoopr.eco.EconomyManager;
 import me.sildev.zoopr.utils.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

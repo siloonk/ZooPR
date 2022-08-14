@@ -70,3 +70,15 @@ commands:
 
   shop:
     description: shop command!
+
+  eco:
+    description: eco command!
+
+  mine:
+    description: mine command!
+
+  setminelocation:
+    description: setminelocation command!
+
+  resetmine:
+    description: resetmine command!

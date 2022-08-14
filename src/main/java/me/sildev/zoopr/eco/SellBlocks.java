@@ -1,4 +1,4 @@
-package me.sildev.zoopr.Leaderboard.eco;
+package me.sildev.zoopr.eco;
 
 import com.sk89q.worldedit.bukkit.BukkitWorld;
 import com.sk89q.worldedit.math.BlockVector3;
@@ -101,13 +101,10 @@ public class SellBlocks {
         return false;
     }
 
-    public static void sellBlock(Block block, ItemStack pickaxe) {
-        Player player = Bukkit.getPlayer(UUID.fromString(pickaxe.getItemMeta().getPersistentDataContainer().get(new NamespacedKey(ZooPR.getPlugin(), "owner"), PersistentDataType.STRING)));
+    public static void sellBlock(Block block, ItemStack pickaxe, Player player) {
+        //Player player = Bukkit.getPlayer(UUID.fromString(pickaxe.getItemMeta().getPersistentDataContainer().get(new NamespacedKey(ZooPR.getPlugin(), "owner"), PersistentDataType.STRING)));
         assert player != null;
 
-        if (!isInRegionWhereCanMine(block.getLocation())) {
-            return;
-        }
         Material blockType = block.getType();
         if (blockType == Material.BEACON) {
             Random rd = new Random();

@@ -1,7 +1,7 @@
 package me.sildev.zoopr.Leaderboard.tasks;
 
 import me.sildev.zoopr.Leaderboard.LeaderboardManager;
-import me.sildev.zoopr.Leaderboard.eco.EconomyManager;
+import me.sildev.zoopr.eco.EconomyManager;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.scheduler.BukkitRunnable;

@@ -15,7 +15,7 @@ public class scoreboardListener implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
-        int taskID = Bukkit.getScheduler().scheduleSyncRepeatingTask(ZooPR.getPlugin(), new scoreboardResetTask(e.getPlayer()), 0L, 100L);
+        int taskID = Bukkit.getScheduler().scheduleSyncRepeatingTask(ZooPR.getPlugin(), new scoreboardResetTask(e.getPlayer()), 0L, 10L);
         ids.put(e.getPlayer().getUniqueId(), taskID);
     }
 
