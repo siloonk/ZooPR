@@ -23,10 +23,10 @@ public class bombCMD implements CommandExecutor {
         if (!command.getName().equalsIgnoreCase("bomb"))
             return false;
 
-        // /bomb give (player) (type) (tier)
+        // /bomb give (player) (type) (tier) (amount)
 
         // Check if the correct amount of arguments have been given!
-        if (args.length < 4) {
+        if (args.length < 5) {
             sender.sendMessage(usage);
             return true;
         }
@@ -54,14 +54,17 @@ public class bombCMD implements CommandExecutor {
         }
 
         int tier;
+        int amount;
         try {
             tier = Integer.parseInt(args[3]);
+            amount = Integer.parseInt(args[4]);
         } catch (Exception e) {
             sender.sendMessage(notANumber);
             return true;
         }
 
         ItemStack bomb = bombManager.getBomb(type, tier);
+        bomb.setAmount(amount);
         target.getInventory().addItem(bomb);
 
         return true;

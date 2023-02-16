@@ -15,7 +15,7 @@ import java.util.Random;
 
 public class JackhammerListener implements Listener {
 
-    public int SIZE = 30;
+    public int SIZE = 5;
 
     @EventHandler
     public void onBreak(BlockBreakEvent e) {
@@ -44,6 +44,6 @@ public class JackhammerListener implements Listener {
             return;
         }
 
-        new JackhammerTask(player, e.getBlock().getLocation(), SIZE, 1).runTaskTimer(ZooPR.getPlugin(), 0L, 0L);
+        new JackhammerTask(player, e.getBlock().getLocation(), SIZE, 1).runTaskAsynchronously(ZooPR.getPlugin());
     }
 }

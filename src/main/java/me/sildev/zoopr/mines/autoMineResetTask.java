@@ -14,6 +14,6 @@ public class autoMineResetTask extends BukkitRunnable {
     @Override
     public void run() {
         new mineResetTask(mine.minLocation, mine.maxLocation, mine.blocks).runTaskTimer(ZooPR.getPlugin(), 0L, 7L);
-        System.out.println("test");
+        System.out.println("RESETTING: " + mine.name);
     }
 }

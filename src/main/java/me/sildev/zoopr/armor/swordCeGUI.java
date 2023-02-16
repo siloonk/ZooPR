@@ -25,7 +25,7 @@ public class swordCeGUI {
                 "",
                 "&f&lDescription &7&oDeal more damage!",
                 "",
-                "&7Cost " + EnchantPrices.getEnchantPrice(Enchantment.DAMAGE_ALL, item.getEnchantmentLevel(Enchantment.DAMAGE_ALL)),
+                "&7Cost " + EnchantPrices.getEnchantPrice(Enchantment.DAMAGE_ALL, item.getEnchantmentLevel(Enchantment.DAMAGE_ALL) , item.getEnchantmentLevel(Enchantment.DAMAGE_ALL)),
                 "&7Level " + item.getEnchantmentLevel(Enchantment.DAMAGE_ALL) + " / 7"
         });
 
@@ -34,7 +34,7 @@ public class swordCeGUI {
                 "",
                 "&f&lDescription &7&oGives you more beacons when killing mobs!",
                 "",
-                "&7Cost " + EnchantPrices.getEnchantPrice(CustomEnchants.BEACONMASTER, item.getEnchantmentLevel(CustomEnchants.BEACONMASTER)),
+                "&7Cost " + EnchantPrices.getEnchantPrice(CustomEnchants.BEACONMASTER, item.getEnchantmentLevel(CustomEnchants.BEACONMASTER) ,item.getEnchantmentLevel(CustomEnchants.BEACONMASTER)),
                 "&7Level " + item.getEnchantmentLevel(CustomEnchants.BEACONMASTER) + " / " + CustomEnchants.BEACONMASTER.getMaxLevel()
         });
 
@@ -42,7 +42,7 @@ public class swordCeGUI {
                 "",
                 "&f&lDescription &7&oLet's your armor last longer!",
                 "",
-                "&7Cost " + EnchantPrices.getEnchantPrice(Enchantment.DURABILITY, item.getEnchantmentLevel(Enchantment.DURABILITY)),
+                "&7Cost " + EnchantPrices.getEnchantPrice(Enchantment.DURABILITY, item.getEnchantmentLevel(Enchantment.DURABILITY) ,item.getEnchantmentLevel(Enchantment.DURABILITY)),
                 "&7Level " + item.getEnchantmentLevel(Enchantment.DURABILITY) + " / 10"
         });
 
@@ -56,7 +56,7 @@ public class swordCeGUI {
                 "",
                 "&f&lDescription &7&oDeal more damage!",
                 "",
-                "&7Cost " + EnchantPrices.getEnchantPrice(Enchantment.DAMAGE_ALL, item.getEnchantmentLevel(Enchantment.DAMAGE_ALL)),
+                "&7Cost " + EnchantPrices.getEnchantPrice(Enchantment.DAMAGE_ALL, item.getEnchantmentLevel(Enchantment.DAMAGE_ALL) ,item.getEnchantmentLevel(Enchantment.DAMAGE_ALL)),
                 "&7Level " + item.getEnchantmentLevel(Enchantment.DAMAGE_ALL) + " / 10"
         });
 
@@ -65,7 +65,7 @@ public class swordCeGUI {
                 "",
                 "&f&lDescription &7&oGives you more beacons when killing mobs!",
                 "",
-                "&7Cost " + EnchantPrices.getEnchantPrice(CustomEnchants.BEACONMASTER, item.getEnchantmentLevel(CustomEnchants.BEACONMASTER)),
+                "&7Cost " + EnchantPrices.getEnchantPrice(CustomEnchants.BEACONMASTER, item.getEnchantmentLevel(CustomEnchants.BEACONMASTER) ,item.getEnchantmentLevel(CustomEnchants.BEACONMASTER)),
                 "&7Level " + item.getEnchantmentLevel(CustomEnchants.BEACONMASTER) + " / " + CustomEnchants.BEACONMASTER.getMaxLevel()
         });
 
@@ -73,7 +73,7 @@ public class swordCeGUI {
                 "",
                 "&f&lDescription &7&oLet's your armor last longer!",
                 "",
-                "&7Cost " + EnchantPrices.getEnchantPrice(Enchantment.DURABILITY, item.getEnchantmentLevel(Enchantment.DURABILITY)),
+                "&7Cost " + EnchantPrices.getEnchantPrice(Enchantment.DURABILITY, item.getEnchantmentLevel(Enchantment.DURABILITY) , item.getEnchantmentLevel(Enchantment.DURABILITY)),
                 "&7Level " + item.getEnchantmentLevel(Enchantment.DURABILITY) + " / 10"
         });
     }

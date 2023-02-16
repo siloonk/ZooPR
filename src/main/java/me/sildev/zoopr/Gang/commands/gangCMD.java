@@ -130,11 +130,8 @@ public class gangCMD implements CommandExecutor {
         }
 
         if (args[0].equalsIgnoreCase("reset")) {
-            PersistentDataContainer container = player.getPersistentDataContainer();
-            container.remove(gang);
+            player.getPersistentDataContainer().remove(gang);
         }
-
-
 
         return true;
     }

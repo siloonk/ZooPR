@@ -32,6 +32,9 @@ LIGHTNING_REQUIRED: 5
 # Misc settings
 #
 
+# Don't add a slash cuz it will not work if you do!
+CRATE_FINDER_COMMAND: "cc give %player% p common 1"
+
 # Lucky amount
 LUCKY_AMOUNT_MIN: 10000
 LUCKY_AMOUNT_MAX: 50000

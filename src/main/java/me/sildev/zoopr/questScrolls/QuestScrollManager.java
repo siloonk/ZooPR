@@ -2,7 +2,6 @@ package me.sildev.zoopr.questScrolls;
 
 import me.sildev.zoopr.ZooPR;
 import me.sildev.zoopr.utils.coloredString;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -33,13 +32,11 @@ public class QuestScrollManager {
     public static final int startBlocks = 5000;
 
     public static Material QuestScrollItemType = Material.PAPER;
-    private static String QuestScrollName = coloredString.color("&f&ki &dQuest scroll &7(Level %level%) &f&ki");
+    private static String QuestScrollName = coloredString.color("&0&l[ &5&l⛏ &d&l&nQuest Scroll&r &7(&d&oLevel 1&7) &5&l⛏ &0&l]");
     private static List<String> lore = new ArrayList<String>() {{
         add("");
-        add(coloredString.color("&7In order to get the rewards from this item"));
-        add(coloredString.color("&7You must mine %amount-of-blocks% to get the reward!"));
-        add("");
-        add(coloredString.color("&7Right click this item to activate it!"));
+        add(coloredString.color("&5&l➥ &7&oMine 15000 blocks to unlock!"));
+        add(coloredString.color("&5&l➥ &7&oRight Click to Activate!"));
     }};
 
 

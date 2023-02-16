@@ -4,12 +4,14 @@ import me.sildev.zoopr.eco.EconomyManager;
 import me.sildev.zoopr.utils.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -50,38 +52,37 @@ public class RobotGUI implements Listener {
             gui.setItem(i, new ItemStack(Material.BLACK_STAINED_GLASS_PANE));
         }
 
-        guiExtension.addRenamedItemWithLore(gui,13, Material.ARMOR_STAND, "&dRobot", new String[]{
+
+        guiExtension.addRenamedItemWithLore(gui,13, Material.ARMOR_STAND, "&0&l[ &d&ki &5&lMiner Robot &d&ki &0&l]", new String[]{
                 "",
-                coloredString.color("&dStatistics"),
-                coloredString.color(" &f- &5Level &d" + level),
-                coloredString.color(" &f- &5Owner &d" + Bukkit.getPlayer(UUID.fromString(owner)).getName()),
-                coloredString.color(" &f- &5Earnings &d" + formatNumber.coolFormat(earnings, 0)),
-                coloredString.color(" &f- &5Value &d" + formatNumber.coolFormat(value, 0)),
-                coloredString.color(" &f- &5Type &d" + type),
-                coloredString.color(" &f- &5Earn rate &d" + (level * RobotManager.ratePerLevel + RobotManager.baseRate)),
+                coloredString.color("&5&l • &d&lStatistics"),
+                coloredString.color(" &d➥ &5&lOwner &d" + Bukkit.getPlayer(UUID.fromString(owner)).getName()),
+                coloredString.color(" &d➥ &5&lLevel &d" + level),
+                coloredString.color(" &d➥ &5&lEarnings &d" + formatNumber.coolFormat(earnings, 0)),
+                coloredString.color(" &d➥ &5&lValue &d" + formatNumber.coolFormat(value, 0)),
+                coloredString.color(" &d➥ &5&lType&d " + type),
+                coloredString.color(" &d➥ &5&lEarn Rate &d" + (level * RobotManager.ratePerLevel + RobotManager.baseRate)),
                 " "
         });
 
-        guiExtension.addRenamedItemWithLore(gui, 29, Material.OAK_SIGN, "&dClaim rewards", new String[] {
+        guiExtension.addRenamedItemWithLore(gui, 29, Material.OAK_SIGN, "&0&l[ &5&ki &d&lClaim Rewards &5&ki &0&l]", new String[] {
                 "",
-                coloredString.color("&5Value &d" + formatNumber.coolFormat(value, 0))
+                coloredString.color(" &d➥ &5&lValue &d" + formatNumber.coolFormat(value, 0))
         });
 
-        guiExtension.addRenamedItemWithLore(gui, 31, Material.OAK_SIGN, "&dChange direction", new String[] {
-                "",
-                coloredString.color("&5Current direction &d" + armorStand.getFacing())
+        guiExtension.addRenamedItemWithLore(gui, 31, Material.OAK_SIGN, "&0&l[ &5&ki &d&lChange Direction &7(&d" + armorStand.getFacing() + "&7) &5&ki &0&l]", new String[] {
         });
 
-        guiExtension.addRenamedItemWithLore(gui, 33, Material.OAK_SIGN, "&dUpgrade Robot", new String[] {
+        guiExtension.addRenamedItemWithLore(gui, 33, Material.OAK_SIGN, "&0&l[ &5&ki &d&lUpgrade Robot &5&ki &0&l]", new String[] {
                 "",
-                coloredString.color("&5Level &d" + level),
-                coloredString.color("&5Cost &d" + upgradeCost + " beacons"),
+                coloredString.color(" &d➥ &5&lLevel &d" + level),
+                coloredString.color(" &d➥ &5&lCost &d" + upgradeCost + " beacons"),
                 ""
         });
 
-        guiExtension.addRenamedItemWithLore(gui, gui.getSize() - 1, Material.BARRIER, "&dPickup Robot", new String[]{
+        guiExtension.addRenamedItemWithLore(gui, gui.getSize() - 1, Material.BARRIER, "&5&lPICKUP ROBOT", new String[]{
                 "",
-                coloredString.color("&7By picking up the robot you will lose all the value inside and the earnings")
+                coloredString.color("&c&lWARNING! &7&oBy picking up the robot, you will lose the earnings")
         });
 
 
@@ -151,7 +152,10 @@ public class RobotGUI implements Listener {
         if (e.getSlot() == 53) {
             ItemStack robotItem = new ItemStack(RobotManager.RobotType);
             ItemMeta meta = robotItem.getItemMeta();
-            meta.setDisplayName(RobotManager.RobotItemName);
+            StringBuilder typeString = new StringBuilder(type.toLowerCase());
+            String character = String.valueOf(typeString.charAt(0));
+            typeString.setCharAt(0, character.toUpperCase().toCharArray()[0]);
+            meta.setDisplayName(RobotManager.RobotItemName.replaceAll("%type%", typeString.toString()));
             PersistentDataContainer c = meta.getPersistentDataContainer();
             c.set(RobotManager.level, PersistentDataType.INTEGER, level);
             c.set(RobotManager.owner, PersistentDataType.STRING, owner);
@@ -161,6 +165,8 @@ public class RobotGUI implements Listener {
             robotItem = addLore.addRobotLore(robotItem);
             armorStand.remove();
             player.closeInventory();
+            robotItem.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
+            robotItem.addItemFlags(ItemFlag.HIDE_ENCHANTS);
             player.getInventory().addItem(robotItem);
         }
 

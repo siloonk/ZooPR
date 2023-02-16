@@ -25,7 +25,7 @@ public class CubedListener implements Listener {
             return;
         }
 
-        // Check if the player has explosive;
+        // Check if the player has Cubed;
         if (!e.getPlayer().getInventory().getItemInMainHand().getItemMeta().hasEnchant(CustomEnchants.CUBED)) {
             return;
         }

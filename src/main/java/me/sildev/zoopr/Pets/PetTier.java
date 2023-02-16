@@ -53,11 +53,11 @@ public enum PetTier {
      */
     public double getMultiplier() {
         switch (this) {
-            case COMMON: return 1.01;
-            case UNCOMMON: return 1.03;
-            case RARE: return 1.05;
-            case EPIC: return 1.06;
-            case LEGENDARY: return 1.09;
+            case COMMON: return 1;
+            case UNCOMMON: return 1.25;
+            case RARE: return 1.5;
+            case EPIC: return 1.75;
+            case LEGENDARY: return 2;
         }
         return 0d;
     }

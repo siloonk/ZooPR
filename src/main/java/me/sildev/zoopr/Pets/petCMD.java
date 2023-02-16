@@ -17,6 +17,8 @@ public class petCMD implements CommandExecutor {
     String notAPlayer = Messages.get("playerIsNotOnline");
     String notAValidType = Messages.get("NotAValidType");
     String notAValidTier = Messages.get("NotAValidTier");
+    String receivedPet = Messages.get("receivedPet");
+    String gavePet = Messages.get("gavePet");
 
 
     @Override
@@ -63,8 +65,8 @@ public class petCMD implements CommandExecutor {
             }
             Pet pet = new Pet(target, tier, type);
             petManager.addPet(target, pet);
-            sender.sendMessage("Added pet to " + target.getName());
-            target.sendMessage("Received pet!!");
+            sender.sendMessage(gavePet.replaceAll("%target%", target.getName()).replaceAll("%type%", type.toString()).replaceAll("%tier%", tier.toString()));
+            target.sendMessage(receivedPet.replaceAll("%target%", sender.getName()).replaceAll("%type%", type.toString()).replaceAll("%tier%", tier.toString()));
             return true;
         } else {
             sender.sendMessage(petUsage);

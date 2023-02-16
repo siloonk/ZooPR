@@ -11,18 +11,18 @@ import java.util.stream.Collectors;
 public class CustomEnchants {
 
     public static final Enchantment EXPLOSIVE = new EnchantmentWrapper("explosive", "Explosive", 5000);
-    public static final Enchantment JACKHAMMER = new EnchantmentWrapper("jackhammer", "Jackhammer", 7500);
-    public static final Enchantment LUCKY = new EnchantmentWrapper("lucky", "Lucky", 1000);
-    public static final Enchantment CRATE_FINDER = new EnchantmentWrapper("crate_finder", "Crate Finder", 500);
-    public static final Enchantment FORTUNE = new EnchantmentWrapper("fortune", "Fortune", 100000);
-    public static final Enchantment DRILL = new EnchantmentWrapper("drill", "Drill", 1000);
+    public static final Enchantment JACKHAMMER = new EnchantmentWrapper("jackhammer", "Jackhammer", 5000);
+    public static final Enchantment LUCKY = new EnchantmentWrapper("lucky", "Lucky", 5000);
+    public static final Enchantment CRATE_FINDER = new EnchantmentWrapper("crate_finder", "Crate Finder", 10000);
+    public static final Enchantment FORTUNE = new EnchantmentWrapper("fortune", "Fortune", 1000);
+    public static final Enchantment DRILL = new EnchantmentWrapper("drill", "Drill", 10);
     public static final Enchantment LASER = new EnchantmentWrapper("laser", "Laser", 5000);
-    public static final Enchantment LIGHTNING = new EnchantmentWrapper("lightning", "Lightning", 2500);
+    public static final Enchantment LIGHTNING = new EnchantmentWrapper("lightning", "Lightning", 10);
     public static final Enchantment BEACONMASTER = new EnchantmentWrapper("beaconmaster", "BeaconMaster", 10);
-    public static final Enchantment MERCHANT = new EnchantmentWrapper("merchant", "Merchant", 10000);
-    public static final Enchantment TOKEN_MULTI = new EnchantmentWrapper("token_multi", "Token Multi", 10000);
+    public static final Enchantment MERCHANT = new EnchantmentWrapper("merchant", "Merchant", 2500);
+    public static final Enchantment TOKEN_MULTI = new EnchantmentWrapper("token_multi", "Token Multi", 2500);
     public static final Enchantment POUCH_FINDER = new EnchantmentWrapper("pouch_finder", "Pouch Finder", 10000);
-    public static final Enchantment CUBED = new EnchantmentWrapper("cubed", "Cubed", 10000);
+    public static final Enchantment CUBED = new EnchantmentWrapper("cubed", "Cubed", 10);
 
 
     public static List<Enchantment> Enchantments = new ArrayList<Enchantment>() {{

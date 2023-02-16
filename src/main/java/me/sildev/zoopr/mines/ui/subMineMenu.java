@@ -1,4 +1,4 @@
-package me.sildev.zoopr.essentials.ui;
+package me.sildev.zoopr.mines.ui;
 
 import me.sildev.zoopr.essentials.MineLocationManager;
 import me.sildev.zoopr.rank.rankupManager;

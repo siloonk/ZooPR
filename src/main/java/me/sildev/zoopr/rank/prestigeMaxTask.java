@@ -35,14 +35,14 @@ public class prestigeMaxTask extends BukkitRunnable {
 
             if (!(balance >= rankupCost)) {
                 hasEnough = false;
-                if (!sentMessage)   {player.sendMessage(coloredString.color("&dzooPR &8| &7You have reached Prestige &d" + prestige + "&7 and rank &d" + rankupManager.ranks[rank])); sentMessage = true; }
+                if (!sentMessage)   {player.sendMessage(coloredString.color("&5&l&oZOOPR &7You have reached Prestige &d" + prestige + "&7 and rank &d" + rankupManager.ranks[rank])); sentMessage = true; }
                 cancel();
             }
 
             if (hasEnough) {
                 EconomyManager.addMoneyToUser(player, -rankupCost);
                 container.set(rankupManager.rankup, PersistentDataType.INTEGER, rank + 1);
-                container.set(rankupManager.rankupCost, PersistentDataType.DOUBLE, rankupCost * 1.5);
+                container.set(rankupManager.rankupCost, PersistentDataType.DOUBLE, rankupCost * rankupManager.rankupCostMultiplier);
                 rank = container.get(rankupManager.rankup, PersistentDataType.INTEGER);
             }
         }
@@ -50,13 +50,14 @@ public class prestigeMaxTask extends BukkitRunnable {
         if (!(rank == 25)) {
            cancel();
         }
-        double cost = container.get(rankupManager.prestigeCost, PersistentDataType.DOUBLE);
+
+        double cost = container.get(rankupManager.rankupCost, PersistentDataType.DOUBLE);
         double balance = EconomyManager.getMoneyOfUser(player);
 
         container = player.getPersistentDataContainer();
         boolean hasEnough = true;
-        if (balance < cost) {
-            player.sendMessage(coloredString.color("&dzooPR &8| &7You have reached Prestige &d" + prestige + "&7 and rank &d" + rankupManager.ranks[rank]));
+        if (balance < cost || prestige == 1000) {
+            player.sendMessage(coloredString.color("&5&l&oZOOPR &7You have reached Prestige &d" + prestige + "&7 and rank &d" + rankupManager.ranks[rank]));
             ZooPR.getPlugin().getServer().broadcastMessage(coloredString.color("&8&m---------------------------------------------------"));
             ZooPR.getPlugin().getServer().broadcastMessage(coloredString.color(""));
             ZooPR.getPlugin().getServer().broadcastMessage(coloredString.color("&d      " + player.getName() + "&7 Has prestiged to prestige &d" +(prestige) + "&7 from prestige &d" + initPrestige));
@@ -68,14 +69,10 @@ public class prestigeMaxTask extends BukkitRunnable {
         if (hasEnough) {
             EconomyManager.addMoneyToUser(player, -cost);
 
-            container.set(rankupManager.prestigeCost, PersistentDataType.DOUBLE, cost * rankupManager.prestigeCostMultiplier);
-
             container.set(rankupManager.rankup, PersistentDataType.INTEGER, 0);
             container.set(rankupManager.prestige, PersistentDataType.INTEGER, prestige + 1);
-            double multiplier = (prestige + 1) * rankupManager.rankupCostMultiplier;
-            double rankupCost = container.get(rankupManager.rankupCost, PersistentDataType.DOUBLE);
-            container.set(rankupManager.rankupCost, PersistentDataType.DOUBLE, rankupManager.StartRankupCost * multiplier);
-            container.set(rankupManager.rankupCost, PersistentDataType.DOUBLE, rankupManager.StartRankupCost * multiplier);
+            double multiplier = (prestige + 1) * 1000;
+            container.set(rankupManager.rankupCost, PersistentDataType.DOUBLE, rankupManager.StartRankupCost + multiplier);
             double prestigePoints = container.get(rankupManager.prestigePoints, PersistentDataType.DOUBLE);
             container.set(rankupManager.prestigePoints, PersistentDataType.DOUBLE, prestigePoints + 1);
         }

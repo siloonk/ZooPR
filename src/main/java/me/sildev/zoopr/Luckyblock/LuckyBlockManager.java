@@ -22,7 +22,7 @@ import java.util.List;
 public class LuckyBlockManager {
 
     public static Material luckyBlockitemType = Material.SPONGE;
-    public static String luckyBlockItemName = coloredString.color("&f&ki&d Luckyblock &7(Right click) &f&ki");
+    public static String luckyBlockItemName = coloredString.color("&f&ki&f&l✬ &5&n&lLUCKY BLOCKS&r &f&l✬&f&ki");
     public static List<String> luckyBlockLore = new ArrayList<>();
     public static NamespacedKey luckyblockItemConfirmation = new NamespacedKey(ZooPR.getPlugin(), "luckyblock-confirm");
 

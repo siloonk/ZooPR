@@ -27,7 +27,7 @@ public class Mine implements ConfigurationSerializable {
         this.blocks = blocks;
         this.resetTimer = resetTimer;
 
-        new autoMineResetTask(this).runTaskTimer(ZooPR.getPlugin(), 0L, this.resetTimer * 20L);
+        new autoMineResetTask(this).runTaskTimer(ZooPR.getPlugin(), this.resetTimer * 20L, this.resetTimer * 20L);
     }
 
     public Mine(Map<String, Object> map) {
@@ -50,6 +50,10 @@ public class Mine implements ConfigurationSerializable {
 
     public void addBlock(Material block) {
         this.blocks.add(block);
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     private Location getMinLocation(Location loc1, Location loc2) {

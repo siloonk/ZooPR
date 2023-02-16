@@ -3,6 +3,7 @@ package me.sildev.zoopr.pickaxe.events;
 
 import me.sildev.zoopr.Enchants.CustomEnchantConfigFiles;
 import me.sildev.zoopr.ZooPR;
+import me.sildev.zoopr.pickaxe.UI.PickaxeRebirthMenu;
 import me.sildev.zoopr.utils.Messages;
 import me.sildev.zoopr.Enchants.CustomEnchants;
 import me.sildev.zoopr.Enchants.pickaxeEnchants.EnchantPrices;
@@ -45,7 +46,7 @@ public class enchantMenu implements Listener {
         if (!(player.getInventory().getItemInMainHand().getEnchantmentLevel(ce) + levels < ce.getMaxLevel() + 1)) { player.sendMessage(breachMaxLevel); return; }
 
         double tokens = EconomyManager.getTokensOfUser(player);
-        double price = EnchantPrices.getEnchantPrice(ce, currentLevel + levels);
+        double price = EnchantPrices.getEnchantPrice(ce, currentLevel, currentLevel + levels);
 
         if (tokens < price) { player.sendMessage(notEnoughTokensToBuyEnchant); return; }
 
@@ -88,7 +89,7 @@ public class enchantMenu implements Listener {
         if (e.getView().getTitle().equals("Enchantments")) {
             e.setCancelled(true);
             Player player = (Player) e.getWhoClicked();
-            if (e.getSlot() == 21) {
+            if (e.getSlot() == 28) {
                 if (e.getAction() == InventoryAction.PICKUP_ALL) {
                     upgradeEnchantment(CustomEnchants.EXPLOSIVE, player, 1);
                 } else if (e.getAction() == InventoryAction.PICKUP_HALF) {
@@ -96,7 +97,7 @@ public class enchantMenu implements Listener {
                 } else if (e.getAction() == InventoryAction.DROP_ONE_SLOT) {
                     upgradeEnchantment(CustomEnchants.EXPLOSIVE, player, 100);
                 }
-            } else if (e.getSlot() == 22) {
+            } else if (e.getSlot() == 29) {
                 // Jackhammer
                 if (e.getAction() == InventoryAction.PICKUP_ALL) {
                     upgradeEnchantment(CustomEnchants.JACKHAMMER, player, 1);
@@ -107,7 +108,7 @@ public class enchantMenu implements Listener {
                 }
 
 
-            } else if (e.getSlot() == 23) {
+            } else if (e.getSlot() == 30) {
                 // Fortune shit
 
                 if (e.getAction() == InventoryAction.PICKUP_ALL) {
@@ -119,7 +120,7 @@ public class enchantMenu implements Listener {
                 }
 
 
-            } else if (e.getSlot() == 24) {
+            } else if (e.getSlot() == 32) {
                 // Lucky Shit
                 if (e.getAction() == InventoryAction.PICKUP_ALL) {
                     upgradeEnchantment(CustomEnchants.LUCKY, player, 1);
@@ -129,7 +130,7 @@ public class enchantMenu implements Listener {
                     upgradeEnchantment(CustomEnchants.LUCKY, player, 100);
                 }
 
-            } else if (e.getSlot() == 25) {
+            } else if (e.getSlot() == 33) {
                 // Crate finder shit
                 if (e.getAction() == InventoryAction.PICKUP_ALL) {
                     upgradeEnchantment(CustomEnchants.CRATE_FINDER, player, 1);
@@ -138,34 +139,7 @@ public class enchantMenu implements Listener {
                 } else if (e.getAction() == InventoryAction.DROP_ONE_SLOT) {
                     upgradeEnchantment(CustomEnchants.CRATE_FINDER, player, 100);
                 }
-            } else if (e.getSlot() == 30) {
-                // Drill shit
-                if (e.getAction() == InventoryAction.PICKUP_ALL) {
-                    upgradeEnchantment(CustomEnchants.DRILL, player, 1);
-                } else if (e.getAction() == InventoryAction.PICKUP_HALF) {
-                    upgradeEnchantment(CustomEnchants.DRILL, player, 10);
-                } else if (e.getAction() == InventoryAction.DROP_ONE_SLOT) {
-                    upgradeEnchantment(CustomEnchants.DRILL, player, 100);
-                }
-            } else if (e.getSlot() == 31) {
-                // Lightning Shit
-                if (e.getAction() == InventoryAction.PICKUP_ALL) {
-                    upgradeEnchantment(CustomEnchants.LIGHTNING, player, 1);
-                } else if (e.getAction() == InventoryAction.PICKUP_HALF) {
-                    upgradeEnchantment(CustomEnchants.LIGHTNING, player, 10);
-                } else if (e.getAction() == InventoryAction.DROP_ONE_SLOT) {
-                    upgradeEnchantment(CustomEnchants.LIGHTNING, player, 100);
-                }
-            } else if (e.getSlot() == 32) {
-                // Laser Shit
-                if (e.getAction() == InventoryAction.PICKUP_ALL) {
-                    upgradeEnchantment(CustomEnchants.LASER, player, 1);
-                } else if (e.getAction() == InventoryAction.PICKUP_HALF) {
-                    upgradeEnchantment(CustomEnchants.LASER, player, 10);
-                } else if (e.getAction() == InventoryAction.DROP_ONE_SLOT) {
-                    upgradeEnchantment(CustomEnchants.LASER, player, 100);
-                }
-            } else if (e.getSlot() == 33) {
+            } else if (e.getSlot() == 34) {
                 // Pouch finder Shit
                 if (e.getAction() == InventoryAction.PICKUP_ALL) {
                     upgradeEnchantment(CustomEnchants.POUCH_FINDER, player, 1);
@@ -173,15 +147,6 @@ public class enchantMenu implements Listener {
                     upgradeEnchantment(CustomEnchants.POUCH_FINDER, player, 10);
                 } else if (e.getAction() == InventoryAction.DROP_ONE_SLOT) {
                     upgradeEnchantment(CustomEnchants.POUCH_FINDER, player, 100);
-                }
-            } else if (e.getSlot() == 34) {
-                // Cubed Shit
-                if (e.getAction() == InventoryAction.PICKUP_ALL) {
-                    upgradeEnchantment(CustomEnchants.CUBED, player, 1);
-                } else if (e.getAction() == InventoryAction.PICKUP_HALF) {
-                    upgradeEnchantment(CustomEnchants.CUBED, player, 10);
-                } else if (e.getAction() == InventoryAction.DROP_ONE_SLOT) {
-                    upgradeEnchantment(CustomEnchants.CUBED, player, 100);
                 }
             } else if (e.getSlot() == 39) {
                 // Token multi Shit
@@ -192,7 +157,7 @@ public class enchantMenu implements Listener {
                 } else if (e.getAction() == InventoryAction.DROP_ONE_SLOT) {
                     upgradeEnchantment(CustomEnchants.TOKEN_MULTI, player, 100);
                 }
-            } else if (e.getSlot() == 40) {
+            } else if (e.getSlot() == 41) {
                 // Laser Shit
                 if (e.getAction() == InventoryAction.PICKUP_ALL) {
                     upgradeEnchantment(CustomEnchants.MERCHANT, player, 1);
@@ -201,6 +166,8 @@ public class enchantMenu implements Listener {
                 } else if (e.getAction() == InventoryAction.DROP_ONE_SLOT) {
                     upgradeEnchantment(CustomEnchants.MERCHANT, player, 100);
                 }
+            } else if (e.getSlot() == 31) {
+                PickaxeRebirthMenu.open(player);
             }
         }
     }

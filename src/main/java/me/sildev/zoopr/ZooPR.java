@@ -16,6 +16,7 @@ import me.sildev.zoopr.Leaderboard.tokentopCMD;
 import me.sildev.zoopr.Luckyblock.LuckyBlockManager;
 import me.sildev.zoopr.Luckyblock.giveLuckyblockEvent;
 import me.sildev.zoopr.Luckyblock.luckyBlockInteractEvent;
+import me.sildev.zoopr.Luckyblock.luckyblockGiveCMD;
 import me.sildev.zoopr.Pets.Pet;
 import me.sildev.zoopr.Pets.petCMD;
 import me.sildev.zoopr.Pets.petManager;
@@ -25,6 +26,9 @@ import me.sildev.zoopr.armor.ceCommand;
 import me.sildev.zoopr.armor.swordCeGuiClickEvent;
 import me.sildev.zoopr.bombs.bombCMD;
 import me.sildev.zoopr.bombs.bombInteractListener;
+import me.sildev.zoopr.boss.BossManager;
+import me.sildev.zoopr.boss.bossAbilities;
+import me.sildev.zoopr.boss.bossSpawnCMD;
 import me.sildev.zoopr.eco.EconomyManager;
 import me.sildev.zoopr.eco.SellBlocks;
 import me.sildev.zoopr.eco.cmds.balCMD;
@@ -32,15 +36,17 @@ import me.sildev.zoopr.eco.cmds.ecoCMD;
 import me.sildev.zoopr.eco.cmds.payCMD;
 import me.sildev.zoopr.essentials.MineLocationManager;
 import me.sildev.zoopr.essentials.commands.banCMD;
+import me.sildev.zoopr.essentials.events.joinMessage;
+import me.sildev.zoopr.essentials.events.onChat;
 import me.sildev.zoopr.mines.commands.mineCMD;
 import me.sildev.zoopr.essentials.commands.setMineLocation;
 import me.sildev.zoopr.essentials.commands.vanishCMD;
-import me.sildev.zoopr.essentials.ui.mainMineMenu;
-import me.sildev.zoopr.essentials.ui.subMineMenu;
+import me.sildev.zoopr.mines.ui.mainMineMenu;
+import me.sildev.zoopr.mines.ui.subMineMenu;
 import me.sildev.zoopr.mines.Mine;
 import me.sildev.zoopr.mines.MineManager;
-import me.sildev.zoopr.mines.commands.resetMine;
-import me.sildev.zoopr.playtime.playtimeManager;
+import me.sildev.zoopr.pickaxe.events.rebirthEnchantMenu;
+import me.sildev.zoopr.mines.playtime.playtimeManager;
 import me.sildev.zoopr.pickaxe.events.enchantMenu;
 import me.sildev.zoopr.pickaxe.givePickaxe;
 import me.sildev.zoopr.pouches.openPouchListener;
@@ -48,6 +54,7 @@ import me.sildev.zoopr.pouches.pouchCMD;
 import me.sildev.zoopr.pouches.pouchManager;
 import me.sildev.zoopr.pvemobs.PveMobManager;
 import me.sildev.zoopr.pvemobs.PveSpawnerCMD;
+import me.sildev.zoopr.pvemobs.cancelMobSpawning;
 import me.sildev.zoopr.questScrolls.QuestScrollManager;
 import me.sildev.zoopr.questScrolls.questCMD;
 import me.sildev.zoopr.questScrolls.scrollActivateEvent;
@@ -65,10 +72,13 @@ import me.sildev.zoopr.shops.shopCMD;
 import me.sildev.zoopr.utils.Messages;
 
 
+import net.luckperms.api.LuckPerms;
+import net.milkbowl.vault.permission.Permission;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
@@ -81,6 +91,9 @@ public final class ZooPR extends JavaPlugin {
     private static petManager petmanager;
     private static LeaderboardManager leaderboard;
     private static MineManager mineManager;
+    private static BossManager bossManager;
+    private static Permission perms;
+    private static LuckPerms luckPermsAPI;
 
     @Override
     public void onEnable() {
@@ -93,6 +106,7 @@ public final class ZooPR extends JavaPlugin {
         shopManager = new ShopManager();
         mineManager = new MineManager();
         mineManager.loadMines();
+        setupPermissions();
 
 
         // Create instance of CustomEnchantConfigFiles, so it creates the config file!
@@ -100,11 +114,13 @@ public final class ZooPR extends JavaPlugin {
         new CustomEnchantConfigFiles(this);
         new SellBlocks(this);
         new GangManager();
+        new rankupManager();
         new EnchantPrices();
         new pouchManager();
         new QuestScrollManager();
         new LuckyBlockManager();
         new MineLocationManager();
+        bossManager = new BossManager();
 
         registerCommands();
         registerEvents();
@@ -113,11 +129,20 @@ public final class ZooPR extends JavaPlugin {
         this.getLogger().fine("ZooPR is Starting!");
     }
 
+    boolean setupPermissions() {
+        RegisteredServiceProvider<Permission> rsp = getServer().getServicesManager().getRegistration(Permission.class);
+        perms = rsp.getProvider();
+
+        RegisteredServiceProvider<LuckPerms> provider = getServer().getServicesManager().getRegistration(LuckPerms.class);
+        luckPermsAPI = provider.getProvider();
+
+        return perms != null && luckPermsAPI != null;
+    }
+
     @Override
     public void onDisable() {
         for (BukkitTask task : prestigeMax.tasks) {
             task.cancel();
-            System.out.println("Canceled Task: #" + task.getTaskId());
         }
         mineManager.saveMines();
 
@@ -144,9 +169,6 @@ public final class ZooPR extends JavaPlugin {
         getCommand("robot").setExecutor(new RobotCMD());
         getCommand("pvespawner").setExecutor(new PveSpawnerCMD());
         getCommand("bomb").setExecutor(new bombCMD());
-        getCommand("baltop").setExecutor(new baltopCMD());
-        getCommand("beacontop").setExecutor(new beacontopCMD());
-        getCommand("tokentop").setExecutor(new tokentopCMD());
         getCommand("pouch").setExecutor(new pouchCMD());
         getCommand("booster").setExecutor(new boosterCommand());
         getCommand("ce").setExecutor(new ceCommand());
@@ -157,7 +179,7 @@ public final class ZooPR extends JavaPlugin {
         getCommand("eco").setExecutor(new ecoCMD());
         getCommand("mine").setExecutor(new mineCMD());
         getCommand("setminelocation").setExecutor(new setMineLocation());
-        getCommand("resetmine").setExecutor(new resetMine());
+        getCommand("giveluckyblock").setExecutor(new luckyblockGiveCMD());
     }
 
     void registerEvents() {
@@ -187,6 +209,11 @@ public final class ZooPR extends JavaPlugin {
         pm.registerEvents(new customShopGuiClickEvent(), this);
         pm.registerEvents(new mainMineMenu(), this);
         pm.registerEvents(new subMineMenu(), this);
+        pm.registerEvents(new rebirthEnchantMenu(), this);
+        pm.registerEvents(new joinMessage(), this);
+        pm.registerEvents(new onChat(), this);
+        pm.registerEvents(new bossAbilities(), this);
+        pm.registerEvents(new cancelMobSpawning(), this);
 
 
 
@@ -211,4 +238,11 @@ public final class ZooPR extends JavaPlugin {
     }
     public static ShopManager getShopManager() {return shopManager;}
     public static MineManager getMineManager() {return mineManager;}
+    public static BossManager getBossManager() {return bossManager;}
+    public static Permission getPermissionsAPI() {
+        return perms;
+    }
+    public static LuckPerms getLuckPermsAPI() {
+        return luckPermsAPI;
+    }
 }

@@ -20,14 +20,8 @@ public class setMineLocation implements CommandExecutor {
     String noPerms = Messages.get("noPermission");
     String setMineLocationusage = Messages.get("setMineLocationUsage");
 
-    List<String> mines = new ArrayList<>();
 
     public setMineLocation() {
-        for (String mine : rankupManager.ranks) {
-            mines.add(mine + "1");
-            mines.add(mine + "2");
-            mines.add(mine + "3");
-        }
     }
 
     @Override
@@ -52,10 +46,6 @@ public class setMineLocation implements CommandExecutor {
 
         String mine = args[0];
         List<String> ranks = Arrays.asList(rankupManager.ranks);
-        if (!(mines.contains(mine.toUpperCase()) || mines.contains(mine.toUpperCase() + "2") || mines.contains(mine.toUpperCase() + "3"))) {
-            sender.sendMessage(coloredString.color("&dZooPR &8| &7This is not a valid mine!"));
-            return true;
-        }
 
         MineLocationManager.storeLocation(mine.toUpperCase(), ((Player) sender).getLocation());
         return true;

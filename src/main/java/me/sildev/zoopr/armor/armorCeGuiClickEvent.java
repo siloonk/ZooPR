@@ -28,7 +28,7 @@ public class armorCeGuiClickEvent implements Listener {
         if (!(player.getInventory().getItemInMainHand().getEnchantmentLevel(ce) + level < 10 + 1)) { player.sendMessage(breachMaxLevel); return; }
 
         double tokens = EconomyManager.getBeaconsOfUser(player);
-        double price = EnchantPrices.getEnchantPrice(ce, currentLevel + level);
+        double price = EnchantPrices.getEnchantPrice(ce, currentLevel,currentLevel + level);
 
         if (tokens < price) { player.sendMessage(notEnoughTokensToBuyEnchant); return; }
 

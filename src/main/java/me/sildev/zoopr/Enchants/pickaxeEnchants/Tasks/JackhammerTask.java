@@ -1,5 +1,6 @@
 package me.sildev.zoopr.Enchants.pickaxeEnchants.Tasks;
 
+import me.sildev.zoopr.ZooPR;
 import me.sildev.zoopr.eco.SellBlocks;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -15,8 +16,6 @@ public class JackhammerTask extends BukkitRunnable {
     int size;
     int height;
 
-    int currRow;
-
     ItemStack pickaxe;
 
     public JackhammerTask(Player player, Location center, int SIZE, int HEIGHT) {
@@ -24,8 +23,6 @@ public class JackhammerTask extends BukkitRunnable {
         this.height= HEIGHT;
         this.center = center;
         this.player = player;
-
-        currRow = center.getBlockX() - SIZE;
 
         this.pickaxe = player.getInventory().getItemInMainHand();
     }
@@ -35,26 +32,22 @@ public class JackhammerTask extends BukkitRunnable {
 
         int bz = center.getBlockZ();
         int by = center.getBlockY();
+        int bx = center.getBlockX();
 
-        for (int y = by; y > center.getBlockY() - height; y--) {
-            for (int z = bz; z < center.getBlockZ() + size; z++) {
-                Location l = new Location(center.getWorld(), currRow, y, z);
-                if (l.getBlock().getType() != Material.AIR)
-                    SellBlocks.sellBlock(l.getBlock(), this.pickaxe, player);
+        for (int x = bx - size; x < center.getBlockX() + size; x++) {
+            for (int y = by; y > center.getBlockY() - height; y--) {
+                for (int z = bz - size; z < center.getBlockZ() + size; z++) {
+                    Location l = new Location(center.getWorld(), x, y, z);
+                    if (l.getBlock().getType() != Material.AIR) {
+                        new BukkitRunnable() {
+                            @Override
+                            public void run() {
+                                SellBlocks.sellBlock(l.getBlock(), pickaxe, player);
+                            }
+                        }.runTask(ZooPR.getPlugin());
+                    }
+                }
             }
         }
-
-
-        for (int y = by; y > center.getBlockY() - height; y--) {
-            for (int z = bz; z > center.getBlockZ() - size; z--) {
-                Location l = new Location(center.getWorld(), currRow, y, z);
-                if (l.getBlock().getType() != Material.AIR)
-                    SellBlocks.sellBlock(l.getBlock(), this.pickaxe, player);
-            }
-        }
-
-        currRow++;
-        if (currRow >= center.getBlockX() + size)
-            cancel();
     }
 }

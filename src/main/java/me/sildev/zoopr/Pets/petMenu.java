@@ -67,17 +67,17 @@ public class petMenu implements Listener {
         ItemMeta meta = PetItem.getItemMeta();
         PersistentDataContainer container = meta.getPersistentDataContainer();
         container.set(new NamespacedKey(ZooPR.getPlugin(), "listIndex"), PersistentDataType.INTEGER, listIndex);
-        meta.setDisplayName(coloredString.color(pet.getTier().getColor() + "" + pet.getType().toString() + " Pet"));
+        meta.setDisplayName(coloredString.color("&0&l[&5&l ✿ &d&l" + pet.getType().toString() + " Pet&5&l ✿ &0&l]"));
         String type = pet.getType().toString();
         List<String> lore = new ArrayList<String>() {{
             add("");
             add(coloredString.color("&f&lDescription &7&oThis pet will help you gain more"));
             add(coloredString.color("&7&o%type% while mining!").replaceAll("%type%", type));
             add("");
-            add(coloredString.color("&dStatistics"));
-            add(coloredString.color(" &5Level &d" + pet.getLevel()));
-            add(coloredString.color(" &5Exp &d" + pet.getExp() + " / " + pet.getExpRequired()));
-            add(coloredString.color(" &5Multiplier &d" +  (float) pet.getPetMultiplier() + "x"));
+            add(coloredString.color("&5&l✮ &d&lStatistics &5&l✮"));
+            add(coloredString.color(" &5&l➥ &5&lLevel: &d" + pet.getLevel()));
+            add(coloredString.color(" &5&l➥ &5&lExp: &d" + pet.getExp() + "/" + pet.getExpRequired()));
+            add(coloredString.color(" &5&l➥ &5&lMultiplier: &d" +  (float) pet.getPetMultiplier() + "x"));
             add("");
             add(pet.getTier().toString());
             add("");
@@ -97,17 +97,17 @@ public class petMenu implements Listener {
             PetItem = beaconSkull;
 
         ItemMeta meta = PetItem.getItemMeta();
-        meta.setDisplayName(coloredString.color(pet.getTier().getColor() + "" + pet.getType().toString() + " Pet"));
+        meta.setDisplayName(coloredString.color("&0&l[&5&l ✿ &d&l" + pet.getType().toString() + " Pet &5&l✿ &0&l]"));
         String type = pet.getType().toString();
         List<String> lore = new ArrayList<String>() {{
             add("");
             add(coloredString.color("&f&lDescription &7&oThis pet will help you gain more"));
             add(coloredString.color("&7&o%type% while mining!").replaceAll("%type%", type));
             add("");
-            add(coloredString.color("&dStatistics"));
-            add(coloredString.color(" &5Level &d" + pet.getLevel()));
-            add(coloredString.color(" &5Exp &d" + pet.getExp() + " / " + pet.getExpRequired()));
-            add(coloredString.color(" &5Multiplier &d" +  (float) pet.getPetMultiplier() + "x"));
+            add(coloredString.color("&5&l✮ &d&lStatistics &5&l✮"));
+            add(coloredString.color(" &5&l➥ &5&lLevel: &d" + pet.getLevel()));
+            add(coloredString.color(" &5&l➥ &5&lExp: &d" + pet.getExp() + "/" + pet.getExpRequired()));
+            add(coloredString.color(" &5&l➥ &5&lMultiplier: &d" +  (float) pet.getPetMultiplier() + "x"));
             add("");
             add(pet.getTier().toString());
             add("");

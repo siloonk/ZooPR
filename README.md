@@ -1,12 +1,10 @@
 # ZooPR
 
 * Features coming
-  * Shop
   * Prestige Shop
   * Rebirth Shop
   * Pvp
   * Envoy
-&NewLine;
 * Features in the plugin already
   * Pickaxe enchantments
   * Token/Money pouches
@@ -22,6 +20,7 @@
   * armor enchantments
   * Weapon enchantments
   * Lucky blocks
+  * Shop
 
 
 

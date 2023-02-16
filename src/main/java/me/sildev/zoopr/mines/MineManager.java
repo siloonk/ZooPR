@@ -1,7 +1,6 @@
 package me.sildev.zoopr.mines;
 
 import me.sildev.zoopr.ZooPR;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;

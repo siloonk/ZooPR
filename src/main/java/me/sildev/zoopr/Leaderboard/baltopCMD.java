@@ -21,7 +21,7 @@ public class baltopCMD implements CommandExecutor {
         if (!command.getName().equalsIgnoreCase("baltop"))
             return false;
 
-        Map<UUID, Double> leaderboard = ZooPR.getLeaderboard().getMoneyLeaderboard();
+        Map<UUID, Integer> leaderboard = ZooPR.getLeaderboard().getBlocksLeaderboard();
 
         AtomicInteger iteration = new AtomicInteger(1);
         sender.sendMessage(coloredString.color("&8&m----&r &dBal Top &8&m----&r"));

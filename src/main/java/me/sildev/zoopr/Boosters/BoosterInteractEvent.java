@@ -1,6 +1,6 @@
 package me.sildev.zoopr.Boosters;
 
-import me.sildev.zoopr.playtime.playtimeManager;
+import me.sildev.zoopr.mines.playtime.playtimeManager;
 import me.sildev.zoopr.utils.Messages;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

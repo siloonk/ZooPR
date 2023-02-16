@@ -13,10 +13,10 @@
 # General messages!
 #
 onlyPlayersCanExecuteThisCommand: "Only players can execute this command!"
-playerIsNotOnline: "&dZooPR &8| &7This player is not online!"
-NotANumber: "&dZooPR &8| &7This value is not a number!"
-noPermission: "&dZooPR &8| &7You don't have the right permissions to execute this command!"
-playerDoesNotExist: "&dZooPR &8| &7This player does not exist!"
+playerIsNotOnline: "&5&l&oZOOPR ✦ &7This player is not online!"
+NotANumber: "&5&l&oZOOPR ✦ &7This value is not a number!"
+noPermission: "&5&l&oZOOPR ✦ &7You don't have the right permissions to execute this command!"
+playerDoesNotExist: "&5&l&oZOOPR ✦ &7This player does not exist!"
 
 
 #
@@ -37,74 +37,75 @@ petUsage: "&dUsage &8| &7/pet give (player) (type) (tier)"
 questUsage: "&dUsage &8| &7/quest give (player) (tier)"
 ecoUsage: "&dUsage &8| &7/eco (give/take/set) (player) (money/tokens/beacons) (amount)"
 setMineLocationUsage: "&dUsage &8| &7/setminelocation (mine)"
+giveluckyblockUsage: "&dUsage &8| &7/giveluckyblock (player) (amount)"
 
 
 #
 # Staff command Messages
 #
-successfullyBannedPlayer: "&dZooPR &8| &7You have successfully banned &d%target%&7!"
-vanishEnabled: "&dZooPR &8| &7You are now in vanish!"
-vanishDisabled: "&dZooPR &8| &7You are no longer in vanish!"
+successfullyBannedPlayer: "&5&l&oZOOPR ✦ &7You have successfully banned &d%target%&7!"
+vanishEnabled: "&5&l&oZOOPR ✦ &7You are now in vanish!"
+vanishDisabled: "&5&l&oZOOPR ✦ &7You are no longer in vanish!"
 
 
 #
 # Gang messages!
 #
-createGang: "&dZooPR &8| &7You have succesfully created the gang &d%name%"
-needAGang: "&dZooPR &8| &7You don't own a gang!"
-notInAGang: "&dZooPR &8| &7You are not part of a gang!"
-unableToInviteSelf: "&dZooPR &8| &7You can't invite yourself!"
-notInvited: "&dZooPR &8| &7You have not received an invite from anyone!"
-alreadyInAGang: "&dZooPR &8| &7You are already in a gang!"
-cantLeaveOwnGang: "&dZooPR &8| &7You can't leave your own gang!"
-successfullyLeftGang: "&dZooPR &8| &7You have successfully left the gang!"
-successfullyInvited: "&dZooPR &8| &7You have successfully invited &d%target%&7!"
-haveBeenInvited: "&dZooPR &8| &7You have been invited by &d%name%&7!"
-failedToCreateAGang: "&dZooPR &8| &7Failed to create a gang!"
+createGang: "&5&l&oZOOPR ✦ &7You have succesfully created the gang &d%name%"
+needAGang: "&5&l&oZOOPR ✦ &7You don't own a gang!"
+notInAGang: "&5&l&oZOOPR ✦ &7You are not part of a gang!"
+unableToInviteSelf: "&5&l&oZOOPR ✦ &7You can't invite yourself!"
+notInvited: "&5&l&oZOOPR ✦ &7You have not received an invite from anyone!"
+alreadyInAGang: "&5&l&oZOOPR ✦ &7You are already in a gang!"
+cantLeaveOwnGang: "&5&l&oZOOPR ✦ &7You can't leave your own gang!"
+successfullyLeftGang: "&5&l&oZOOPR ✦ &7You have successfully left the gang!"
+successfullyInvited: "&5&l&oZOOPR ✦ &7You have successfully invited &d%target%&7!"
+haveBeenInvited: "&5&l&oZOOPR ✦ &7You have been invited by &d%name%&7!"
+failedToCreateAGang: "&5&l&oZOOPR ✦ &7Failed to create a gang!"
 playerJoinedGang: "&dZooPR &8| &d%target% &7Joined the gang!"
 
 
 #
 # Economy Messages
 #
-balanceSelf: "&dZooPR &8| &7You have &b$%amount%&7!"
+balanceSelf: "&5&l&oZOOPR ✦ &7You have &b$%amount%&7!"
 balanceOther: "&dZooPR &8| &d%target% &7has &b$%amount%&7!"
-insufficientFunds: "&dZooPR &8| &7You don't have sufficient funds to do this!"
-youPaid: "&dZooPR &8| &7You paid %target% &d%amount%&7."
-youGotPaid: "&dZooPR &8| &7You have received &d$%amount%&7 from %target%."
-notEnoughMoneyToPrestige: "&dZooPR &8| &7You don't have enough money to prestige &7(&c%remaining%&7)."
-notRankZYet: "&dZooPR &8| &7You can't prestige yet you are only rank &d%rank%/Z"
-notEnoughToRankup: "&dZooPR &8| &7You don't have enough money to rankup! (&c%remaining%&7)"
-successfullyRankedUp: "&dZooPR &8| &7You have succesfully ranked up to &d%rank%&7!"
-playerAlreadyAtZ: "&dZooPR &8| &7You will have to prestige in order to continue!"
-notPres1000Yet: "&dZooPR &8| &7You are not prestige 1000 yet!"
-notHighEnoughRankYet: "&dZooPr &8| &7You are not rank &d%rank% &7yet!"
+insufficientFunds: "&5&l&oZOOPR ✦ &7You don't have sufficient funds to do this!"
+youPaid: "&5&l&oZOOPR ✦ &7You paid %target% &d%amount%&7."
+youGotPaid: "&5&l&oZOOPR ✦ &7You have received &d$%amount%&7 from %target%."
+notEnoughMoneyToPrestige: "&5&l&oZOOPR ✦ &7You don't have enough money to prestige &7(&c%remaining%&7)."
+notRankZYet: "&5&l&oZOOPR ✦ &7You can't prestige yet you are only rank &d%rank%/Z"
+notEnoughToRankup: "&5&l&oZOOPR ✦ &7You don't have enough money to rankup! (&c%remaining%&7)"
+successfullyRankedUp: "&5&l&oZOOPR ✦ &7You have succesfully ranked up to &d%rank%&7!"
+playerAlreadyAtZ: "&5&l&oZOOPR ✦ &7You will have to prestige in order to continue!"
+notPres1000Yet: "&5&l&oZOOPR ✦ &7You are not prestige 1000 yet!"
+notHighEnoughRankYet: "&5&l&oZOOPR ✦ &7You are not rank &d%rank% &7yet!"
 
-gaveMoney: "&dZooPR &8| &7You have given %target% &d%amount% %currency%&7!"
-currencyTakenFromAccount: "&dZooPR &8| &7%amount% %currency% has been taken from your account!"
-currencySetOfAccount: "&dZooPR &8| &7your %currency% has been set to %amount%!"
-setCurrencyOfOther: "&dZooPR &8| &7You have set %target%'s %currency% to %amount%!"
-takeCurrencyOfOther: "&dZooPR &8| &7You have taken %amount% %currency% from %target%!"
-receivedCurrency: "&dZooPR &8| &7%amount% has been added to your %currency%"
+gaveMoney: "&5&l&oZOOPR ✦ &7You have given %target% &d%amount% %currency%&7!"
+currencyTakenFromAccount: "&5&l&oZOOPR ✦ &7%amount% %currency% has been taken from your account!"
+currencySetOfAccount: "&5&l&oZOOPR ✦ &7your %currency% has been set to %amount%!"
+setCurrencyOfOther: "&5&l&oZOOPR ✦ &7You have set %target%'s %currency% to %amount%!"
+takeCurrencyOfOther: "&5&l&oZOOPR ✦ &7You have taken %amount% %currency% from %target%!"
+receivedCurrency: "&5&l&oZOOPR ✦ &7%amount% has been added to your %currency%"
 
 #
 # Enchant messages
 #
 luckyProc: "&dZooPR &8|&7 You have received &d%amount% &dTokens&7 from lucky!"
-pouchProc: "&dZooPR &8| &7You have received a &d%pouch% pouch &7(&dTier %tier%&7) from pouch finder!"
-notEnoughTokensToBuyEnchant: "&dZooPR &8| &7You don't have enough tokens to upgrade this enchantment!"
-notEnoughBeaconsToBuyEnchant: "&dZooPR &8| &7You don't have enough beacons to upgrade this enchantment!"
-successfullyUpgradedEnchant: "&dZooPR &8| &7You have successfully upgraded %enchantment%"
-breachMaxLevel: "&dZooPR &8| &7Failed to enchant because it would breach the max level!"
-dontMeetPickaxeLevelRequirement: "&dZooPR &8| &7your pickaxe is not a high enough level!"
+pouchProc: "&5&l&oZOOPR ✦ &7You have received a &d%pouch% pouch &7(&dTier %tier%&7) from pouch finder!"
+notEnoughTokensToBuyEnchant: "&5&l&oZOOPR ✦ &7You don't have enough tokens to upgrade this enchantment!"
+notEnoughBeaconsToBuyEnchant: "&5&l&oZOOPR ✦ &7You don't have enough beacons to upgrade this enchantment!"
+successfullyUpgradedEnchant: "&5&l&oZOOPR ✦ &7You have successfully upgraded %enchantment%"
+breachMaxLevel: "&5&l&oZOOPR ✦ &7Failed to enchant because it would breach the max level!"
+dontMeetPickaxeLevelRequirement: "&5&l&oZOOPR ✦ &7your pickaxe is not a high enough level!"
 
 
 #
 # Robot Messages
 #
-NotYourRobot: "&dZooPR &8| &7This is not your robot!"
-placedRobot: "&dZooPR &8| &7You have successfully placed your robot!"
-CantDamageRobot: "&dZooPR &8| &7You can't damage a robot!"
+NotYourRobot: "&5&l&oZOOPR ✦ &7This is not your robot!"
+placedRobot: "&5&l&oZOOPR ✦ &7You have successfully placed your robot!"
+CantDamageRobot: "&5&l&oZOOPR ✦ &7You can't damage a robot!"
 
 robotName: "&dRobot &8| &f%owner%"
 
@@ -112,48 +113,55 @@ robotName: "&dRobot &8| &f%owner%"
 #
 # Spawner Messages
 #
-invalidSpawner: "&dZooPR &8| &7This is not a valid spawner type!"
-receivedBeacons: "&dZooPR &8| &7You have received &d%amount% beacons&7!"
+invalidSpawner: "&5&l&oZOOPR ✦ &7This is not a valid spawner type!"
+receivedBeacons: "&5&l&oZOOPR ✦ &7You have received &d%amount% beacons&7!"
 
 #
 # Bomb Messages
 #
-invalidBombType: "&dZooPR &8| &7This is an invalid bomb type!"
+invalidBombType: "&5&l&oZOOPR ✦ &7This is an invalid bomb type!"
 
 #
 # Pouch messages
 #
-pouchesReloaded: "&dZooPR &8| &7The pouches config has been reloaded!"
-somethingWentWrongWhileGivingPouch: "&dZooPR &8| &7Something went wrong while generating the pouch! If this was supposed to work tell horo or sil!"
-receivedPouchValue: "&dZooPR &8| &7You have received %amount% from %pouch%"
+pouchesReloaded: "&5&l&oZOOPR ✦ &7The pouches config has been reloaded!"
+somethingWentWrongWhileGivingPouch: "&5&l&oZOOPR ✦ &7Something went wrong while generating the pouch! If this was supposed to work tell horo or sil!"
+receivedPouchValue: "&5&l&oZOOPR ✦ &7You have received %amount% from %pouch%"
 
 #
 # booster messages
 #
-alreadyABoosterActive: "&dZooPR &8| &7You can't do this, You already have a booster currently active!"
-activatedBooster: "&dZooPR &8| &7You have successfully activated your booster!"
-receivedBooster: "&dZooPR &8| &7You have been given a %boostertype% booster!"
-boosterEnded: "&dZooPR &8| &7Your %boostertype% booster has ended!"
+alreadyABoosterActive: "&5&l&oZOOPR ✦ &7You can't do this, You already have a booster currently active!"
+activatedBooster: "&5&l&oZOOPR ✦ &7You have successfully activated your booster!"
+receivedBooster: "&5&l&oZOOPR ✦ &7You have been given a %boostertype% booster!"
+boosterEnded: "&5&l&oZOOPR ✦ &7Your %boostertype% booster has ended!"
 
 #
 # Armor messages
 #
-notAnArmorPiece: "&dZooPR &8| &7This item can not be enchanted through /ce!"
+notAnArmorPiece: "&5&l&oZOOPR ✦ &7This item can not be enchanted through /ce!"
 
 
 #
 # Pet messages
 #
-NotAValidType: "&dZooPR &8| &7This is not a valid pet type!"
-NotAValidTier: "&dZooPR &8| &7This is not a valid pet tier!"
+NotAValidType: "&5&l&oZOOPR ✦ &7This is not a valid pet type!"
+NotAValidTier: "&5&l&oZOOPR ✦ &7This is not a valid pet tier!"
+gavePet: "&5&l&oZOOPR ✦ &7You have given a %type% &7(%tier%&7) pet to %target%!"
+receivedPet: "&5&l&oZOOPR ✦ &7You have been given a %type% &7(%tier%&7) pet!"
 
 #
 # Quest Messages
 #
-activatedQuest: "&dZooPR &8| &7You have successfully activated this quest!"
-alreadyActiveQuest: "&dZooPR &8| &7You already have an active quest!"
+activatedQuest: "&5&l&oZOOPR ✦ &7You have successfully activated this quest!"
+alreadyActiveQuest: "&5&l&oZOOPR ✦ &7You already have an active quest!"
 
 #
 # Shop Messages
 #
-notEnoughMoneyToBuyThisItem: "&dZooPR &8| &7You don't have enough %currency% to buy this item!"
+notEnoughMoneyToBuyThisItem: "&5&l&oZOOPR ✦ &7You don't have enough %currency% to buy this item!"
+
+#
+# Luckyblock messages
+#
+givenLuckyBlock: "&5&l&oZOOPR ✦ &7You have been given &d%amount% luckyblocks&7!"

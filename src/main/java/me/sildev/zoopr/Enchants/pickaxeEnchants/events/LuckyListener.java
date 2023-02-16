@@ -37,17 +37,27 @@ public class LuckyListener implements Listener {
 
         if (!(num < chance)) return;
 
+        // Check if the block that was broken should be breakable.
         if (!SellBlocks.isInRegionWhereCanMine(e.getBlock().getLocation())) {
             e.setCancelled(true);
             return;
         }
+
+        // Define minimum and maximum value based on what is written in the config file.
         double amountMin = CustomEnchantConfigFiles.getEnchantmentAmount("LUCKY_AMOUNT_MIN");
         double amountMax = CustomEnchantConfigFiles.getEnchantmentAmount("LUCKY_AMOUNT_MAX");
 
+        // Calculate the amount of tokens that should be given to the player.
         double amount = rd.nextFloat() * (amountMax - amountMin);
-        double tokenMultiplier = (e.getPlayer().getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.TOKEN_MULTI)) * CustomEnchantConfigFiles.getEnchantmentAmount("TOKEN_MUTLI_MULTIPLIER");
+
+        // Get the token multiplier based on the Token Multi Enchantment
+        double tokenMultiplier = ((e.getPlayer().getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.TOKEN_MULTI)) * CustomEnchantConfigFiles.getEnchantmentAmount("TOKEN_MUTLI_MULTIPLIER")) + 1;
+
+        // Get the multiplier from the pet
         if (petManager.getActivePet(e.getPlayer()) != null && petManager.getActivePet(e.getPlayer()).getType().equals(PetType.TOKEN))
             tokenMultiplier += petManager.getActivePet(e.getPlayer()).getPetMultiplier();
+
+        // Get the multiplier from activated boosters by the player
         if (e.getPlayer().getPersistentDataContainer().has(boosterManager.tokenMultiplier))
             tokenMultiplier += e.getPlayer().getPersistentDataContainer().get(boosterManager.tokenMultiplier, PersistentDataType.DOUBLE);
 

@@ -95,7 +95,7 @@ public class PveMobManager implements Listener {
             Zombie zombie = (Zombie) e.getLocation().getWorld().spawnEntity(loc, EntityType.ZOMBIE);
             zombie.setMaxHealth(25);
             zombie.setHealth(zombie.getHealth());
-            zombie.setCustomName(coloredString.color("&d" + type.toLowerCase() + " &c❤ &7" + zombie.getHealth()));
+            zombie.setCustomName(coloredString.color("&2Infected &8[&7❤ &7" + zombie.getHealth() + "&8]"));
             zombie.setCustomNameVisible(true);
             zombie.setShouldBurnInDay(false);
         }
@@ -107,7 +107,7 @@ public class PveMobManager implements Listener {
             Skeleton zombie = (Skeleton) e.getLocation().getWorld().spawnEntity(loc, EntityType.SKELETON);
             zombie.setMaxHealth(25);
             zombie.setHealth(zombie.getHealth());
-            zombie.setCustomName(coloredString.color("&d" + type.toLowerCase() + " &c❤ &7" + zombie.getHealth()));
+            zombie.setCustomName(coloredString.color("&f&lUndead &8[&7❤ &7" + zombie.getHealth() + "&8]"));
             zombie.setCustomNameVisible(true);
             zombie.setShouldBurnInDay(false);
         }
@@ -119,7 +119,7 @@ public class PveMobManager implements Listener {
             Spider zombie = (Spider) e.getLocation().getWorld().spawnEntity(loc, EntityType.SPIDER);
             zombie.setMaxHealth(25);
             zombie.setHealth(zombie.getHealth());
-            zombie.setCustomName(coloredString.color("&d" + type.toLowerCase() + " &c❤ &7" + zombie.getHealth()));
+            zombie.setCustomName(coloredString.color("&5&lUngoliant &f[&5❤ &7" + zombie.getHealth() + "&8]"));
             zombie.setCustomNameVisible(true);
         }
 
@@ -129,7 +129,7 @@ public class PveMobManager implements Listener {
 
             WitherSkeleton zombie = (WitherSkeleton) e.getLocation().getWorld().spawnEntity(loc, EntityType.WITHER_SKELETON);
             zombie.setHealth(zombie.getHealth());
-            zombie.setCustomName(coloredString.color("&d" + type.toLowerCase() + " &c❤ &7" + zombie.getHealth()));
+            zombie.setCustomName(coloredString.color("&c&lGrim Reaper " + " &0[❤&4" + zombie.getHealth() + "&0]"));
             zombie.setCustomNameVisible(true);
             zombie.setShouldBurnInDay(false);
         }
@@ -174,8 +174,18 @@ public class PveMobManager implements Listener {
                 return;
             }
         }
-        if (entity.getType() == EntityType.SKELETON || entity.getType() == EntityType.SPIDER || entity.getType() == EntityType.WITHER_SKELETON || entity.getType() == EntityType.ZOMBIE)
+        if (entity.getType() == EntityType.SKELETON || entity.getType() == EntityType.SPIDER || entity.getType() == EntityType.WITHER_SKELETON || entity.getType() == EntityType.ZOMBIE) {
             entity.setCustomName(coloredString.color("&d" + entity.getType().toString().toLowerCase() + " &c❤ &7" + Math.round(entity.getHealth() - e.getDamage())));
+            if (entity.getType() == EntityType.SKELETON) {
+                entity.setCustomName(coloredString.color("&f&lUndead &8[&7❤ &7" + entity.getHealth() + "&8]"));
+            } else if (entity.getType() == EntityType.ZOMBIE) {
+                entity.setCustomName(coloredString.color("&2Infected &8[&7❤ &7" + entity.getHealth() + "&8]"));
+            } else if (entity.getType() == EntityType.WITHER_SKELETON) {
+                entity.setCustomName(coloredString.color("&c&lGrim Reaper " + " &0[❤&4" + entity.getHealth() + "&0]"));
+            } else {
+                entity.setCustomName(coloredString.color("&5&lUngoliant &f[&5❤ &7" + entity.getHealth() + "&8]"));
+            }
+        }
     }
 
     public void dropPveLoot(Location loc) {

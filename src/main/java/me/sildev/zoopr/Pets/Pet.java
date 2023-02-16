@@ -71,7 +71,7 @@ public class Pet implements ConfigurationSerializable {
 
     public double getPetMultiplier() {
         double baseMulti = this.tier.getMultiplier();
-        baseMulti += (0.01 * this.level - 1);
+        baseMulti += (0.01 * this.level);
         return baseMulti;
     }
 
@@ -89,5 +89,9 @@ public class Pet implements ConfigurationSerializable {
         map.put("exp", exp);
         map.put("expRequired", expRequired);
         return map;
+    }
+
+    public PetType getType() {
+        return this.type;
     }
 }

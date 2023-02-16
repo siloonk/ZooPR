@@ -45,4 +45,6 @@ public class CustomEnchantConfigFiles {
 
     public static double getEnchantmentLevelRequired(String path) {return enchantsChances.getInt(path.toUpperCase()); }
 
+    public static String getEnchantmentCommand(String path) {return enchantsChances.getString(path);}
+
 }

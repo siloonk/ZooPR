@@ -12,6 +12,7 @@ public class Gang implements ConfigurationSerializable {
 
     OfflinePlayer owner;
     List<OfflinePlayer> members = new ArrayList<OfflinePlayer>();
+
     String name;
     int level;
     double upgradeCost;
@@ -62,6 +63,8 @@ public class Gang implements ConfigurationSerializable {
         for (String member : tempMembers)
             this.members.add(Bukkit.getOfflinePlayer(UUID.fromString(member)));
         this.name = (String) map.get("name");
+        this.level = (Integer) map.get("level");
+        this.upgradeCost = (Double) map.get("upgradeCost");
     }
 
     @Override
@@ -73,6 +76,8 @@ public class Gang implements ConfigurationSerializable {
             tempMembers.add(member.getUniqueId().toString());
         map.put("members", tempMembers);
         map.put("name", name);
+        map.put("level", level);
+        map.put("upgradeCost", upgradeCost);
         return map;
     }
 }

@@ -33,19 +33,17 @@ public class prestigeCMD implements CommandExecutor {
             player.sendMessage(message);
             return true;
         }
-        double cost = container.get(rankupManager.prestigeCost, PersistentDataType.DOUBLE);
+        double cost = container.get(rankupManager.rankupCost, PersistentDataType.DOUBLE);
         double balance = EconomyManager.getMoneyOfUser(player);
 
         String message = notEnoughmoney.replaceAll("%remaining%", formatNumber.coolFormat(cost-balance, 0));
         if (balance < cost) {player.sendMessage(message); return true; }
         EconomyManager.addMoneyToUser(player, -cost);
-        container.set(rankupManager.prestigeCost, PersistentDataType.DOUBLE, cost * rankupManager.prestigeCostMultiplier);
 
         container.set(rankupManager.rankup, PersistentDataType.INTEGER, 0);
         container.set(rankupManager.prestige, PersistentDataType.INTEGER, prestige + 1);
-        double multiplier = (prestige + 1) * rankupManager.rankupCostMultiplier;
-        double rankupCost = container.get(rankupManager.rankupCost, PersistentDataType.DOUBLE);
-        container.set(rankupManager.rankupCost, PersistentDataType.DOUBLE, rankupManager.StartRankupCost * multiplier);
+        double multiplier = (prestige + 1) * 1000;
+        container.set(rankupManager.rankupCost, PersistentDataType.DOUBLE, rankupManager.StartRankupCost + multiplier);
         double prestigePoints = container.get(rankupManager.prestigePoints, PersistentDataType.DOUBLE);
         container.set(rankupManager.prestigePoints, PersistentDataType.DOUBLE, prestigePoints + 1);
 

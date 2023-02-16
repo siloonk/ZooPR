@@ -1,9 +1,9 @@
 package me.sildev.zoopr.mines.commands;
 
 import me.sildev.zoopr.ZooPR;
-import me.sildev.zoopr.essentials.ui.mainMineMenu;
 import me.sildev.zoopr.mines.Mine;
 import me.sildev.zoopr.mines.MineManager;
+import me.sildev.zoopr.mines.ui.mainMineMenu;
 import me.sildev.zoopr.utils.Messages;
 import me.sildev.zoopr.utils.coloredString;
 import org.bukkit.Location;
@@ -15,6 +15,7 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class mineCMD implements CommandExecutor {
@@ -61,7 +62,26 @@ public class mineCMD implements CommandExecutor {
                 pos2 = player.getLocation();
                 player.sendMessage(coloredString.color("&dZooPR &8| &7 pos2 has been set to " + pos2.getBlockX() + " " + pos2.getBlockY() + " " + pos2.getBlockZ() + "!"));
                 return true;
+            } else if (args[0].equalsIgnoreCase("list")) {
+                Collection<Mine> mines = MineManager.mines.values();
+                player.sendMessage(coloredString.color("&5-=-=-=- &dMines &5-=-=-=-"));
+                player.sendMessage("");
+                for (Mine mine : mines) {
+                    player.sendMessage(coloredString.color("&5 - &d" + mine.getName()));
+                }
+                player.sendMessage("");
             }
+        } else if (args.length == 2) {
+            if (!args[0].equalsIgnoreCase("reset"))
+                return true;
+
+            if (!MineManager.mines.containsKey(args[1]))
+                return true;
+
+            MineManager.mines.get(args[1]).reset();
+            player.sendMessage(coloredString.color("&5&l&oZOOPR ✦ &7You have successfully started to process to reset mine &d" + args[1] + "&7!."));
+
+
         } else if (args.length >= 3) {
             if (pos1 != null && pos2 != null) {
                 if (MineManager.mines.containsKey(args[1])) return true;

@@ -1,7 +1,6 @@
 package me.sildev.zoopr.essentials.commands;
 
 import me.sildev.zoopr.utils.Messages;
-import me.sildev.zoopr.utils.coloredString;
 import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

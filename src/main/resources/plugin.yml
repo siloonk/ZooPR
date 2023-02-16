@@ -4,7 +4,7 @@ main: me.sildev.zoopr.ZooPR
 api-version: 1.19
 authors: [ siloonk ]
 description: ZooPR Core
-depend: [WorldGuard]
+depend: [WorldGuard, LuckPerms, Vault, DecentHolograms]
 
 commands:
   bal:
@@ -80,5 +80,5 @@ commands:
   setminelocation:
     description: setminelocation command!
 
-  resetmine:
-    description: resetmine command!
+  giveluckyblock:
+    description: luckyblock give command!

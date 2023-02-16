@@ -38,7 +38,7 @@ public class luckyBlockInteractEvent implements Listener {
         }
 
         int index = rd.nextInt(chosenLoot.size());
-        ZooPR.getPlugin().getServer().dispatchCommand(ZooPR.getPlugin().getServer().getConsoleSender(), chosenLoot.get(index));
+        ZooPR.getPlugin().getServer().dispatchCommand(ZooPR.getPlugin().getServer().getConsoleSender(), chosenLoot.get(index).replaceAll("%player%", e.getPlayer().getName()));
 
 
         player.getInventory().getItemInMainHand().setAmount(item.getAmount() - 1);

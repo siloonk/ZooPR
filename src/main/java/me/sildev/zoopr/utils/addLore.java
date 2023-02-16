@@ -7,11 +7,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.enchantments.EnchantmentWrapper;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
@@ -56,11 +54,10 @@ public class addLore {
         lore.add(coloredString.color("&f&l⛏ &5&oBlocks Broken: &d " + formatNumber.coolFormat(meta.getPersistentDataContainer().get(new NamespacedKey(ZooPR.getPlugin(), "blocks-broken"), PersistentDataType.DOUBLE), 0)));
         lore.add(coloredString.color( "&f&ki &5&oLevel: &d&o" + Math.round(meta.getPersistentDataContainer().get(new NamespacedKey(ZooPR.getPlugin(), "level"), PersistentDataType.DOUBLE)) + "/100 &f&ki"));
         double progress = (meta.getPersistentDataContainer().get(new NamespacedKey(ZooPR.getPlugin(), "level-exp"), PersistentDataType.DOUBLE) / meta.getPersistentDataContainer().get(new NamespacedKey(ZooPR.getPlugin(), "level-exp-requirement"), PersistentDataType.DOUBLE));
-        System.out.println(progress);
         StringBuilder progressBar = new StringBuilder("&7[");
         for (int i = 0; i < 10; i++) {
             if (progress * 10 >= i)
-                progressBar.append("&a■");
+                progressBar.append("&5■");
             else
                 progressBar.append("&8■");
         }
@@ -92,9 +89,8 @@ public class addLore {
         PersistentDataContainer container = meta.getPersistentDataContainer();
 
         lore.add("");
-        lore.add(coloredString.color("&dOwner &f" + Bukkit.getOfflinePlayer(UUID.fromString(container.get(RobotManager.owner, PersistentDataType.STRING))).getName()));
-        lore.add(coloredString.color("&dLevel &f" + container.get(RobotManager.level, PersistentDataType.INTEGER)));
-        lore.add(coloredString.color("&dType &f" + container.get(RobotManager.type, PersistentDataType.STRING)));
+        lore.add(coloredString.color("&5&l➥ &5&lOwned by: &f&l" + Bukkit.getOfflinePlayer(UUID.fromString(container.get(RobotManager.owner, PersistentDataType.STRING))).getName()));
+        lore.add(coloredString.color("&5&l➥ &5&lLevel: &f&l" + container.get(RobotManager.level, PersistentDataType.INTEGER)));
         lore.add(" ");
 
         meta.setLore(lore);

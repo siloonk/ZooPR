@@ -1,4 +1,4 @@
-package me.sildev.zoopr.playtime;
+package me.sildev.zoopr.mines.playtime;
 
 import me.sildev.zoopr.ZooPR;
 import org.bukkit.NamespacedKey;

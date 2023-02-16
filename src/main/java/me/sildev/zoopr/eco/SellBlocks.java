@@ -11,11 +11,10 @@ import me.sildev.zoopr.Enchants.CustomEnchants;
 import me.sildev.zoopr.Pets.PetType;
 import me.sildev.zoopr.Pets.petManager;
 import me.sildev.zoopr.ZooPR;
-import me.sildev.zoopr.playtime.playtimeManager;
+import me.sildev.zoopr.mines.playtime.playtimeManager;
 import me.sildev.zoopr.pickaxe.events.addExpToPickaxe;
 import me.sildev.zoopr.utils.Messages;
 import me.sildev.zoopr.utils.addLore;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -93,6 +92,7 @@ public class SellBlocks {
         for (ProtectedRegion region : regions) {
             regionNames.add(region.getId());
         }
+
         for (String r : getRegionsToStopMining()) {
             if (regionNames.contains(r)) {
                 return true;
@@ -148,7 +148,7 @@ public class SellBlocks {
             tokenMultiplier += player.getPersistentDataContainer().get(boosterManager.tokenMultiplier, PersistentDataType.DOUBLE);
         }
 
-        EconomyManager.addTokensToUser(player, 1 * tokenMultiplier);
+        EconomyManager.addTokensToUser(player, new Random().nextInt(10, 20) * tokenMultiplier);
 
 
         double multiplier = ((player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.FORTUNE) * CustomEnchantConfigFiles.getEnchantmentAmount("FORTUNE_MULTIPLIER")) + 1);
@@ -214,7 +214,7 @@ public class SellBlocks {
         if (player.getPersistentDataContainer().has(boosterManager.tokenMultiplier))
             tokenMultiplier += player.getPersistentDataContainer().get(boosterManager.tokenMultiplier, PersistentDataType.DOUBLE);
 
-        EconomyManager.addTokensToUser(player, 1 * tokenMultiplier);
+        EconomyManager.addTokensToUser(player, new Random().nextInt(10, 20) * tokenMultiplier);
         double multiplier = ((player.getInventory().getItemInMainHand().getEnchantmentLevel(CustomEnchants.FORTUNE) * CustomEnchantConfigFiles.getEnchantmentAmount("FORTUNE_MULTIPLIER")) + 1);
         if (player.getPersistentDataContainer().has(boosterManager.moneyMultiplier))
             multiplier += player.getPersistentDataContainer().get(boosterManager.moneyMultiplier, PersistentDataType.DOUBLE);

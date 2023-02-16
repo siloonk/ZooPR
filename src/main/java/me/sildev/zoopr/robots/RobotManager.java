@@ -4,7 +4,6 @@ import me.sildev.zoopr.ZooPR;
 import me.sildev.zoopr.utils.Messages;
 import me.sildev.zoopr.utils.coloredString;
 import org.bukkit.*;
-import org.bukkit.block.Skull;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.ArmorStand;
 
@@ -26,7 +25,7 @@ import java.util.UUID;
 public class RobotManager implements Listener {
 
     public static int maxLevel = 100;
-    public static String RobotItemName = coloredString.color("&f&ki&d Miner Robot &f&ki");
+    public static String RobotItemName = coloredString.color("&0&l[ &5&l〠 &d&l&nMiner Robot&r &7(&d&o%type%&7) &5&l〠 &0&l]");
     public static NamespacedKey level = new NamespacedKey(ZooPR.getPlugin(), "robot-level");
     public static  NamespacedKey owner = new NamespacedKey(ZooPR.getPlugin(), "robot-owner");
     public static NamespacedKey earnings = new NamespacedKey(ZooPR.getPlugin(), "robot-earnings");
@@ -58,7 +57,7 @@ public class RobotManager implements Listener {
             if (item.getType() != RobotType)
                 return;
 
-            if (!item.getItemMeta().getDisplayName().equals(RobotItemName))
+            if (!item.getItemMeta().getDisplayName().replaceAll("Money", "%type%").replaceAll("Tokens", "%type%").equals(RobotItemName))
                 return;
 
             // Item is an actual robot!

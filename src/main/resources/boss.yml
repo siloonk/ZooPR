@@ -1,0 +1,50 @@
+# Abiltilities:
+# - disarm -> remove a piece of armor from the player
+# - launch -> launch the players in a radius of 10 blocks away (force depends on how close they are to the mob)
+# - nausea -> give all players in a range of 7 blocks nausea
+# - stun -> freeze all players in a radius of 5 blocks
+# - laser ->
+#
+#
+
+
+chat-displayName: "&dBossName"
+entity-displayName: "&dBossName &7| &7%health%"
+
+boss-health: 100 # this is the hearts
+boss-abilities: # all abilities available to the boss.
+  - "DISARM"
+  - "LAUNCH"
+
+boss-armor:
+  diamond_helmet:
+    enchantments:
+      protection: 5
+      unbreaking: 10
+
+    attributes:
+      unbreakable: true
+
+  diamond_chestplate:
+    enchantments:
+      protection: 5
+      unbreaking: 10
+
+    attributes:
+      unbreakable: true
+
+
+  diamond_leggings:
+    enchantments:
+      protection: 5
+      unbreaking: 10
+
+    attributes:
+      unbreakable: tru
+  diamond_boots:
+    enchantments:
+      protection: 5
+      unbreaking: 10
+
+    attributes:
+      unbreakable: true

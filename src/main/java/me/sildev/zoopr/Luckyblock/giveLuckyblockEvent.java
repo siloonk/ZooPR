@@ -20,8 +20,8 @@ public class giveLuckyblockEvent implements Listener {
 
             Random rd = new Random();
 
-            int chance = rd.nextInt(1000);
-            if (chance < 9) {
+            int chance = rd.nextInt(10000);
+            if (chance < 2) {
                 ItemStack luckyBlock = LuckyBlockManager.generateLuckyBlock();
                 player.getInventory().addItem(luckyBlock);
             }

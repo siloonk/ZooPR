@@ -52,7 +52,7 @@ public class payCMD implements CommandExecutor {
                         message = message.replaceAll("%target%", target.getName());
                         player.sendMessage(message);
                         message = youGotPaid.replaceAll("%amount%", formatNumber.coolFormat(amount, 0));
-                        message = message.replaceAll("%target%", target.getName());
+                        message = message.replaceAll("%target%", player.getName());
                         target.sendMessage(message);
                         return true;
                     }

@@ -48,9 +48,12 @@ public class EnchantPrices {
         }
     }
 
-    public static double getEnchantPrice(Enchantment ce, int levelToGetTo) {
+    public static double getEnchantPrice(Enchantment ce, int currLevel, int levelToGetTo) {
         double basePrice = getPrice(ce);
         double price = basePrice;
+        double currPrice = basePrice;
+
+        double oldPrice = 0;
 
         int incrementType = (int) pricesConfig.get("increment_type");
         if (incrementType == 1) {
@@ -64,13 +67,20 @@ public class EnchantPrices {
         } else if (incrementType == 0) {
            // Constant value
             double increase = (pricesConfig.getDouble(ce.getName() + "_increase"));
+            double base = getPrice(ce);
+            oldPrice = base;
 
             for (int i = 0; i < levelToGetTo; i++) {
+                if (i < currLevel) {
+                    base += increase;
+                    oldPrice += base;
+                }
                 price += increase;
+                currPrice += price;
             }
         }
 
-        return price;
+        return currPrice - oldPrice;
     }
 
 

@@ -24,10 +24,14 @@ public class GangManager {
     static File gangsFile;
     static ZooPR instance = ZooPR.getPlugin();
 
-    static NamespacedKey gang = new NamespacedKey(ZooPR.getPlugin(), "gang");
+    public static List<String> gangNames = new ArrayList<>();
+
+    public static NamespacedKey gang = new NamespacedKey(ZooPR.getPlugin(), "gang");
 
     public GangManager() {
+
         createGangsConfig();
+        gangNames = gangs.getStringList("gangNames");
     }
 
     public static boolean createGang(Player owner, String name) {
@@ -38,7 +42,8 @@ public class GangManager {
         List<OfflinePlayer> members = new ArrayList<OfflinePlayer>();
         members.add(owner);
         Gang g = new Gang(owner, members, name);
-
+        gangNames.add(g.getName());
+        gangs.set("gangNames", gangNames);
         gangs.set("gangs." + name, g);
         try {
             gangs.save(gangsFile);

@@ -25,23 +25,19 @@ public class rebirthCMD implements CommandExecutor {
 
         PersistentDataContainer container = player.getPersistentDataContainer();
         int prestige = container.get(rankupManager.prestige, PersistentDataType.INTEGER);
-        int rebirth = container.get(rankupManager.rebirth, PersistentDataType.INTEGER);
+        int rebirth = rankupManager.getRebirthOfPlayer(player.getUniqueId());
         if (!(prestige >= 1000)) {
             String message = notPres1000Yet.replaceAll("%prestige%", String.valueOf(prestige));
             player.sendMessage(message);
             return true;
         }
         EconomyManager.setMoneyOfUser(player, 0d);
-        EconomyManager.setTokensOfUser(player, 0d);
 
         container.set(rankupManager.rankup, PersistentDataType.INTEGER, 0);
         container.set(rankupManager.prestige, PersistentDataType.INTEGER, 0);
-        container.set(rankupManager.prestigeCost, PersistentDataType.DOUBLE, Math.pow(rankupManager.StartPrestigeCost * 1.2, rebirth + 1));
         container.set(rankupManager.rebirthPoints, PersistentDataType.DOUBLE, container.get(rankupManager.rebirthPoints, PersistentDataType.DOUBLE) + 1);
-        double multiplier = (prestige + 1) * rankupManager.rankupCostMultiplier;
-        double rankupCost = container.get(rankupManager.rankupCost, PersistentDataType.DOUBLE);
-        container.set(rankupManager.rankupCost, PersistentDataType.DOUBLE, Math.pow(rankupManager.StartRankupCost * 1.5, rebirth + 1));
-
+        container.set(rankupManager.rankupCost, PersistentDataType.DOUBLE, rankupManager.StartRankupCost);
+        rankupManager.storeRebirth(player.getUniqueId(), rankupManager.getRebirthOfPlayer(player.getUniqueId()) + 1);
 
         // Sending the message
         ZooPR.getPlugin().getServer().broadcastMessage(coloredString.color("&8&m---------------------------------------------------"));

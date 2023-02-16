@@ -45,7 +45,6 @@ public class LaserListener implements Listener {
                 SellBlocks.sellBlock(block.getBlock(), player);
         }*/
 
-        System.out.println("LASER");
         new LaserTask(player, SIZE, e.getBlock().getLocation()).runTaskTimer(ZooPR.getPlugin(), 0L, 5L);
         //Bukkit.getScheduler().scheduleSyncRepeatingTask(ZooPR.getPlugin(), new LaserTask(player, SIZE, e.getBlock().getLocation()), 0L, 20L);
     }

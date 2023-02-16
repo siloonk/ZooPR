@@ -1,7 +1,6 @@
 package me.sildev.zoopr.robots;
 
 import me.sildev.zoopr.utils.Messages;
-import me.sildev.zoopr.utils.coloredString;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

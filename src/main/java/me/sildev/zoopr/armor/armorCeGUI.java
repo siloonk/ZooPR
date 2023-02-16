@@ -20,30 +20,7 @@ public class armorCeGUI {
 
         gui.setItem(13, item);
 
-        guiExtension.addRenamedItemWithLore(gui, 30, Material.BOOK, "&7Protection", new String[] {
-                "",
-                "&f&lDescription &7&oTake less damage when you get hit!",
-                "",
-                "&7Cost " + EnchantPrices.getEnchantPrice(Enchantment.PROTECTION_ENVIRONMENTAL, item.getEnchantmentLevel(Enchantment.PROTECTION_ENVIRONMENTAL)),
-                "&7Level " + item.getEnchantmentLevel(Enchantment.PROTECTION_ENVIRONMENTAL) + " / 10"
-        });
-
-
-        guiExtension.addRenamedItemWithLore(gui, 31, Material.BOOK, "&7Thorns", new String[] {
-                "",
-                "&f&lDescription &7&oHas a chance to deal damage to the entity that hit you!",
-                "",
-                "&7Cost " + EnchantPrices.getEnchantPrice(Enchantment.THORNS, item.getEnchantmentLevel(Enchantment.THORNS)),
-                "&7Level " + item.getEnchantmentLevel(Enchantment.THORNS) + " / 10"
-        });
-
-        guiExtension.addRenamedItemWithLore(gui, 32, Material.BOOK, "&7Unbreaking", new String[] {
-                "",
-                "&f&lDescription &7&oLet's your armor last longer!",
-                "",
-                "&7Cost " + EnchantPrices.getEnchantPrice(Enchantment.DURABILITY, item.getEnchantmentLevel(Enchantment.DURABILITY)),
-                "&7Level " + item.getEnchantmentLevel(Enchantment.DURABILITY) + " / 10"
-        });
+        resetItems(gui, player, item);
 
         player.openInventory(gui);
     }
@@ -51,29 +28,29 @@ public class armorCeGUI {
     public static void resetItems(Inventory gui, Player player, ItemStack item) {
         gui.setItem(13, item);
 
-        guiExtension.addRenamedItemWithLore(gui, 30, Material.BOOK, "&7Protection", new String[] {
+        guiExtension.addRenamedItemWithLore(gui, 30, Material.BOOK, "&8&l[ &5&ki &5&lProtection &5&ki &8&l]", new String[] {
                 "",
-                "&f&lDescription &7&oTake less damage when you get hit!",
+                "&5&lDescription &7&oTake less damage when you get hit!",
                 "",
-                "&7Cost " + EnchantPrices.getEnchantPrice(Enchantment.PROTECTION_ENVIRONMENTAL, item.getEnchantmentLevel(Enchantment.PROTECTION_ENVIRONMENTAL)),
-                "&7Level " + item.getEnchantmentLevel(Enchantment.PROTECTION_ENVIRONMENTAL) + " / 10"
+                "&d&l➥ &5&lCost: &d" + EnchantPrices.getEnchantPrice(Enchantment.PROTECTION_ENVIRONMENTAL, item.getEnchantmentLevel(Enchantment.PROTECTION_ENVIRONMENTAL) , item.getEnchantmentLevel(Enchantment.PROTECTION_ENVIRONMENTAL)),
+                "&d&l➥ &5&lLevel: &d" + item.getEnchantmentLevel(Enchantment.PROTECTION_ENVIRONMENTAL) + " / 10"
         });
 
 
-        guiExtension.addRenamedItemWithLore(gui, 31, Material.BOOK, "&7Thorns", new String[] {
+        guiExtension.addRenamedItemWithLore(gui, 31, Material.BOOK, "&8&l[ &5&ki &5&lThorns &5&ki &8&l]", new String[] {
                 "",
-                "&f&lDescription &7&oHas a chance to deal damage to the entity that hit you!",
+                "&5&lDescription &7&oHas a chance to deal damage to the entity that hit you!",
                 "",
-                "&7Cost " + EnchantPrices.getEnchantPrice(Enchantment.THORNS, item.getEnchantmentLevel(Enchantment.THORNS)),
+                "&d&l➥ &5&lCost: &d" + EnchantPrices.getEnchantPrice(Enchantment.THORNS, item.getEnchantmentLevel(Enchantment.THORNS) , item.getEnchantmentLevel(Enchantment.THORNS)),
                 "&7Level " + item.getEnchantmentLevel(Enchantment.THORNS) + " / 10"
         });
 
-        guiExtension.addRenamedItemWithLore(gui, 32, Material.BOOK, "&7Unbreaking", new String[] {
+        guiExtension.addRenamedItemWithLore(gui, 32, Material.BOOK, "&8&l[ &5&ki &5&lUnbreaking &5&ki &8&l]", new String[] {
                 "",
-                "&f&lDescription &7&oLet's your armor last longer!",
+                "&5&lDescription &7&oLet's your armor last longer!",
                 "",
-                "&7Cost " + EnchantPrices.getEnchantPrice(Enchantment.DURABILITY, item.getEnchantmentLevel(Enchantment.DURABILITY)),
-                "&7Level " + item.getEnchantmentLevel(Enchantment.DURABILITY) + " / 10"
+                "&d&l➥ &5&lCost: &d" + EnchantPrices.getEnchantPrice(Enchantment.DURABILITY, item.getEnchantmentLevel(Enchantment.DURABILITY) , item.getEnchantmentLevel(Enchantment.DURABILITY)),
+                "&d&l➥ &5&lLevel: &d" + item.getEnchantmentLevel(Enchantment.DURABILITY) + " / 10"
         });
     }
 }

@@ -6,12 +6,16 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Locale;
 
 public class RobotCMD implements CommandExecutor {
 
@@ -66,15 +70,21 @@ public class RobotCMD implements CommandExecutor {
         if (!(type.equals("TOKENS") || type.equals("MONEY")))
             return true;
 
+        StringBuilder typeString = new StringBuilder(type.toLowerCase());
+        String character = String.valueOf(typeString.charAt(0));
+        typeString.setCharAt(0, character.toUpperCase().toCharArray()[0]);
         ItemStack robotItem = new ItemStack(RobotManager.RobotType);
         ItemMeta meta = robotItem.getItemMeta();
-        meta.setDisplayName(RobotManager.RobotItemName);
+        meta.setDisplayName(RobotManager.RobotItemName.replaceAll("%type%", typeString.toString()));
+
         PersistentDataContainer container = meta.getPersistentDataContainer();
         container.set(RobotManager.level, PersistentDataType.INTEGER, level);
         container.set(RobotManager.owner, PersistentDataType.STRING, target.getUniqueId().toString());
         container.set(RobotManager.type, PersistentDataType.STRING, type);
         robotItem.setItemMeta(meta);
         robotItem = addLore.addRobotLore(robotItem);
+        robotItem.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
+        robotItem.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
         for (int i = 0; i < amount; i++) {
             target.getInventory().addItem(robotItem);

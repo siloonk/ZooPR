@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
@@ -21,7 +22,7 @@ public class tokentopCMD implements CommandExecutor {
         if (!command.getName().equalsIgnoreCase("tokentop"))
             return false;
 
-        Map<UUID, Double> leaderboard = ZooPR.getLeaderboard().getMoneyLeaderboard();
+        Map<UUID, Integer> leaderboard = ZooPR.getLeaderboard().getRebirthLeaderBoard();
 
         AtomicInteger iteration = new AtomicInteger(1);
         sender.sendMessage(coloredString.color("&8&m----&r &dToken Top &8&m----&r"));
