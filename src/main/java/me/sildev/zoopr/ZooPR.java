@@ -227,6 +227,7 @@ public final class ZooPR extends JavaPlugin {
         pm.registerEvents(new LightningListener(), this);
         pm.registerEvents(new PouchFinderListener(), this);
         pm.registerEvents(new CubedListener(), this);
+        pm.registerEvents(new CrateFinderListener(), this);
     }
 
     public static ZooPR getPlugin() {
